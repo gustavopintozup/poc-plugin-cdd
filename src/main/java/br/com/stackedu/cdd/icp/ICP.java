@@ -1,9 +1,11 @@
 package br.com.stackedu.cdd.icp;
 
-import spoon.reflect.declaration.CtType;
+import java.util.List;
 
 public interface ICP {
 
-    public int calcular(CtType clazz);
+    public int total();
+
+    public List<String> valores();
 
 }

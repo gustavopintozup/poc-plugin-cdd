@@ -1,5 +1,6 @@
 package br.com.stackedu.cdd;
 
+import br.com.stackedu.cdd.icp.Anotacao;
 import br.com.stackedu.cdd.icp.Metodo;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
@@ -16,9 +17,14 @@ public class IdentificandoClassesParaParsing {
         spoon.buildModel();
 
         CtModel model = spoon.getModel();
+
         for (CtType clazz : model.getAllTypes()) {
-            int metodos = new Metodo().calcular(clazz);
-            System.out.println("Total métodos: " + metodos );
+            int metodos = new Metodo(clazz).total();
+            System.out.println("Total métodos: " + metodos);
+
+            Anotacao a = new Anotacao(clazz);
+            System.out.println("Total anotacoes: " + a.total());
+            System.out.println(a.valores());
         }
     }
 }
