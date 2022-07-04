@@ -23,20 +23,14 @@ public class Anotacao implements ICP {
         calcularAnotacoes();
     }
 
-    private int calcularAnotacoes() {
+    private void calcularAnotacoesEmClasses() {
         for (CtAnnotation annotation : clazz.getAnnotations()) {
             totalAnotacoes++;
             nomeDasAnotacoes.add(annotation.getName());
         }
+    }
 
-        Set<CtMethod> methods = clazz.getMethods();
-        for (CtMethod method : methods) {
-            for (CtAnnotation annotation : method.getAnnotations()) {
-                totalAnotacoes++;
-                nomeDasAnotacoes.add(annotation.getName());
-            }
-        }
-
+    private void calcularAnotacoesEmAtributos() {
         List<CtField> fields = clazz.getFields();
         for (CtField field : fields) {
             for (CtAnnotation annotation : field.getAnnotations()) {
@@ -44,7 +38,28 @@ public class Anotacao implements ICP {
                 nomeDasAnotacoes.add(annotation.getName());
             }
         }
+    }
 
+    private void calcularAnotacoesEmMetodos() {
+        Set<CtMethod> methods = clazz.getMethods();
+        for (CtMethod method : methods) {
+            
+            for (CtAnnotation annotation : method.getAnnotations()) {
+                totalAnotacoes++;
+                nomeDasAnotacoes.add(annotation.getName());
+            }
+
+            List<CtParameter> parametros = method.getParameters();
+            for (CtParameter parametro : parametros) {
+                for (CtAnnotation annotation : parametro.getAnnotations()) {
+                    totalAnotacoes++;
+                    nomeDasAnotacoes.add(annotation.getName());
+                }
+            }
+        }
+    }
+
+    private void calcularAnotacoesEmConstrutores() {
         Set<CtConstructor> construtores = ((CtClass) clazz).getConstructors();
         for (CtConstructor construtor : construtores) {
             for (CtAnnotation annotation : construtor.getAnnotations()) {
@@ -60,6 +75,14 @@ public class Anotacao implements ICP {
                 }
             }
         }
+    }
+
+    private int calcularAnotacoes() {
+
+        calcularAnotacoesEmClasses();
+        calcularAnotacoesEmMetodos();
+        calcularAnotacoesEmConstrutores();
+        calcularAnotacoesEmAtributos();
 
         return totalAnotacoes;
     }
