@@ -1,13 +1,14 @@
-# Analise de dados sensíveis
+# Plugin do CDD
 
-Essa é uma POC de um plugin do CDD usando a ferramenta de análise estática [spoon](https://github.com/INRIA/spoon).
+Essa é uma POC de um plugin que calcula os ICPs do CDD usando a ferramenta de análise estática [spoon](https://github.com/INRIA/spoon).
 
 ## ICPs
 
 Atualmente a POC computa os seguintes ICPs:
 
-- [ ] IF_STATEMENT("if_statement")
 - [x] METHOD("method")
+- [X] ANNOTATION("annotation")
+- [ ] IF_STATEMENT("if_statement")
 - [ ] BLOCK_STATEMENT("block_statement")
 - [ ] CODE_BLOCK("code_block")
 - [ ] CATCH_SECTION("catch_section")
@@ -28,5 +29,4 @@ Atualmente a POC computa os seguintes ICPs:
 - [ ] IMPORT_STATIC_REFERENCE_ELEMENT("import_static_reference_element")
 - [ ] SUPER_EXPRESSION("super_expression")
 - [ ] SWITCH_STATEMENS("switch_statemens") 
-- [X] ANNOTATION("annotation")
 - [ ] YIELD_STATEMENT("yield_statement")
