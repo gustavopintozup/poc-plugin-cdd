@@ -3,7 +3,9 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.stackedu.cdd.MetricasCDD;
 import spoon.processing.AbstractProcessor;
+import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtMethod;
 
 public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP {
@@ -27,7 +29,12 @@ public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP 
 
     @Override
     public void process(CtMethod element) {
-        this.total++;
-        metodos.add(element.getSimpleName());
+        CtClass clazz = element.getParent(CtClass.class);
+
+        if (clazz != null) {
+            MetricasCDD.store(clazz.getQualifiedName(), "metodo");
+            this.total++;
+            metodos.add(element.getSimpleName());
+        }
     }
 }

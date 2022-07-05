@@ -1,6 +1,12 @@
 package br.com.stackedu.cdd;
 
 import br.com.stackedu.cdd.icp.AnotacaoProcessor;
+import br.com.stackedu.cdd.icp.CatchProcessor;
+import br.com.stackedu.cdd.icp.LambdaProcessor;
+import br.com.stackedu.cdd.icp.MetodoProcessor;
+import br.com.stackedu.cdd.icp.SwitchProcessor;
+import br.com.stackedu.cdd.icp.ThrowProcessor;
+import br.com.stackedu.cdd.icp.TryProcessor;
 import spoon.Launcher;
 
 public class MineradorCDD {
@@ -8,26 +14,20 @@ public class MineradorCDD {
     public static void main(String[] args) {
         Launcher spoon = new Launcher();
 
-        String target = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/";
+        String target = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/compartilhado/";
 
         spoon.addInputResource(target);
+        spoon.addProcessor(new AnotacaoProcessor());
+        spoon.addProcessor(new TryProcessor());
+        spoon.addProcessor(new CatchProcessor());
+        spoon.addProcessor(new LambdaProcessor());
+        spoon.addProcessor(new MetodoProcessor());
+        spoon.addProcessor(new SwitchProcessor());
+        spoon.addProcessor(new ThrowProcessor());
 
-        // spoon.run();
-
-        // final Factory factory = spoon.getFactory();
-        // final ProcessingManager processingManager = new QueueProcessingManager(factory);
-        
-        AnotacaoProcessor annProcessor = new AnotacaoProcessor();
-        spoon.addProcessor(annProcessor);
         spoon.run();
 
-
-        
-        System.out.println(spoon.getFactory().Class().getAll());
-
-        System.out.println(annProcessor.valores());
-        
-
+        System.out.println(MetricasCDD.prettyprint());
     }
 
 }
