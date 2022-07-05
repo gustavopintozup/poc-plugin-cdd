@@ -14,7 +14,7 @@ public class MineradorCDD {
     public static void main(String[] args) {
         Launcher spoon = new Launcher();
 
-        String target = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/compartilhado/";
+        String target = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/";
 
         spoon.addInputResource(target);
         spoon.addProcessor(new AnotacaoProcessor());

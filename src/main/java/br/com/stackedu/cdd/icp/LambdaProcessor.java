@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.stackedu.cdd.MetricasCDD;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtLambda;
-import spoon.reflect.declaration.CtClass;
+import spoon.reflect.declaration.CtType;
 
 public class LambdaProcessor extends AbstractProcessor<CtLambda> implements ICP {
 
@@ -32,7 +32,7 @@ public class LambdaProcessor extends AbstractProcessor<CtLambda> implements ICP 
         this.total++;
         this.stms.add(element.prettyprint());
 
-        CtClass clazz = element.getParent(CtClass.class);
-        MetricasCDD.store(clazz.getQualifiedName(), "lambda");
+        CtType type = element.getParent(CtType.class);
+        MetricasCDD.store(type.getQualifiedName(), "lambda");
     }
 }

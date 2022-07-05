@@ -28,7 +28,7 @@ public class MetricasCDD {
             sb.append('=');
             sb.append(entry.getValue());
             if (iter.hasNext()) {
-                sb.append(',').append(' ');
+                sb.append('\n');
             }
         }
         return sb.toString();

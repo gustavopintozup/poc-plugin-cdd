@@ -3,8 +3,10 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.stackedu.cdd.MetricasCDD;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtForEach;
+import spoon.reflect.declaration.CtType;
 
 public class ForEachProcessor extends AbstractProcessor<CtForEach> implements ICP {
 
@@ -19,6 +21,9 @@ public class ForEachProcessor extends AbstractProcessor<CtForEach> implements IC
     public void process(CtForEach element) {
         total++;
         this.values.add(element.getShortRepresentation());
+
+        CtType clazz = element.getParent(CtType.class);
+        MetricasCDD.store(clazz.getQualifiedName(), "forEach");
     }
 
     public int total() {

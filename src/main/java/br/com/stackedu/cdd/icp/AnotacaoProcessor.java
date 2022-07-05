@@ -6,7 +6,7 @@ import java.util.List;
 import br.com.stackedu.cdd.MetricasCDD;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtAnnotation;
-import spoon.reflect.declaration.CtClass;
+import spoon.reflect.declaration.CtType;
 
 public class AnotacaoProcessor extends AbstractProcessor<CtAnnotation> implements ICP {
 
@@ -29,12 +29,11 @@ public class AnotacaoProcessor extends AbstractProcessor<CtAnnotation> implement
 
     @Override
     public void process(CtAnnotation element) {
-        CtClass clazz = element.getParent(CtClass.class);
+        
+        this.totalAnotacoes++;
+        this.nomeDasAnotacoes.add(element.getName());
 
-        if (clazz != null) {
-            this.totalAnotacoes++;
-            this.nomeDasAnotacoes.add(element.getName());
-            MetricasCDD.store(clazz.getQualifiedName(), "anotação");
-        }
+        CtType clazz = element.getParent(CtType.class);
+        MetricasCDD.store(clazz.getQualifiedName(), "anotação");
     }
 }
