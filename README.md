@@ -8,25 +8,38 @@ Atualmente a POC computa os seguintes ICPs:
 
 - [x] METHOD("method")
 - [X] ANNOTATION("annotation")
-- [ ] IF_STATEMENT("if_statement")
+- [X] ANNOTATION_METHOD("annotation_method")
+- [X] IF_STATEMENT("if_statement")
+- [X] TRY_STATEMENT("try_statement")
+- [X] CATCH_SECTION("catch_section")
+- [X] THROW_STATEMENT("throw_statement")
+- [X] WHILE_STATEMENT("while_statement")
+- [X] FOR_STATEMENT("for_statement")
+- [X] FOREACH_STATEMENT("foreach_statement")
+- [X] LAMBDA_EXPRESSION("lambda_expression")
+- [X] SWITCH_EXPRESSION("switch_expression")
+- [X] SWITCH_STATEMENS("switch_statemens") 
+- [X] YIELD_STATEMENT("yield_statement")
+- [X] SUPER_EXPRESSION("super_expression")
+- [X] ANONYMOUS_CLASS("anonymous_class")
+- [X] LOCAL_VARIABLE("local_variable")
 - [ ] BLOCK_STATEMENT("block_statement")
 - [ ] CODE_BLOCK("code_block")
-- [ ] CATCH_SECTION("catch_section")
 - [ ] TYPE_CAST_EXPRESSION("type_cast_expression")
-- [ ] WHILE_STATEMENT("while_statement")
 - [ ] IMPLICIT_VARIABLE("implicit_variable")
-- [ ] ANNOTATION_METHOD("annotation_method")
-- [ ] TRY_STATEMENT("try_statement")
-- [ ] LAMBDA_EXPRESSION("lambda_expression")
-- [ ] SWITCH_EXPRESSION("switch_expression")
-- [ ] THROW_STATEMENT("throw_statement")
-- [ ] ANONYMOUS_CLASS("anonymous_class")
-- [ ] C_LASS_INITIALIZER("c_lass_initializer"), CLASS("class")
-- [ ] FOR_STATEMENT("for_statement")
-- [ ] FOREACH_STATEMENT("foreach_statement")
-- [ ] LOCAL_VARIABLE("local_variable")
+- [ ] C_LASS_INITIALIZER("c_lass_initializer"), 
+- [ ] CLASS("class")
 - [ ] METHOD_CALL_EXPRESSION("method_call_expression")
 - [ ] IMPORT_STATIC_REFERENCE_ELEMENT("import_static_reference_element")
-- [ ] SUPER_EXPRESSION("super_expression")
-- [ ] SWITCH_STATEMENS("switch_statemens") 
-- [ ] YIELD_STATEMENT("yield_statement")
+
+
+## Observações
+
+Nesse momento, *annotation* e *annotation method* estão sendo calculados no mesmo momento (não vi sentido em separa-los).
+
+## Duvidas
+- Qual a diferença entre switch expressions e statements?
+- Confirmar o calculo do if
+- Preciso calcular o numero de classes?
+- Exemplo de uso de classes anonimas
+- Sem código para testar o super
