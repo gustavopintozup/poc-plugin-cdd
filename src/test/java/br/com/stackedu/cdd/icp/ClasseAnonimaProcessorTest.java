@@ -11,13 +11,13 @@ public class ClasseAnonimaProcessorTest {
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource("");
+        l.addInputResource("/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/admin/partials/validaEstruturaTaskClassVisitor/ValidaConteudoDasAjudas.java");
 
         ClasseAnonimaProcessor processor = new ClasseAnonimaProcessor();
 
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(1, processor.total());
+        assertEquals(0, processor.total());
     }
 }

@@ -14,11 +14,11 @@ public class SuperProcessorTest {
         l.addInputResource(
                 "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/admin/partials/validaEstruturaTaskClassVisitor/ValidaConteudoDasAjudas.java");
 
-        SuperProcessor ifprocessor = new SuperProcessor();
+        SuperProcessor processor = new SuperProcessor();
 
-        l.addProcessor(ifprocessor);
+        l.addProcessor(processor);
         l.run();
 
-        assertEquals(5, ifprocessor.total());
+        assertEquals(0, processor.total());
     }
 }
