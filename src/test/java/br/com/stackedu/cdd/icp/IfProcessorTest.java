@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
 public class IfProcessorTest {
@@ -12,7 +13,7 @@ public class IfProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/admin/partials/validaEstruturaTaskClassVisitor/ValidaConteudoDasAjudas.java");
+            new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
 
         IfProcessor ifprocessor = new IfProcessor();
 

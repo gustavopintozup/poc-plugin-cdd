@@ -23,8 +23,6 @@ Atualmente a POC computa os seguintes ICPs:
 - [X] SUPER_EXPRESSION("super_expression")
 - [X] ANONYMOUS_CLASS("anonymous_class")
 - [X] LOCAL_VARIABLE("local_variable")
-- [ ] BLOCK_STATEMENT("block_statement")
-- [ ] CODE_BLOCK("code_block")
 - [ ] TYPE_CAST_EXPRESSION("type_cast_expression")
 - [ ] IMPLICIT_VARIABLE("implicit_variable")
 - [ ] C_LASS_INITIALIZER("c_lass_initializer"), 

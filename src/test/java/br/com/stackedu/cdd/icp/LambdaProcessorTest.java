@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
 public class LambdaProcessorTest {
@@ -12,7 +13,7 @@ public class LambdaProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/alunos/CacheRespostasDeDeterminadoAluno.java");
+            new Resources().buscaArquivo("CacheRespostasDeDeterminadoAluno.java"));
 
         LambdaProcessor processor = new LambdaProcessor();
 

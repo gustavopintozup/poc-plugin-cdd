@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
 public class MetodoProcessorTest {
@@ -12,7 +13,7 @@ public class MetodoProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/alunos/Aluno.java");
+            new Resources().buscaArquivo("Aluno.java"));
 
         MetodoProcessor processor = new MetodoProcessor();
 

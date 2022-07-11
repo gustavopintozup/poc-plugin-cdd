@@ -7,19 +7,35 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class LerArquivoDeConfig {
+import br.com.stackedu.cdd.ArquivoDeConfig.CDDConfig.Rules;
 
-    public static void main(String[] args) {
+public class ArquivoDeConfig {
+
+    private static CDDConfig config;
+
+    static {
+        config = carregar();
+    }
+
+    public static int limite() {
+        return config.limitOfComplexity;
+    }
+
+    public static List<Rules> regras() {
+        return config.rules;
+    }
+
+
+    private static CDDConfig carregar() {
         try {
             String config = Files.readString(Paths.get("cdd.json"));
 
             ObjectMapper mapper = new ObjectMapper();
-            CDDConfig c = mapper.readValue(config, CDDConfig.class);
-
-            System.out.println(c);
+            return mapper.readValue(config, CDDConfig.class);
 
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

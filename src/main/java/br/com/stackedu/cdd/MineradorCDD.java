@@ -1,5 +1,6 @@
 package br.com.stackedu.cdd;
 
+import br.com.stackedu.cdd.ArquivoDeConfig.CDDConfig.Rules;
 import br.com.stackedu.cdd.icp.AnotacaoProcessor;
 import br.com.stackedu.cdd.icp.CatchProcessor;
 import br.com.stackedu.cdd.icp.LambdaProcessor;
@@ -17,6 +18,14 @@ public class MineradorCDD {
         String target = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/";
 
         spoon.addInputResource(target);
+
+        // for (Rules regra : ArquivoDeConfig.regras()) {
+        //     switch (regra.name) {
+        //         case "IF_STATEMENT" -> spoon.addProcessor(new AnotacaoProcessor());
+
+        //     }
+        // }
+
         spoon.addProcessor(new AnotacaoProcessor());
         spoon.addProcessor(new TryProcessor());
         spoon.addProcessor(new CatchProcessor());

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
 public class WhileProcessorTest {
@@ -12,7 +13,7 @@ public class WhileProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/admin/HeadingWrapper.java");
+            new Resources().buscaArquivo("HeadingWrapper.java"));
 
         WhileProcessor processor = new WhileProcessor();
 

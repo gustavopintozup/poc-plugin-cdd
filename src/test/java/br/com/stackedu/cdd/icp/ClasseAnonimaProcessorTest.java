@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
 public class ClasseAnonimaProcessorTest {
@@ -11,7 +12,7 @@ public class ClasseAnonimaProcessorTest {
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource("/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/admin/partials/validaEstruturaTaskClassVisitor/ValidaConteudoDasAjudas.java");
+        l.addInputResource(new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
 
         ClasseAnonimaProcessor processor = new ClasseAnonimaProcessor();
 
