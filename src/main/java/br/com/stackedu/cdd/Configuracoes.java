@@ -7,15 +7,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.stackedu.cdd.ArquivoDeConfig.CDDConfig.Rules;
+import br.com.stackedu.cdd.Configuracoes.CDDConfig.Rules;
 
-public class ArquivoDeConfig {
+public class Configuracoes {
 
-    private static CDDConfig config;
-
-    static {
-        config = carregar();
-    }
+    private static CDDConfig config = carregar();
 
     public static int limite() {
         return config.limitOfComplexity;
@@ -25,7 +21,6 @@ public class ArquivoDeConfig {
         return config.rules;
     }
 
-
     private static CDDConfig carregar() {
         try {
             String config = Files.readString(Paths.get("cdd.json"));
@@ -34,8 +29,7 @@ public class ArquivoDeConfig {
             return mapper.readValue(config, CDDConfig.class);
 
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+           throw new PluginCDDException("O arquivo 'cdd.json' não foi encontrado na raiz do projeto");
         }
     }
 

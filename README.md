@@ -18,7 +18,6 @@ Atualmente a POC computa os seguintes ICPs:
 - [X] FOREACH_STATEMENT("foreach_statement")
 - [X] LAMBDA_EXPRESSION("lambda_expression")
 - [X] SWITCH_EXPRESSION("switch_expression")
-- [X] SWITCH_STATEMENS("switch_statemens") 
 - [X] YIELD_STATEMENT("yield_statement")
 - [X] SUPER_EXPRESSION("super_expression")
 - [X] ANONYMOUS_CLASS("anonymous_class")

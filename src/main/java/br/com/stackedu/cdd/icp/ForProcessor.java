@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.MetricasCDD;
+import br.com.stackedu.cdd.Metricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtFor;
 import spoon.reflect.declaration.CtType;
@@ -23,7 +23,7 @@ public class ForProcessor extends AbstractProcessor<CtFor> implements ICP {
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        MetricasCDD.store(clazz.getQualifiedName(), "for");
+        Metricas.salvar(clazz.getQualifiedName(), "for");
     }
 
     public int total() {

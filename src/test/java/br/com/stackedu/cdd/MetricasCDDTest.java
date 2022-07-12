@@ -20,7 +20,7 @@ public class MetricasCDDTest {
 
         l.addProcessor(processor);
         l.run();
-        assertNotNull(MetricasCDD.prettyprint());
+        assertNotNull(Metricas.prettyprint());
     }
 
 }
