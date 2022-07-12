@@ -24,10 +24,10 @@ Atualmente a POC computa os seguintes ICPs:
 - [X] LOCAL_VARIABLE("local_variable")
 - [ ] TYPE_CAST_EXPRESSION("type_cast_expression")
 - [ ] IMPLICIT_VARIABLE("implicit_variable")
+- [ ] IMPORT_STATIC_REFERENCE_ELEMENT("import_static_reference_element")
 - [ ] C_LASS_INITIALIZER("c_lass_initializer"), 
 - [ ] CLASS("class")
 - [ ] METHOD_CALL_EXPRESSION("method_call_expression")
-- [ ] IMPORT_STATIC_REFERENCE_ELEMENT("import_static_reference_element")
 
 
 ## Observações
@@ -35,8 +35,10 @@ Atualmente a POC computa os seguintes ICPs:
 Nesse momento, *annotation* e *annotation method* estão sendo calculados no mesmo momento (não vi sentido em separa-los).
 
 ## Duvidas
-- Qual a diferença entre switch expressions e statements?
-- Confirmar o calculo do if
-- Preciso calcular o numero de classes?
-- Exemplo de uso de classes anonimas
-- Sem código para testar o super
+- Como identificar um static import
+- Como identificar um cast
+- Preciso contabilizar if/elses do equals()?
+- Anotações/definições de variáveis repetidas contam mais de uma vez?
+
+## Todo
+- Fazer o somatório de todos os ICPs
