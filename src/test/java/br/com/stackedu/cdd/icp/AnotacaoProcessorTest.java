@@ -1,8 +1,8 @@
 package br.com.stackedu.cdd.icp;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Metricas;
 import br.com.stackedu.cdd.Resources;
