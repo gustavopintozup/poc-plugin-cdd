@@ -37,8 +37,8 @@ Nesse momento, *annotation* e *annotation method* estão sendo calculados no mes
 ## Duvidas
 - Como identificar um static import
 - Como identificar um cast
-- Preciso contabilizar if/elses do equals()?
-- Anotações/definições de variáveis repetidas contam mais de uma vez?
+- Preciso contabilizar if/elses do equals()? --> preciso parametrizar essa informação
+- Anotações/definições de variáveis repetidas contam mais de uma vez? --> contam somente uma única vez
 
 ## Todo
-- Fazer o somatório de todos os ICPs
+- Calcular os pesos dos ICPs no prettyprint()
