@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-//TODO: Criar testes para essa classe
 public class Metricas {
 
     private static Map<String, List<ValorICP>> dataset = new HashMap<>();
@@ -28,8 +27,6 @@ public class Metricas {
         } else {
             dataset.put(classQualifiedName, Arrays.asList(new ValorICP(ICP, 1)));
         }
-
-        System.out.println(dataset);
     }
 
     private static List<ValorICP> adicionaNovoValor(String ICP, List<ValorICP> valoresAtuais) {
@@ -64,29 +61,38 @@ public class Metricas {
     }
 
     public static String prettyprint() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder output = new StringBuilder();
+
         Iterator<Entry<String, List<ValorICP>>> iter = dataset.entrySet().iterator();
         while (iter.hasNext()) {
             Entry<String, List<ValorICP>> entry = iter.next();
+
+            StringBuilder sb = new StringBuilder();
             sb.append(entry.getKey());
             sb.append('[');
 
+            int totalICPs = 0;
+
             List<ValorICP> ICPs = entry.getValue();
             for (ValorICP ICP : ICPs) {
-                if (ICP.getValor() >= Configuracoes.limite()) {
-                    sb.append(ICP.getICP());
-                    sb.append('=');
-                    sb.append(ICP.getValor());
-                    sb.append(',');
+                sb.append(ICP.getICP());
+                sb.append('=');
+                sb.append(ICP.getValor());
+                sb.append(',');
 
-                    if (iter.hasNext()) {
-                        sb.append("\n");
-                    }
-                }
+                totalICPs += ICP.getValor();
             }
-            sb.append(']');
+
+            sb.append("ICP");
+            sb.append('=');
+            sb.append(totalICPs);
+            sb.append("]\n");
+
+            if (totalICPs >= Configuracoes.limite()) {
+                output.append(sb.toString());
+            }
         }
-        return sb.toString();
+        return output.toString();
     }
 
 }
