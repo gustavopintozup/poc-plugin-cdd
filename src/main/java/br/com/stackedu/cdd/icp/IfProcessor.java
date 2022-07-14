@@ -21,6 +21,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
     @Override
     public void process(CtIf element) {
         total++;
+        //TODO: escrever um teste pra ver como se comporta com else if
         if (element.getElseStatement() != null) {
             total++;
         }

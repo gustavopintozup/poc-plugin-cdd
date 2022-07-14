@@ -29,7 +29,7 @@ public class Configuracoes {
             return mapper.readValue(config, CDDConfig.class);
 
         } catch (IOException e) {
-           throw new PluginCDDException("O arquivo 'cdd.json' não foi encontrado na raiz do projeto");
+           throw new PluginCDDException("O arquivo 'cdd.json' não foi encontrado na raiz do projeto!");
         }
     }
 

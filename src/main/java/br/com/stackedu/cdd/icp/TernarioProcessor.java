@@ -5,29 +5,25 @@ import java.util.List;
 
 import br.com.stackedu.cdd.Metricas;
 import spoon.processing.AbstractProcessor;
-import spoon.reflect.code.CtTry;
+import spoon.reflect.code.CtConditional;
 import spoon.reflect.declaration.CtType;
 
-public class TryProcessor extends AbstractProcessor<CtTry> implements ICP {
+public class TernarioProcessor extends AbstractProcessor<CtConditional> implements ICP {
 
     private int total;
     private List<String> values;
 
-    public TryProcessor() {
+    public TernarioProcessor() {
         this.values = new ArrayList<>();
     }
 
     @Override
-    public void process(CtTry element) {
+    public void process(CtConditional element) {
         total++;
-        this.values.add(element.getBody().toString());
-
-        if (element.getFinalizer() != null) {
-            total++;
-        }
+        this.values.add(element.getCondition().prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "try");
+        Metricas.salvar(clazz.getQualifiedName(), "if");
     }
 
     public int total() {

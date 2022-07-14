@@ -8,31 +8,30 @@ import org.junit.jupiter.api.Test;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
-public class TryProcessorTest {
+public class TernarioProcessorTest {
     @Test
+    @DisplayName("Teste com dois operadores ternarios em métodos diferentes")
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource(
-            new Resources().buscaArquivo("ServicoNotas.java"));
+        l.addInputResource(new Resources().buscaArquivo("Ternario.java"));
 
-        TryProcessor processor = new TryProcessor();
+        TernarioProcessor processor = new TernarioProcessor();
 
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(1, processor.total());
+        assertEquals(2, processor.total());
     }
 
     @Test
-    @DisplayName("Try com finally")
+    @DisplayName("Teste com dois operadores ternarios no mesmo método")
     public void testName2() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource(
-            new Resources().buscaArquivo("TryComFinally.java"));
+        l.addInputResource(new Resources().buscaArquivo("Ternario2.java"));
 
-        TryProcessor processor = new TryProcessor();
+        TernarioProcessor processor = new TernarioProcessor();
 
         l.addProcessor(processor);
         l.run();
