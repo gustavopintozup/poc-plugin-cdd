@@ -6,22 +6,24 @@ Essa é uma POC de um plugin que calcula os ICPs do CDD usando a ferramenta de a
 
 Atualmente a POC computa os seguintes ICPs:
 
-- [x] METHOD("method")
-- [X] ANNOTATION("annotation")
-- [X] ANNOTATION_METHOD("annotation_method")
-- [X] IF_STATEMENT("if_statement")
-- [X] TRY_STATEMENT("try_statement")
-- [X] CATCH_SECTION("catch_section")
-- [X] THROW_STATEMENT("throw_statement")
-- [X] WHILE_STATEMENT("while_statement")
-- [X] FOR_STATEMENT("for_statement")
-- [X] FOREACH_STATEMENT("foreach_statement")
-- [X] LAMBDA_EXPRESSION("lambda_expression")
-- [X] SWITCH_EXPRESSION("switch_expression")
-- [X] YIELD_STATEMENT("yield_statement")
-- [X] SUPER_EXPRESSION("super_expression")
-- [X] ANONYMOUS_CLASS("anonymous_class")
-- [X] LOCAL_VARIABLE("local_variable")
+- [x] METHOD: Contabiliza o número de métodos de uma classe
+- [X] ANNOTATION: Contabiliza o número de anotações de uma classe
+- [X] IF_STATEMENT: Contabiliza o número de `if` e `else` que em uma classe. Também contabilizam o uso de operadores ternários.
+- [X] SWITCH_EXPRESSION: Contabiliza o numero de `cases` em cada `switch` de uma classe.
+- [X] TRY_STATEMENT: Contabiliza o número de `try` e `finally` em uma calsse
+- [X] CATCH_SECTION: Contabiliza a quantidade de `catch` em nos `try`s de uma classe; 
+- [X] THROW_STATEMENT: Contabiliza a quantidade de `throw` nos  `try`s de uma classe;
+- [X] WHILE_STATEMENT: Contabiliza a quantidade de laços do tipo `while` em uma classe;
+- [X] FOR_STATEMENT: Contabiliza a quantidade de laços do tipo `for` em uma classe;
+- [X] FOREACH_STATEMENT: Contabiliza a quantidade de laços do tipo `foreach` em uma classe;
+- [X] LAMBDA_EXPRESSION: Contabiliza a quantidade de expressões `lambda` em uma classe;
+- [X] YIELD_STATEMENT: Contabiliza a quantidade de `yield` em `switch` de uma classe;
+- [X] SUPER_EXPRESSION: Contabiliza a quantidade de chamadas ao `super` em uma classe; 
+- [X] ANONYMOUS_CLASS: Contabiliza a quantidade de uso de classes anonimas em uma classe;
+- [X] LOCAL_VARIABLE: Contabiliza a quantidade de variáveis definidas no escopo de uma classe;
+
+## ICPs que devem ser implementados no futuro
+
 - [ ] TYPE_CAST_EXPRESSION("type_cast_expression")
 - [ ] IMPLICIT_VARIABLE("implicit_variable")
 - [ ] IMPORT_STATIC_REFERENCE_ELEMENT("import_static_reference_element")
@@ -29,10 +31,6 @@ Atualmente a POC computa os seguintes ICPs:
 - [ ] CLASS("class")
 - [ ] METHOD_CALL_EXPRESSION("method_call_expression")
 
-
-## Observações
-
-Nesse momento, *annotation* e *annotation method* estão sendo calculados no mesmo momento (não vi sentido em separa-los).
 
 ## Duvidas
 - Como identificar um static import
@@ -42,3 +40,9 @@ Nesse momento, *annotation* e *annotation method* estão sendo calculados no mes
 
 ## Todo
 - Calcular os pesos dos ICPs no prettyprint()
+
+## Problemas conhecidos 
+
+- A contabilização de ifs não considera o `else if` (apenas `if` e `else`)
+- O calculo de condições unárias não está correto
+- Os testes de unidade da classe `MetricasCDDTest` estão com compartilhando estado. Se executados individualmente eles passam, se executarem em conjunto eles falham. 
