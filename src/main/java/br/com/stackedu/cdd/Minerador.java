@@ -22,10 +22,16 @@ import spoon.Launcher;
 public class Minerador {
 
     public static void main(String[] args) {
-        Launcher spoon = new Launcher();
 
         String target = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/";
 
+        if (args.length > 0) {
+            if (args[0].equals("-p") || args[0].equals("--path")) {
+                target = args[1];
+            }
+        }
+
+        Launcher spoon = new Launcher();
         spoon.addInputResource(target);
 
         for (Rules regra : Configuracoes.regras()) {
@@ -63,6 +69,11 @@ public class Minerador {
                 spoon.addProcessor(new ClasseAnonimaProcessor());
             } else if (regra.getName().equals("LOCAL_VARIABLE")) {
                 spoon.addProcessor(new VariavelLocalProcessor());
+            } else if (regra.getName().equals("CONTEXT_COUPLING")) {
+                // ...
+            } else {
+                throw new PluginCDDException(
+                        "Parâmetro não conhecido no arquivo de configuração 'cdd.json': " + regra.getName());
             }
         }
 
