@@ -7,7 +7,7 @@ Essa é uma POC de um plugin que calcula os ICPs do CDD usando a ferramenta de a
 Atualmente a POC computa os seguintes ICPs:
 
 
-### Anotação
+### Métodos
 
 - [x] METHOD: Contabiliza o número de métodos de uma classe
 
