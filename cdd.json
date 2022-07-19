@@ -6,6 +6,10 @@
       "cost": 1
     },
     {
+      "name": "CONDITION",
+      "cost": 1
+    },
+    {
       "name": "ANNOTATION",
       "cost": 2
     },

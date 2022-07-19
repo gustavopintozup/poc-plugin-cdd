@@ -4,6 +4,7 @@ import br.com.stackedu.cdd.Configuracoes.CDDConfig.Rules;
 import br.com.stackedu.cdd.icp.AnotacaoProcessor;
 import br.com.stackedu.cdd.icp.CatchProcessor;
 import br.com.stackedu.cdd.icp.ClasseAnonimaProcessor;
+import br.com.stackedu.cdd.icp.CondicionalProcessor;
 import br.com.stackedu.cdd.icp.ForEachProcessor;
 import br.com.stackedu.cdd.icp.ForProcessor;
 import br.com.stackedu.cdd.icp.IfProcessor;
@@ -33,6 +34,8 @@ public class Minerador {
                 spoon.addProcessor(new AnotacaoProcessor());
             } else if (regra.getName().equals("IF_STATEMENT")) {
                 spoon.addProcessor(new IfProcessor());
+            } else if (regra.getName().equals("CONDITION")) {
+                spoon.addProcessor(new CondicionalProcessor());
             } else if (regra.getName().equals("TRY_STATEMENT")) {
                 spoon.addProcessor(new TryProcessor());
             } else if (regra.getName().equals("CATCH_SECTION")) {

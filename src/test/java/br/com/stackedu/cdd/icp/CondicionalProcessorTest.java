@@ -67,4 +67,20 @@ public class CondicionalProcessorTest {
 
         assertEquals(1, processor.total());
     }
+
+
+    @Test
+    public void testName5() throws Exception {
+        Launcher l = new Launcher();
+        l.getEnvironment().setNoClasspath(true);
+        l.addInputResource(
+                new Resources().buscaArquivo("AlunoPodeAcessarLearningTask.java"));
+
+        CondicionalProcessor processor = new CondicionalProcessor();
+
+        l.addProcessor(processor);
+        l.run();
+
+        assertEquals(1, processor.total());
+    }
 }
