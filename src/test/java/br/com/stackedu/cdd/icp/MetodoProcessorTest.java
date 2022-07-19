@@ -22,4 +22,19 @@ public class MetodoProcessorTest {
 
         assertEquals(11, processor.total());
     }
+
+    @Test
+    public void testName2() throws Exception {
+        Launcher l = new Launcher();
+        l.getEnvironment().setNoClasspath(true);
+        l.addInputResource(
+            new Resources().buscaArquivo("AlunoSimples.java"));
+
+        MetodoProcessor processor = new MetodoProcessor();
+
+        l.addProcessor(processor);
+        l.run();
+
+        assertEquals(5, processor.total());
+    }
 }

@@ -29,35 +29,35 @@ public class Minerador {
 
         for (Rules regra : Configuracoes.regras()) {
 
-            if (regra.name.equals("ANNOTATION")) {
+            if (regra.getName().equals("ANNOTATION")) {
                 spoon.addProcessor(new AnotacaoProcessor());
-            } else if (regra.name.equals("IF_STATEMENT")) {
+            } else if (regra.getName().equals("IF_STATEMENT")) {
                 spoon.addProcessor(new IfProcessor());
-            } else if (regra.name.equals("TRY_STATEMENT")) {
+            } else if (regra.getName().equals("TRY_STATEMENT")) {
                 spoon.addProcessor(new TryProcessor());
-            } else if (regra.name.equals("CATCH_SECTION")) {
+            } else if (regra.getName().equals("CATCH_SECTION")) {
                 spoon.addProcessor(new CatchProcessor());
-            } else if (regra.name.equals("LAMBDA_EXPRESSION")) {
+            } else if (regra.getName().equals("LAMBDA_EXPRESSION")) {
                 spoon.addProcessor(new LambdaProcessor());
-            } else if (regra.name.equals("IF_STATEMENT")) {
+            } else if (regra.getName().equals("IF_STATEMENT")) {
                 spoon.addProcessor(new MetodoProcessor());
-            } else if (regra.name.equals("METHOD")) {
+            } else if (regra.getName().equals("METHOD")) {
                 spoon.addProcessor(new SwitchProcessor());
-            } else if (regra.name.equals("THROW_STATEMENT")) {
+            } else if (regra.getName().equals("THROW_STATEMENT")) {
                 spoon.addProcessor(new ThrowProcessor());
-            } else if (regra.name.equals("WHILE_STATEMENT")) {
+            } else if (regra.getName().equals("WHILE_STATEMENT")) {
                 spoon.addProcessor(new WhileProcessor());
-            } else if (regra.name.equals("FOR_STATEMENT")) {
+            } else if (regra.getName().equals("FOR_STATEMENT")) {
                 spoon.addProcessor(new ForProcessor());
-            } else if (regra.name.equals("FOREACH_STATEMENT")) {
+            } else if (regra.getName().equals("FOREACH_STATEMENT")) {
                 spoon.addProcessor(new ForEachProcessor());
-            } else if (regra.name.equals("YIELD_STATEMENT")) {
+            } else if (regra.getName().equals("YIELD_STATEMENT")) {
                 spoon.addProcessor(new YieldProcessor());
-            } else if (regra.name.equals("SUPER_EXPRESSION")) {
+            } else if (regra.getName().equals("SUPER_EXPRESSION")) {
                 spoon.addProcessor(new SuperProcessor());
-            } else if (regra.name.equals("ANONYMOUS_CLASS")) {
+            } else if (regra.getName().equals("ANONYMOUS_CLASS")) {
                 spoon.addProcessor(new ClasseAnonimaProcessor());
-            } else if (regra.name.equals("LOCAL_VARIABLE")) {
+            } else if (regra.getName().equals("LOCAL_VARIABLE")) {
                 spoon.addProcessor(new VariavelLocalProcessor());
             }
         }
