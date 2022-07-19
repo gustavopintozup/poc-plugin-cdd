@@ -6,15 +6,27 @@
       "cost": 1
     },
     {
+      "name": "TRY_CATCH_STATEMENT",
+      "cost": 1
+    },
+    {
+      "name": "SWITCH_STATEMENT",
+      "cost": 1
+    },
+    {
       "name": "CONDITION",
       "cost": 1
     },
     {
-      "name": "ANNOTATION",
-      "cost": 2
+      "name": "FOR_STATEMENT",
+      "cost": 1
     },
     {
-      "name": "FOR_STATEMENT",
+      "name": "FOREACH_STATEMENT",
+      "cost": 1
+    },
+    {
+      "name": "WHILE_STATEMENT",
       "cost": 1
     },
     {

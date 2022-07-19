@@ -22,4 +22,19 @@ public class CatchProcessorTest {
 
     assertEquals(1, processor.total());
   }
+
+  @Test
+  public void testName2() throws Exception {
+    Launcher l = new Launcher();
+    l.getEnvironment().setNoClasspath(true);
+
+    l.addInputResource(new Resources().buscaArquivo("TryComFinally.java"));
+
+    CatchProcessor processor = new CatchProcessor();
+
+    l.addProcessor(processor);
+    l.run();
+
+    assertEquals(1, processor.total());
+  }
 }

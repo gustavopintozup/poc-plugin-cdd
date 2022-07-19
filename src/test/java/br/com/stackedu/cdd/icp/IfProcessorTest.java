@@ -37,6 +37,6 @@ public class IfProcessorTest {
         l.addProcessor(ifprocessor);
         l.run();
 
-        assertEquals(4, ifprocessor.total());
+        assertEquals(6, ifprocessor.total());
     }
 }

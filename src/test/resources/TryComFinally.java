@@ -3,7 +3,7 @@ class TryComFinally {
         try {
             System.out.println("bla");
         }
-        catch (Exception e) {
+        catch (Exception | CDDException e) {
             System.out.println("bla bla");
         }
         finally {

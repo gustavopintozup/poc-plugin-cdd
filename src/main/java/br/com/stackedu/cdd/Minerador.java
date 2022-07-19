@@ -36,16 +36,17 @@ public class Minerador {
                 spoon.addProcessor(new IfProcessor());
             } else if (regra.getName().equals("CONDITION")) {
                 spoon.addProcessor(new CondicionalProcessor());
-            } else if (regra.getName().equals("TRY_STATEMENT")) {
+            } else if (regra.getName().equals("TRY_CATCH_STATEMENT")) {
                 spoon.addProcessor(new TryProcessor());
-            } else if (regra.getName().equals("CATCH_SECTION")) {
                 spoon.addProcessor(new CatchProcessor());
             } else if (regra.getName().equals("LAMBDA_EXPRESSION")) {
                 spoon.addProcessor(new LambdaProcessor());
             } else if (regra.getName().equals("IF_STATEMENT")) {
                 spoon.addProcessor(new MetodoProcessor());
-            } else if (regra.getName().equals("METHOD")) {
+            } else if (regra.getName().equals("SWITCH_STATEMENT")) {
                 spoon.addProcessor(new SwitchProcessor());
+            } else if (regra.getName().equals("METHOD")) {
+                spoon.addProcessor(new MetodoProcessor());
             } else if (regra.getName().equals("THROW_STATEMENT")) {
                 spoon.addProcessor(new ThrowProcessor());
             } else if (regra.getName().equals("WHILE_STATEMENT")) {
