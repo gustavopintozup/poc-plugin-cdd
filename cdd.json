@@ -1,6 +1,6 @@
 {
-  "limitOfComplexity": 10,
-  "rules": [
+  "limite": 10,
+  "regras": [
     {
       "name": "IF_STATEMENT",
       "cost": 1
@@ -32,9 +32,7 @@
     {
       "name": "CONTEXT_COUPLING",
       "cost": 1,
-      "parameters": [
-        "spring"
-      ]
+      "parameters": "br.com.zup.lms"
     }
   ]
 }

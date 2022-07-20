@@ -22,7 +22,7 @@ public class ForProcessor extends AbstractProcessor<CtFor> implements ICP {
         total++;
         this.values.add(element.getShortRepresentation());
 
-        CtType clazz = element.getParent(CtType.class);
+        CtType<?> clazz = element.getParent(CtType.class);
         Metricas.salvar(clazz.getQualifiedName(), "for");
     }
 

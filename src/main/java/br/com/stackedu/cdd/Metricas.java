@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import br.com.stackedu.cdd.config.Configuracoes;
+
 public class Metricas {
 
     private static Map<String, List<ValorICP>> dataset = new HashMap<>();
