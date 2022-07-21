@@ -30,7 +30,13 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN) && parent != null) {
+        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN)) {
+            return false;
+        }
+        /**
+         * O parent != null cobre casos em que a declaração de variável usa um if
+         */
+        if (parent != null) {
             // TODO: algum outro?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;
@@ -40,6 +46,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
                 return false;
             }
         }
+
         return true;
     }
 

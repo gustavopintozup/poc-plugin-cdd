@@ -39,4 +39,20 @@ public class IfProcessorTest {
 
         assertEquals(6, ifprocessor.total());
     }
+
+    @Test
+    @DisplayName("Testando ifs dentro do equals")
+    public void testName3() throws Exception {
+        Launcher l = new Launcher();
+        l.getEnvironment().setNoClasspath(true);
+        l.addInputResource(
+            new Resources().buscaArquivo("Ajuda.java"));
+
+        IfProcessor ifprocessor = new IfProcessor();
+
+        l.addProcessor(ifprocessor);
+        l.run();
+
+        assertEquals(0, ifprocessor.total());
+    }
 }

@@ -25,26 +25,28 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
+        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN)) {
+            return false;
+        }
+
         /**
          * O parent != null cobre casos em que a declaração de variável usa um if
          */
-        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN) && parent != null) {
+        if (parent != null) {
             // TODO: algum outro?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;
-            }
-
-            if (parent.getSignature().equals("hashCode()")) {
+            } else if (parent.getSignature().equals("hashCode()")) {
                 return false;
             }
         }
+
         return true;
     }
 
     @Override
     public void process(CtIf element) {
         total++;
-        // TODO: escrever um teste pra ver como se comporta com else if
         if (element.getElseStatement() != null) {
             total++;
         }

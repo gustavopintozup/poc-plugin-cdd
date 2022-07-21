@@ -49,10 +49,6 @@ public class Configuracoes {
             ObjectMapper mapper = new ObjectMapper();
             return mapper.readValue(config, JSONParser.class);
 
-        } catch (ExceptionInInitializerError e) {
-            e.printStackTrace();
-            return null;
-
         } catch (IOException e) {
             e.printStackTrace();
             throw new PluginCDDException("O arquivo 'cdd.json' não foi encontrado na raiz do projeto!");

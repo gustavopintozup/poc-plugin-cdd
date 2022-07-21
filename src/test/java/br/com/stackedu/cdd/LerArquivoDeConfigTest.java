@@ -3,6 +3,7 @@ package br.com.stackedu.cdd;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.config.Configuracoes;
@@ -11,6 +12,7 @@ import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
 public class LerArquivoDeConfigTest {
 
     @Test
+    @DisplayName("Faz a leitura do arquivo json com configurações esperadas")
     public void testName() throws Exception {
         assertEquals(Configuracoes.limite(), 10);
 
@@ -29,6 +31,7 @@ public class LerArquivoDeConfigTest {
     }
 
     @Test
+    @DisplayName("Verifica se uma configuração não foi passada para o cdd.json")
     public void testName2() throws Exception {
 
         Exception exception = assertThrows(PluginCDDException.class, () -> {
