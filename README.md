@@ -163,7 +163,7 @@ Para listar os ICPs que se deseja contabilizar, estes precisam estar definidos n
 }
 ```
 
-Nesse arquivo, considera-se somente dois ICPs (ifs e tratadores de exceção), que tem o mesmo peso (1).
+Nesse arquivo, considera-se somente dois ICPs (ifs e tratadores de exceção), que tem o mesmo peso (1). Um arquivo cdd.json mais completo pode ser [acessado aqui](https://github.com/gustavopintozup/poc-plugin-cdd/blob/main/cdd.json).
 
 ## ICPs que devem ser implementados no futuro
 
@@ -178,11 +178,10 @@ Nesse arquivo, considera-se somente dois ICPs (ifs e tratadores de exceção), q
 ## Duvidas
 - Como identificar um static import
 - Como identificar um cast
-- Anotações/definições de variáveis repetidas contam mais de uma vez? --> contam somente uma única vez
 
 ## Todo
 - Calcular os pesos dos ICPs no prettyprint()
-- Implementar o acoplamento contextual
+- Implementar o acoplamento contextual (externo as classes)
 
 ## Problemas conhecidos 
 
