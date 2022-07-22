@@ -4,7 +4,7 @@
 
     <groupId>br.com.stackedu</groupId>
     <artifactId>cdd</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -34,19 +34,11 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>br.unb.cic.metrics.Main</mainClass>
+                            <mainClass>br.com.stackedu.cdd.Minerador</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
