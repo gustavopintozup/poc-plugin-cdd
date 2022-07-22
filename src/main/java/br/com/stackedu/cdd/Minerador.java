@@ -112,10 +112,10 @@ public class Minerador {
 
         } catch (Error e) {
             System.out.print("[ERROR] ");
-            System.err.println("O arquivo 'cdd.json' não foi encontrado na raiz do projeto!");
+            System.out.println("O arquivo 'cdd.json' não foi encontrado na raiz do projeto!");
         } catch (PluginCDDException e) {
             System.out.print("[ERROR] ");
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }
