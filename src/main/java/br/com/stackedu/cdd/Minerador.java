@@ -20,6 +20,7 @@ import br.com.stackedu.cdd.icp.VariavelLocalProcessor;
 import br.com.stackedu.cdd.icp.WhileProcessor;
 import br.com.stackedu.cdd.icp.YieldProcessor;
 import spoon.Launcher;
+import spoon.reflect.factory.Factory;
 
 public class Minerador {
 
@@ -27,7 +28,7 @@ public class Minerador {
 
         try {
 
-            String path = "/home/gustavopinto/workspace/plataforma-treino-lms/src/main/java/br/com/zup/lms/";
+            String path = "/home/gustavopinto/workspace/jackson-dataformat-xml";
             Boolean debug = false;
 
             if (args.length > 0) {
@@ -37,6 +38,9 @@ public class Minerador {
             }
 
             Launcher spoon = new Launcher();
+            final Factory factory = spoon.getFactory();
+            factory.getEnvironment().setComplianceLevel(17);
+
             spoon.addInputResource(path);
 
             StringBuilder processadores = new StringBuilder();

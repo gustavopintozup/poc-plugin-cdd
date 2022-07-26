@@ -96,6 +96,19 @@ O código acima contabilizaria 8 (oito) usos de ICPs: 4 (quatro) nos primeiros i
 
 O plugin também contabiliza uso de `switch`s e seus `cases`.
 
+### Condições (CONDITION)
+
+- [X]  Contabiliza o número condições dentro de um `if`.
+
+```java
+if (a > b && b < c || c > d) {
+  // bloco de código
+}
+```
+
+O trecho acima resulta em 4 itens de complexidade intrísseca: 1 para o `if` mais 3, um de cada condição.
+
+
 ### Tratadores de exceção (TRY_CATCH_STATEMENT)
 
 - [X] Contabiliza o número de instruções `try`, `catch` e `finally` em uma classe.
@@ -121,8 +134,7 @@ Por outro lado, se estivessemos com dois *catch*s, como no exemplo a baixo, cont
 ```java
 try {
   //...
-}
-catch (CDDException e) {
+} catch (CDDException e) {
   //...
 } catch (Exception e) {
   //...
@@ -182,8 +194,9 @@ Nesse arquivo, considera-se somente dois ICPs (ifs e tratadores de exceção), q
 ## Todo
 - Calcular os pesos dos ICPs no prettyprint()
 - Implementar o acoplamento contextual (externo as classes)
+- Adicionar testes na classe `IfProcessorTest`.
+- Fazer um prettyprint() em HTML
 
 ## Problemas conhecidos 
 
-- A contabilização de ifs não considera o `else if` (apenas `if` e `else`)
 - Os testes de unidade da classe `MetricasCDDTest` estão com compartilhando estado. Se executados individualmente eles passam, se executarem em conjunto eles falham. 
