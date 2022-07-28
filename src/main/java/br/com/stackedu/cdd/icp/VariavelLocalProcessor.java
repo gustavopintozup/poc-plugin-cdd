@@ -24,7 +24,7 @@ public class VariavelLocalProcessor extends AbstractProcessor<CtField> implement
         this.values.add(element.getSimpleName());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "variavelLocal");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "LOCAL_VARIABLE");
     }
 
     public int total() {

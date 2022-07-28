@@ -56,7 +56,7 @@ public class AcoplamentoContextualProcessor extends AbstractProcessor<CtVariable
             acoplamento.add(var);
 
             CtType<?> clazz = element.getParent(CtType.class);
-            ArmazenarMetricas.salvar(clazz.getQualifiedName(), "acoplamento");
+            ArmazenarMetricas.salvar(clazz.getQualifiedName(), "CONTEXT_COUPLING");
         }
     }
 }

@@ -23,7 +23,7 @@ public class CatchProcessor extends AbstractProcessor<CtCatch> implements ICP {
         this.values.add(element.getBody().toString());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "catch");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "TRY_CATCH_STATEMENT");
     }
 
     public int total() {

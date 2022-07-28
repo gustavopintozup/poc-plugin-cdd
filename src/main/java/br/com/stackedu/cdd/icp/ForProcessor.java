@@ -23,7 +23,7 @@ public class ForProcessor extends AbstractProcessor<CtFor> implements ICP {
         this.values.add(element.getShortRepresentation());
 
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "for");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "FOR_STATEMENT");
     }
 
     public int total() {

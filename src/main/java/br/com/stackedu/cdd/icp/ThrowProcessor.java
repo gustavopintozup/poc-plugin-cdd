@@ -23,7 +23,7 @@ public class ThrowProcessor extends AbstractProcessor<CtThrow> implements ICP {
         this.values.add(element.prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "throw");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "THROW_STATEMENT");
     }
 
     public int total() {

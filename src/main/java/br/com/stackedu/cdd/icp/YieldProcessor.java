@@ -24,7 +24,7 @@ public class YieldProcessor extends AbstractProcessor<CtYieldStatement> implemen
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "yield");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "YIELD_STATEMENT");
     }
 
     public int total() {

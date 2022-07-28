@@ -69,7 +69,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
 
         this.values.add(element.prettyprint());
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "condicao");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "CONDITION");
 
         /**
          * O +1 aqui requer uma atenção. No while acima, eu conto a presença de um

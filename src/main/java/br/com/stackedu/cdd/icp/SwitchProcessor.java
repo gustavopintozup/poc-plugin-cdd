@@ -24,7 +24,7 @@ public class SwitchProcessor extends AbstractProcessor<CtSwitch> implements ICP 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "switch");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "SWITCH_STATEMENT");
     }
 
     public int total() {
