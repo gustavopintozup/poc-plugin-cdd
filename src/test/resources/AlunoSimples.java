@@ -3,12 +3,12 @@ package br.com.zup.lms.alunos;
 import java.util.Objects;
 
 
-public class Aluno {
+public class AlunoSimples {
   private Long id;
   private String email;
   private String nome;
 
-  public Aluno(String email, String nome) {
+  public AlunoSimples(String email, String nome) {
     this.email = email;
     this.nome = nome;
   }

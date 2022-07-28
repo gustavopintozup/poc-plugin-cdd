@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
 import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
 import spoon.processing.AbstractProcessor;
@@ -56,7 +56,7 @@ public class AcoplamentoContextualProcessor extends AbstractProcessor<CtVariable
             acoplamento.add(var);
 
             CtType<?> clazz = element.getParent(CtType.class);
-            Metricas.salvar(clazz.getQualifiedName(), "acoplamento");
+            ArmazenarMetricas.salvar(clazz.getQualifiedName(), "acoplamento");
         }
     }
 }

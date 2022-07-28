@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
 import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
 import spoon.processing.AbstractProcessor;
@@ -69,7 +69,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
 
         this.values.add(element.prettyprint());
         CtType<?> clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "condicao");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "condicao");
 
         /**
          * O +1 aqui requer uma atenção. No while acima, eu conto a presença de um

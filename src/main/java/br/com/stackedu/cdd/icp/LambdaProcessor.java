@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtLambda;
 import spoon.reflect.declaration.CtType;
@@ -33,6 +33,6 @@ public class LambdaProcessor extends AbstractProcessor<CtLambda> implements ICP 
         this.stms.add(element.prettyprint());
 
         CtType type = element.getParent(CtType.class);
-        Metricas.salvar(type.getQualifiedName(), "lambda");
+        ArmazenarMetricas.salvar(type.getQualifiedName(), "lambda");
     }
 }

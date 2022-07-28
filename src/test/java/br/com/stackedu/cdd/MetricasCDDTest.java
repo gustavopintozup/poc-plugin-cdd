@@ -34,9 +34,9 @@ public class MetricasCDDTest {
         this.spoon.addProcessor(new AnotacaoProcessor());
         this.spoon.run();
 
-        assertNotNull(Metricas.prettyprint());
+        assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,ICP=28]\n", Metricas.prettyprint());
+        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,ICP=28]\n", ImprimirMetricas.console());
     }
 
     @Test
@@ -48,9 +48,9 @@ public class MetricasCDDTest {
         this.spoon.addProcessor(new MetodoProcessor());
         this.spoon.run();
 
-        assertNotNull(Metricas.prettyprint());
+        assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,metodo=11,ICP=39]\n", Metricas.prettyprint());
+        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,metodo=11,ICP=39]\n", ImprimirMetricas.console());
     }
 
     @Test
@@ -63,9 +63,9 @@ public class MetricasCDDTest {
         this.spoon.addProcessor(new IfProcessor());
         this.spoon.run();
 
-        assertNotNull(Metricas.prettyprint());
+        assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,metodo=11,if=3,ICP=42]\n", Metricas.prettyprint());
+        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,metodo=11,if=3,ICP=42]\n", ImprimirMetricas.console());
     }
 
     @Test
@@ -76,9 +76,9 @@ public class MetricasCDDTest {
         this.spoon.addProcessor(new IfProcessor());
         this.spoon.run();
 
-        assertNotNull(Metricas.prettyprint());
+        assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("", Metricas.prettyprint());
+        assertEquals("", ImprimirMetricas.console());
     }
 
 }

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ImprimirMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -58,6 +58,6 @@ public class AnotacaoProcessorTest {
                 assertEquals("br.com.zup.lms.alunos.Certificado[anotação=30,ICP=30]\n" +
                                 "br.com.zup.lms.admin.Ajuda[anotação=28,ICP=28]\n" +
                                 "br.com.zup.lms.alunos.Aluno[anotação=28,ICP=28]\n",
-                                Metricas.prettyprint());
+                                ImprimirMetricas.console());
         }
 }

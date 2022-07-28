@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtSwitch;
 import spoon.reflect.declaration.CtType;
@@ -24,7 +24,7 @@ public class SwitchProcessor extends AbstractProcessor<CtSwitch> implements ICP 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "switch");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "switch");
     }
 
     public int total() {

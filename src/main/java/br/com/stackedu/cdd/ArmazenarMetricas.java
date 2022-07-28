@@ -3,16 +3,16 @@ package br.com.stackedu.cdd;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
-import br.com.stackedu.cdd.config.Configuracoes;
-
-public class Metricas {
+public class ArmazenarMetricas {
 
     private static Map<String, List<ValorICP>> dataset = new HashMap<>();
+
+    public static Map<String, List<ValorICP>> getDataset() {
+        return dataset;
+    }
 
     public static void salvar(String classQualifiedName, String ICP) {
         if (dataset.containsKey(classQualifiedName)) {
@@ -61,42 +61,6 @@ public class Metricas {
         }
         return verificaSeICPJaExiste;
     }
-
-    public static String prettyprint() {
-        StringBuilder output = new StringBuilder();
-
-        Iterator<Entry<String, List<ValorICP>>> iter = dataset.entrySet().iterator();
-        while (iter.hasNext()) {
-            Entry<String, List<ValorICP>> entry = iter.next();
-
-            StringBuilder sb = new StringBuilder();
-            sb.append(entry.getKey());
-            sb.append('[');
-
-            int totalICPs = 0;
-
-            List<ValorICP> ICPs = entry.getValue();
-            for (ValorICP ICP : ICPs) {
-                sb.append(ICP.getICP());
-                sb.append('=');
-                sb.append(ICP.getValor());
-                sb.append(',');
-
-                totalICPs += ICP.getValor();
-            }
-
-            sb.append("ICP");
-            sb.append('=');
-            sb.append(totalICPs);
-            sb.append("]\n");
-
-            if (totalICPs >= Configuracoes.limite()) {
-                output.append(sb.toString());
-            }
-        }
-        return output.toString();
-    }
-
 }
 
 class ValorICP {

@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtCompilationUnit;
 import spoon.reflect.declaration.CtImport;
@@ -25,7 +25,7 @@ public class ImportProcessor extends AbstractProcessor<CtCompilationUnit> implem
             total++;
 
             this.values.add(im.getShortRepresentation());
-            Metricas.salvar(element.getDeclaredTypes().get(0).getQualifiedName(), "import");
+            ArmazenarMetricas.salvar(element.getDeclaredTypes().get(0).getQualifiedName(), "import");
         }
 
     }

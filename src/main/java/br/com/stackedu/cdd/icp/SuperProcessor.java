@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtSuperAccess;
 import spoon.reflect.declaration.CtType;
@@ -23,7 +23,7 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "super");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "super");
     }
 
     public int total() {

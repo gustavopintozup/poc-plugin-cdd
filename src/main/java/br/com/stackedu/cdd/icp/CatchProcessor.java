@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtCatch;
 import spoon.reflect.declaration.CtType;
@@ -23,7 +23,7 @@ public class CatchProcessor extends AbstractProcessor<CtCatch> implements ICP {
         this.values.add(element.getBody().toString());
 
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "catch");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "catch");
     }
 
     public int total() {

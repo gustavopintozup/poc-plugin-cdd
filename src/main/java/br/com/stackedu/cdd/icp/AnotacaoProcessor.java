@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtAnnotation;
 import spoon.reflect.declaration.CtType;
@@ -34,6 +34,6 @@ public class AnotacaoProcessor extends AbstractProcessor<CtAnnotation> implement
         this.nomeDasAnotacoes.add(element.getName());
 
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "anotação");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "anotação");
     }
 }

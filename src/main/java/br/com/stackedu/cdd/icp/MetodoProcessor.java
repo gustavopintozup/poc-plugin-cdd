@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
 import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
 import spoon.processing.AbstractProcessor;
@@ -47,7 +47,7 @@ public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP 
     @Override
     public void process(CtMethod element) {
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "metodo");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "metodo");
 
         this.total++;
         metodos.add(element.getSimpleName());

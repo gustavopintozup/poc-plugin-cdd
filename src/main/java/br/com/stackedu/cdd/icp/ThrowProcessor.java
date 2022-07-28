@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.Metricas;
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtThrow;
 import spoon.reflect.declaration.CtType;
@@ -23,7 +23,7 @@ public class ThrowProcessor extends AbstractProcessor<CtThrow> implements ICP {
         this.values.add(element.prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        Metricas.salvar(clazz.getQualifiedName(), "throw");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "throw");
     }
 
     public int total() {
