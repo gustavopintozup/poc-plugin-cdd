@@ -2,7 +2,7 @@
 
 mvn clean compile assembly:single
 
-cp target/cdd-0.0.1-SNAPSHOT-jar-with-dependencies.jar ~/workspace/plugin-cdd-java/cdd.jar
+cp target/cdd-0.0.2-SNAPSHOT-jar-with-dependencies.jar ~/workspace/plugin-cdd-java/cdd.jar
 
 cp README.md ~/workspace/plugin-cdd-java/documentacao-plugin-cdd.md
 
