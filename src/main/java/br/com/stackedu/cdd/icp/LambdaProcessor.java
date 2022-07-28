@@ -33,6 +33,6 @@ public class LambdaProcessor extends AbstractProcessor<CtLambda> implements ICP 
         this.stms.add(element.prettyprint());
 
         CtType type = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(type.getQualifiedName(), "lambda");
+        ArmazenarMetricas.salvar(type.getQualifiedName(), "LAMBDA_EXPRESSION");
     }
 }

@@ -27,7 +27,7 @@ public class TryProcessor extends AbstractProcessor<CtTry> implements ICP {
         }
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "try");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "TRY_CATCH_STATEMENT");
     }
 
     public int total() {

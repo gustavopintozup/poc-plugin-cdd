@@ -33,7 +33,7 @@ public class ClasseAnonimaProcessor extends AbstractProcessor<CtClass> implement
         this.values.add(element.getSimpleName());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "classeAnonima");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "ANONYMOUS_CLASS");
     }
 
     public int total() {

@@ -47,7 +47,7 @@ public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP 
     @Override
     public void process(CtMethod element) {
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "metodo");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "METHOD");
 
         this.total++;
         metodos.add(element.getSimpleName());

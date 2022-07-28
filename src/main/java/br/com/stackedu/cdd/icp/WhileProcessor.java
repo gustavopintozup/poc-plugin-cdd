@@ -23,7 +23,7 @@ public class WhileProcessor extends AbstractProcessor<CtWhile> implements ICP {
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "while");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "WHILE_STATEMENT");
     }
 
     public int total() {

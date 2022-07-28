@@ -23,7 +23,7 @@ public class ForEachProcessor extends AbstractProcessor<CtForEach> implements IC
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "forEach");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "FOREACH_STATEMENT");
     }
 
     public int total() {

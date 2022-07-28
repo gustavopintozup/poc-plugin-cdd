@@ -34,6 +34,6 @@ public class AnotacaoProcessor extends AbstractProcessor<CtAnnotation> implement
         this.nomeDasAnotacoes.add(element.getName());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "anotação");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "ANNOTATION");
     }
 }

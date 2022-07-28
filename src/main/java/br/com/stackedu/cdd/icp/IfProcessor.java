@@ -54,7 +54,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
         this.values.add(element.getCondition().prettyprint());
 
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "if");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "IF_STATEMENT");
     }
 
     public int total() {

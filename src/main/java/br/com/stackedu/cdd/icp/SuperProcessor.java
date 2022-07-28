@@ -23,7 +23,7 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "super");
+        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "SUPER_EXPRESSION");
     }
 
     public int total() {

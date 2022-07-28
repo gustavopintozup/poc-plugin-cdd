@@ -36,7 +36,7 @@ public class MetricasCDDTest {
 
         assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,ICP=28]\n", ImprimirMetricas.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", ImprimirMetricas.console());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class MetricasCDDTest {
 
         assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,metodo=11,ICP=39]\n", ImprimirMetricas.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,ICP=39]\n", ImprimirMetricas.console());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class MetricasCDDTest {
 
         assertNotNull(ImprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[anotação=28,metodo=11,if=3,ICP=42]\n", ImprimirMetricas.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,IF_STATEMENT=1,ICP=40]\n", ImprimirMetricas.console());
     }
 
     @Test
