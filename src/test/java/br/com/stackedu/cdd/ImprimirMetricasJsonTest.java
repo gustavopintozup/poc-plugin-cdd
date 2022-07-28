@@ -44,11 +44,10 @@ public class ImprimirMetricasJsonTest {
         spoon.addProcessor(new AcoplamentoContextualProcessor());
         spoon.addProcessor(new TryProcessor());
         spoon.addProcessor(new CatchProcessor());
-        
 
         spoon.run();
 
-        assertEquals("{\"br.com.zup.lms.alunos.Aluno\":{\"ICP\":\"anotação\",\"Total\":28,\"valor\":28}}",
+        assertEquals("{\"br.com.zup.lms.admin.HeadingWrapper\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":4,\"Total\":11,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":1,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":6},\"br.com.zup.lms.admin.Ajuda\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":28,\"Total\":39,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":0,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":11},\"br.com.zup.lms.alunos.Aluno\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":28,\"Total\":38,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":1,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":9}}",
                 ImprimirMetricas.json());
     }
 }

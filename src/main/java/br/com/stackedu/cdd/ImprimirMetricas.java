@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.stackedu.cdd.config.Configuracoes;
+import br.com.stackedu.cdd.config.JSONParser.Regras;
 
 public class ImprimirMetricas {
 
@@ -50,14 +51,14 @@ public class ImprimirMetricas {
     public static String json() {
         try {
             Iterator<Entry<String, List<ValorICP>>> iter = ArmazenarMetricas.getDataset().entrySet().iterator();
-
             Map<String, Object> configMap = new HashMap<>();
+
             while (iter.hasNext()) {
                 Entry<String, List<ValorICP>> entry = iter.next();
-
+                Map<String, Object> json = new HashMap<>();
                 int totalICPs = 0;
 
-                Map<String, Object> json = new HashMap<>();
+                inicializa_icp_com_zero(json);
 
                 List<ValorICP> ICPs = entry.getValue();
                 for (ValorICP ICP : ICPs) {
@@ -74,10 +75,16 @@ public class ImprimirMetricas {
             }
 
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(configMap);
+            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(configMap);
 
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    private static void inicializa_icp_com_zero(Map<String, Object> json) {
+        for (Regras regra : Configuracoes.regras()) {
+            json.put(regra.getName(), 0);
         }
     }
 

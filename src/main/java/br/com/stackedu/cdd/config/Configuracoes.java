@@ -38,7 +38,7 @@ public class Configuracoes {
         return config.getLimite();
     }
 
-    private static List<Regras> regras() {
+    public static List<Regras> regras() {
         return config.getRegras();
     }
 

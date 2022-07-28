@@ -112,7 +112,7 @@ public class Minerador {
             }
 
             spoon.run();
-            System.out.println(ImprimirMetricas.console());
+            System.out.println(ImprimirMetricas.json());
 
         } catch (Error e) {
             System.out.print("[ERROR] ");
