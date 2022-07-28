@@ -1,9 +1,12 @@
 # Cognitive-Driven Development (CDD)
 
+## Jinja
 Cognitive-Driven Development (CDD) é uma técnica de design de código que visa reduzir o esforço cognitivo que devs empregam na compreensão de uma determinada unidade de código, por exemplo, uma classe. 
 
+You can use jinja to make a template-data folder more dynamic.
 A ideia que CDD defende é que deve existir um limite no tamanho das unidades de código, mas esse limite deve ser definido de forma disciplinada.
 
+complete documentation of jinja: https://jinja.palletsprojects.com/en/3.0.x/templates/
 Para saber mais sobre o CDD, leia [aqui](https://www.zup.com.br/blog/cognitive-driven-development-cdd).
 
 ## Plugin do CDD
