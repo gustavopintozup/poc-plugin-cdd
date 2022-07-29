@@ -67,7 +67,7 @@ public class ImprimirMetricas {
                     totalICPs += ICP.getValor();
                 }
 
-                json.put("Total", totalICPs);
+                json.put("TOTAL", totalICPs);
 
                 if (totalICPs >= Configuracoes.limite()) {
                     configMap.put(entry.getKey(), json);
