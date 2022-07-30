@@ -1,21 +1,48 @@
 # Cognitive-Driven Development (CDD)
 
-## Jinja
 Cognitive-Driven Development (CDD) é uma técnica de design de código que visa reduzir o esforço cognitivo que devs empregam na compreensão de uma determinada unidade de código, por exemplo, uma classe. 
 
-You can use jinja to make a template-data folder more dynamic.
 A ideia que CDD defende é que deve existir um limite no tamanho das unidades de código, mas esse limite deve ser definido de forma disciplinada.
 
-complete documentation of jinja: https://jinja.palletsprojects.com/en/3.0.x/templates/
 Para saber mais sobre o CDD, leia [aqui](https://www.zup.com.br/blog/cognitive-driven-development-cdd).
 
 ## Plugin do CDD
+
+> **Warning**
+>
+> _Este plugin ainda está em desenvolvimento inicial e deve ser usado com cautela._
+
 
 Essa é uma POC de um plugin que calcula os ICPs do CDD usando a ferramenta de análise estática [spoon](https://github.com/INRIA/spoon). 
 
 Por limitação da ferramenta de análise estática, o plugin analise somente código válido Java.
 
-## ICPs
+## Utilização
+
+Há duas formas de utilizar este plugin: isoladamente ou via StackSpot
+
+### Utilização Isolsada
+
+Para utilizar o plugin deste repositório, basta  criar um jar e roda-lo na linha de comando, apontando para o projeto que se deseja anexar. Por exemplo:
+
+```
+git clone git@github.com:gustavopintozup/poc-plugin-cdd.git
+
+cd poc-plugin-cdd
+
+mvn clean compile assembly:single
+
+java -jar target/cdd-<versao-atual>-SNAPSHOT-jar-with-dependencies.jar -p <diretório-do-projeto-que-quero-analisar>
+```
+
+
+### Utilização via StackSpot
+
+Para uma utilização mais simplificada, recomendamos utilizar o [plugin integrado na StackSpot](https://github.com/gustavopintozup/plugin-cdd-java).
+
+## Configurações
+
+### ICPs
 
 ICPs são elementos de código que podem afetar o entendimento das pessoas desenvolvedoras, de acordo com sua frequência de uso. Exemplos de ICPs são:
 

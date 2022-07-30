@@ -28,13 +28,14 @@ public class Minerador {
 
         try {
 
-            String path = "/home/gustavopinto/workspace/jackson-dataformat-xml";
-            Boolean debug = false;
+            if (args.length == 0) {
+                System.out.print("[ERROR] Nenhum parametro foi informado!");
+                System.exit(0);
+            }
 
-            if (args.length > 0) {
-                if (args[0].equals("-p") || args[0].equals("--path")) {
-                    path = args[1];
-                }
+            String path = "";
+            if (args[0].equals("-p") || args[0].equals("--path")) {
+                path = args[1];
             }
 
             Launcher spoon = new Launcher();
