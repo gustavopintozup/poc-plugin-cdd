@@ -19,25 +19,35 @@ import br.com.stackedu.cdd.icp.TryProcessor;
 import br.com.stackedu.cdd.icp.VariavelLocalProcessor;
 import br.com.stackedu.cdd.icp.WhileProcessor;
 import br.com.stackedu.cdd.icp.YieldProcessor;
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Option;
 import spoon.Launcher;
 import spoon.reflect.factory.Factory;
 
-public class Minerador {
+@Command(name = "cdd.jar", version = "0.0.2",
+header = {
+    "@|green ░█████╗░██████╗░██████╗░|@",
+    "@|green ██╔══██╗██╔══██╗██╔══██╗|@",
+    "@|green ██║░░╚═╝██║░░██║██║░░██║|@", 
+    "@|green ██║░░██╗██║░░██║██║░░██║|@",
+    "@|green ╚█████╔╝██████╔╝██████╔╝|@",
+    "@|green ░╚════╝░╚═════╝░╚═════╝░|@",
+    })
+public class Minerador implements Runnable {
+
+    @Option(names = { "-p",
+            "--path" }, required = true, description = "Pasta do projeto que se deseja analisar o código.")
+    private String path = new String();
 
     public static void main(String[] args) {
+        int exitCode = new CommandLine(new Minerador()).execute(args); 
+        System.exit(exitCode); 
+    }
 
+    @Override
+    public void run() {
         try {
-
-            if (args.length == 0) {
-                System.out.print("[ERROR] Nenhum parametro foi informado!");
-                System.exit(0);
-            }
-
-            String path = "";
-            if (args[0].equals("-p") || args[0].equals("--path")) {
-                path = args[1];
-            }
-
             Launcher spoon = new Launcher();
             final Factory factory = spoon.getFactory();
             factory.getEnvironment().setComplianceLevel(17);
