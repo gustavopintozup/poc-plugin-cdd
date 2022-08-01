@@ -4,21 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.StoreMetrics;
 import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 import spoon.Launcher;
 
-public class AcoplamentoContextualProcessorTest {
+public class ContextualCouplingProcessorTest {
 
 	@Test
 	public void testName() throws Exception {
 		Launcher l = new Launcher();
 		l.getEnvironment().setNoClasspath(true);
-		l.addInputResource(new Resources().buscaArquivo("ServicoNotas.java"));
-		ArmazenarMetricas context = new ArmazenarMetricas();
+		l.addInputResource(new Resources().findFile("ServicoNotas.java"));
+		StoreMetrics context = new StoreMetrics();
 
-		AcoplamentoContextualProcessor processor = new AcoplamentoContextualProcessor(
+		ContextualCouplingProcessor processor = new ContextualCouplingProcessor(
 				DefaultUserDefinitionFactory.load("cdd.json"), context);
 
 		l.addProcessor(processor);
@@ -32,16 +32,16 @@ public class AcoplamentoContextualProcessorTest {
 		Launcher l = new Launcher();
 		l.getEnvironment().setNoClasspath(true);
 		l.addInputResource(new Resources()
-				.buscaArquivo("TodasInfosListaLearningTasksResponse.java"));
+				.findFile("TodasInfosListaLearningTasksResponse.java"));
 
-		ArmazenarMetricas context = new ArmazenarMetricas();
-		AcoplamentoContextualProcessor processor = new AcoplamentoContextualProcessor(
+		StoreMetrics context = new StoreMetrics();
+		ContextualCouplingProcessor processor = new ContextualCouplingProcessor(
 				DefaultUserDefinitionFactory.load("cdd.json"), context);
 
 		l.addProcessor(processor);
 		l.run();
 
-		System.out.println(processor.valores());
+		System.out.println(processor.values());
 		assertEquals(5, processor.total());
 	}
 }

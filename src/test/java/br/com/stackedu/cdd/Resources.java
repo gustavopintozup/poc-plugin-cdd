@@ -6,14 +6,13 @@ import java.nio.file.Paths;
 
 public class Resources {
 
-    public String buscaArquivo(String arquivo) {
+    public String findFile(String file) {
         try {
-            URL url = getClass().getClassLoader().getResource(arquivo);
-            File file = Paths.get(url.toURI()).toFile();
-            return file.getAbsolutePath();
+            URL url = getClass().getClassLoader().getResource(file);
+            File foundFile = Paths.get(url.toURI()).toFile();
+            return foundFile.getAbsolutePath();
         } catch (Exception e) {
-            throw new RuntimeException("Arquivo " + arquivo + " não encontrado na pasta /resources");
+            throw new RuntimeException("The file " + file + " was not found in the /resources folder");
         }
     }
-
 }

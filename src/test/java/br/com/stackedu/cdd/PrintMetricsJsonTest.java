@@ -4,27 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.icp.AcoplamentoContextualProcessor;
-import br.com.stackedu.cdd.icp.AnotacaoProcessor;
+import br.com.stackedu.cdd.config.Config;
+import br.com.stackedu.cdd.icp.AnnotationProcessor;
 import br.com.stackedu.cdd.icp.CatchProcessor;
+import br.com.stackedu.cdd.icp.ContextualCouplingProcessor;
 import br.com.stackedu.cdd.icp.IfProcessor;
 import br.com.stackedu.cdd.icp.TryProcessor;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
-public class ImprimirMetricasJsonTest {
+public class PrintMetricsJsonTest {
 
     @Test
-    public void testJsonUsandoUmProcessador() throws Exception {
+    public void testJsonWithOneProcessor() throws Exception {
 
         Launcher spoon = new Launcher();
 
         spoon.getEnvironment().setNoClasspath(true);
-        spoon.addInputResource(new Resources().buscaArquivo("Aluno.java"));
+        spoon.addInputResource(new Resources().findFile("Aluno.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
-        spoon.addProcessor(new AnotacaoProcessor(context));
+        StoreMetrics context = new StoreMetrics();
+        spoon.addProcessor(new AnnotationProcessor(context));
         spoon.run();
 
         assertEquals(removeWhiteSpaces("{" +
@@ -40,26 +40,26 @@ public class ImprimirMetricasJsonTest {
                 "    \"FOR_STATEMENT\" : 0," +
                 "    \"CONTEXT_COUPLING\" : 0" +
                 "  }" +
-                "}"), removeWhiteSpaces(new ImprimirMetricas(UserDefinitionForTesting.load(), context).json()));
+                "}"), removeWhiteSpaces(new PrintMetrics(UserDefinitionForTesting.load(), context).json()));
     }
 
     @Test
-    public void testJsonUsandoDoisProcessadores() throws Exception {
+    public void testJsonWithFourProcessors() throws Exception {
 
         Launcher spoon = new Launcher();
 
         spoon.getEnvironment().setNoClasspath(true);
 
-        spoon.addInputResource(new Resources().buscaArquivo("Aluno.java"));
-        spoon.addInputResource(new Resources().buscaArquivo("Ajuda.java"));
-        spoon.addInputResource(new Resources().buscaArquivo("HeadingWrapper.java"));
+        spoon.addInputResource(new Resources().findFile("Aluno.java"));
+        spoon.addInputResource(new Resources().findFile("Ajuda.java"));
+        spoon.addInputResource(new Resources().findFile("HeadingWrapper.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
-        spoon.addProcessor(new AnotacaoProcessor(context));
+        StoreMetrics context = new StoreMetrics();
+        spoon.addProcessor(new AnnotationProcessor(context));
         
-        Configuracoes currentConfiguration = UserDefinitionForTesting.load();
+        Config currentConfiguration = UserDefinitionForTesting.load();
         spoon.addProcessor(new IfProcessor(currentConfiguration, context));
-        spoon.addProcessor(new AcoplamentoContextualProcessor(currentConfiguration, context));
+        spoon.addProcessor(new ContextualCouplingProcessor(currentConfiguration, context));
         spoon.addProcessor(new TryProcessor(context));
         spoon.addProcessor(new CatchProcessor(context));
 
@@ -103,7 +103,7 @@ public class ImprimirMetricasJsonTest {
                 "    \"CONTEXT_COUPLING\" : 9" +
                 "  }" +
                 "}"),
-                removeWhiteSpaces(new ImprimirMetricas(currentConfiguration, context).json()));
+                removeWhiteSpaces(new PrintMetrics(currentConfiguration, context).json()));
     }
 
     private String removeWhiteSpaces(String input) {

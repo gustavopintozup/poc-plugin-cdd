@@ -22,17 +22,17 @@ public class DefaultUserDefinitionFactory {
 	 * @param cddFilePath path to json file with list of {@link UserDefinition}
 	 * @return
 	 */
-	public static Configuracoes load(String cddFilePath) {
+	public static Config load(String cddFilePath) {
 		try {
 			String config = Files.readString(Paths.get(cddFilePath));
 
 			ObjectMapper mapper = new ObjectMapper();
-			return new Configuracoes(mapper.readValue(config, UserDefinition.class));
+			return new Config(mapper.readValue(config, UserDefinition.class));
 
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new PluginCDDException(
-					"O arquivo 'cdd.json' não foi encontrado na raiz do projeto!");
+					"The 'cdd.json' file was not found in the root dir of the project!");
 		}
 	}
 }

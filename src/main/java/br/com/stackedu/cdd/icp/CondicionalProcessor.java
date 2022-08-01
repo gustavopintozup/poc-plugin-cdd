@@ -6,9 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
-import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.RegraSuportada;
+import br.com.stackedu.cdd.StoreMetrics;
+import br.com.stackedu.cdd.config.Config;
+import br.com.stackedu.cdd.config.SupportedRules;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.code.CtIf;
@@ -21,26 +21,26 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
 
     private int total;
     private List<String> values = new ArrayList<>();
-    private final Configuracoes configuracoes;
-    private final ArmazenarMetricas contexto;
+    private final Config config;
+    private final StoreMetrics context;
 
-    public CondicionalProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
-		this.configuracoes = configuracoes;
-		this.contexto = contexto;
+    public CondicionalProcessor(Config config, StoreMetrics context) {
+		this.config = config;
+		this.context = context;
     }
 
     @Override
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (this.configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
+        if (this.config.exists(SupportedRules.METHODS_AUTOGEN)) {
             return false;
         }
         /**
-         * O parent != null cobre casos em que a declaração de variável usa um if
+         * The parent != null cover cases in which the var declartion uses an if
          */
         if (parent != null) {
-            // TODO: algum outro?
+            // TODO: any other?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;
             }
@@ -72,7 +72,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
 
         this.values.add(element.prettyprint());
         CtType<?> clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "CONDITION");
+        context.save(clazz.getQualifiedName(), "CONDITION");
 
         /**
          * O +1 aqui requer uma atenção. No while acima, eu conto a presença de um
@@ -95,7 +95,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

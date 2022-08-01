@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.StoreMetrics;
 import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 import spoon.Launcher;
 
@@ -15,9 +15,9 @@ public class CondicionalProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                new Resources().buscaArquivo("IfComUmaCondicao.java"));
+                new Resources().findFile("IfComUmaCondicao.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         CondicionalProcessor processor = new CondicionalProcessor(DefaultUserDefinitionFactory.load("cdd.json"), context);
 
         l.addProcessor(processor);
@@ -31,9 +31,9 @@ public class CondicionalProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                new Resources().buscaArquivo("IfComDuasCondicoes.java"));
+                new Resources().findFile("IfComDuasCondicoes.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         CondicionalProcessor processor = new CondicionalProcessor(DefaultUserDefinitionFactory.load("cdd.json"), context);
 
         l.addProcessor(processor);
@@ -47,9 +47,9 @@ public class CondicionalProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                new Resources().buscaArquivo("IfComTresCondicoes.java"));
+                new Resources().findFile("IfComTresCondicoes.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         CondicionalProcessor processor = new CondicionalProcessor(DefaultUserDefinitionFactory.load("cdd.json"), context);
 
         l.addProcessor(processor);
@@ -63,9 +63,9 @@ public class CondicionalProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                new Resources().buscaArquivo("IfComUmaNegacao.java"));
+                new Resources().findFile("IfComUmaNegacao.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         CondicionalProcessor processor = new CondicionalProcessor(DefaultUserDefinitionFactory.load("cdd.json"), context);
 
         l.addProcessor(processor);
@@ -80,9 +80,9 @@ public class CondicionalProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-                new Resources().buscaArquivo("AlunoPodeAcessarLearningTask.java"));
+                new Resources().findFile("AlunoPodeAcessarLearningTask.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         CondicionalProcessor processor = new CondicionalProcessor(DefaultUserDefinitionFactory.load("cdd.json"), context);
 
         l.addProcessor(processor);

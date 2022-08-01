@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.Launcher;
 
 public class ForProcessorTest {
@@ -14,9 +14,9 @@ public class ForProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().buscaArquivo("ListaValidacoesEstrutura.java"));
+            new Resources().findFile("ListaValidacoesEstrutura.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         ForProcessor processor = new ForProcessor(context);
 
         l.addProcessor(processor);

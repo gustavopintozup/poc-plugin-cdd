@@ -4,20 +4,19 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtType;
 
-// O If conta somente o IF ou conta o IF/ELSE/ETC?
-public class ClasseAnonimaProcessor extends AbstractProcessor<CtClass> implements ICP {
+public class AnonymousClassProcessor extends AbstractProcessor<CtClass> implements ICP {
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics context;
 
-    public ClasseAnonimaProcessor(ArmazenarMetricas contexto) {
-        this.contexto = contexto;
+    public AnonymousClassProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
@@ -35,7 +34,7 @@ public class ClasseAnonimaProcessor extends AbstractProcessor<CtClass> implement
         this.values.add(element.getSimpleName());
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "ANONYMOUS_CLASS");
+        context.save(clazz.getQualifiedName(), "ANONYMOUS_CLASS");
     }
 
     public int total() {
@@ -43,7 +42,7 @@ public class ClasseAnonimaProcessor extends AbstractProcessor<CtClass> implement
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

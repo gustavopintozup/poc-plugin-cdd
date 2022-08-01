@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtSuperAccess;
 import spoon.reflect.declaration.CtType;
@@ -12,10 +12,10 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics context;
 
-    public SuperProcessor(ArmazenarMetricas contexto) {
-        this.contexto = contexto;
+    public SuperProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
@@ -25,7 +25,7 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "SUPER_EXPRESSION");
+        context.save(clazz.getQualifiedName(), "SUPER_EXPRESSION");
     }
 
     public int total() {
@@ -33,7 +33,7 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.Launcher;
 
 public class WhileProcessorTest {
@@ -14,9 +14,9 @@ public class WhileProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().buscaArquivo("HeadingWrapper.java"));
+            new Resources().findFile("HeadingWrapper.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         WhileProcessor processor = new WhileProcessor(context);
 
         l.addProcessor(processor);

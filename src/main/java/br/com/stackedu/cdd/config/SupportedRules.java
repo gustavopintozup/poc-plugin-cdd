@@ -5,7 +5,7 @@ package br.com.stackedu.cdd.config;
  * @author gustavopinto
  *
  */
-public enum RegraSuportada {
+public enum SupportedRules {
 
     IF_STATEMENT, TRY_CATCH_STATEMENT, SWITCH_STATEMENT, CONDITION, FOR_STATEMENT, FOREACH_STATEMENT,
     WHILE_STATEMENT, CONTEXT_COUPLING, METHODS_AUTOGEN, ANNOTATION, LAMBDA_EXPRESSION, METHOD, THROW_STATEMENT,

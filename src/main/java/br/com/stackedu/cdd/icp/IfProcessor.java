@@ -3,24 +3,23 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
-import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.RegraSuportada;
+import br.com.stackedu.cdd.StoreMetrics;
+import br.com.stackedu.cdd.config.Config;
+import br.com.stackedu.cdd.config.SupportedRules;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtIf;
 import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtType;
 
-// O If conta somente o IF ou conta o IF/ELSE/ETC?
 public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
 
     private int total;
     private List<String> values;
-    private final Configuracoes configuracoes;
-    private final ArmazenarMetricas contexto;
+    private final Config config;
+    private final StoreMetrics contexto;
 
-    public IfProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
-        this.configuracoes = configuracoes;
+    public IfProcessor(Config configuracoes, StoreMetrics contexto) {
+        this.config = configuracoes;
 		this.values = new ArrayList<>();
 		this.contexto = contexto;
     }
@@ -29,12 +28,12 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
+        if (config.exists(SupportedRules.METHODS_AUTOGEN)) {
             return false;
         }
 
         /**
-         * O parent != null cobre casos em que a declaração de variável usa um if
+         * The parent != null cover cases in whihch the var declarations uses an if
          */
         if (parent != null) {
             // TODO: algum outro?
@@ -58,7 +57,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
         this.values.add(element.getCondition().prettyprint());
 
         CtType<?> clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "IF_STATEMENT");
+        contexto.save(clazz.getQualifiedName(), "IF_STATEMENT");
     }
 
     public int total() {
@@ -66,7 +65,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

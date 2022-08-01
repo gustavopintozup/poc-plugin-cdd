@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtSwitch;
 import spoon.reflect.declaration.CtType;
@@ -12,21 +12,20 @@ public class SwitchProcessor extends AbstractProcessor<CtSwitch> implements ICP 
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics context;
 
-    public SwitchProcessor(ArmazenarMetricas contexto) {
-        this.contexto = contexto;
+    public SwitchProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
     @Override
     public void process(CtSwitch element) {
-        // confirmar se a contagem do switch é feita pelo numero de cases
         total = element.getCases().size();
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "SWITCH_STATEMENT");
+        context.save(clazz.getQualifiedName(), "SWITCH_STATEMENT");
     }
 
     public int total() {
@@ -34,7 +33,7 @@ public class SwitchProcessor extends AbstractProcessor<CtSwitch> implements ICP 
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

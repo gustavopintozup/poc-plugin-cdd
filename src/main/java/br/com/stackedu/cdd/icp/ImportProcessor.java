@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtCompilationUnit;
 import spoon.reflect.declaration.CtImport;
@@ -12,9 +12,9 @@ public class ImportProcessor extends AbstractProcessor<CtCompilationUnit> implem
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics contexto;
 
-    public ImportProcessor(ArmazenarMetricas contexto) {
+    public ImportProcessor(StoreMetrics contexto) {
         this.contexto = contexto;
 		this.values = new ArrayList<>();
     }
@@ -27,7 +27,7 @@ public class ImportProcessor extends AbstractProcessor<CtCompilationUnit> implem
             total++;
 
             this.values.add(im.getShortRepresentation());
-            contexto.salvar(element.getDeclaredTypes().get(0).getQualifiedName(), "import");
+            contexto.save(element.getDeclaredTypes().get(0).getQualifiedName(), "import");
         }
 
     }
@@ -37,7 +37,7 @@ public class ImportProcessor extends AbstractProcessor<CtCompilationUnit> implem
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

@@ -3,32 +3,32 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
-import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.RegraSuportada;
+import br.com.stackedu.cdd.StoreMetrics;
+import br.com.stackedu.cdd.config.Config;
+import br.com.stackedu.cdd.config.SupportedRules;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtConditional;
 import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtType;
 
-public class TernarioProcessor extends AbstractProcessor<CtConditional> implements ICP {
+public class TernaryProcessor extends AbstractProcessor<CtConditional> implements ICP {
 
     private int total;
     private List<String> values = new ArrayList<>();
-    private final Configuracoes configuracoes;
-    private final ArmazenarMetricas contexto;
+    private final Config config;
+    private final StoreMetrics context;
 
-    public TernarioProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
-		this.configuracoes = configuracoes;
-		this.contexto = contexto;
+    public TernaryProcessor(Config config, StoreMetrics context) {
+		this.config = config;
+		this.context = context;
     }
 
     @Override
     public boolean isToBeProcessed(CtConditional candidate) {
         CtMethod parent = candidate.getParent(CtMethod.class);
 
-        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
-            // TODO: algum outro?
+        if (config.exists(SupportedRules.METHODS_AUTOGEN)) {
+            // TODO: any other?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;
             }
@@ -46,7 +46,7 @@ public class TernarioProcessor extends AbstractProcessor<CtConditional> implemen
         this.values.add(element.getCondition().prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "if");
+        context.save(clazz.getQualifiedName(), "if");
     }
 
     public int total() {
@@ -54,7 +54,7 @@ public class TernarioProcessor extends AbstractProcessor<CtConditional> implemen
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

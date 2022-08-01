@@ -3,19 +3,19 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtField;
 import spoon.reflect.declaration.CtType;
 
-public class VariavelLocalProcessor extends AbstractProcessor<CtField> implements ICP {
+public class LocalVarProcessor extends AbstractProcessor<CtField> implements ICP {
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics context;
 
-    public VariavelLocalProcessor(ArmazenarMetricas contexto) {
-        this.contexto = contexto;
+    public LocalVarProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
@@ -26,7 +26,7 @@ public class VariavelLocalProcessor extends AbstractProcessor<CtField> implement
         this.values.add(element.getSimpleName());
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "LOCAL_VARIABLE");
+        context.save(clazz.getQualifiedName(), "LOCAL_VARIABLE");
     }
 
     public int total() {
@@ -34,7 +34,7 @@ public class VariavelLocalProcessor extends AbstractProcessor<CtField> implement
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

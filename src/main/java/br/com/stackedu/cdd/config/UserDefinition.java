@@ -14,27 +14,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 public class UserDefinition {
-	private int limite;
-	private List<Regra> regras;
+	private int limit;
+	private List<Rule> rules;
 
-	public UserDefinition(@JsonProperty("limite") int limite, @JsonProperty("regras") List<Regra> regras) {
+	public UserDefinition(@JsonProperty("limite") int limit, @JsonProperty("regras") List<Rule> rules) {
 		super();
-		this.limite = limite;
-		this.regras = regras;
+		this.limit = limit;
+		this.rules = rules;
 	}
 
-	
-	public int getLimite() {
-		return limite;
+	public int getLimit() {
+		return limit;
 	}
 
-	public List<Regra> getRegras() {
-		return regras;
+	public List<Rule> getRules() {
+		return rules;
 	}
 
-	public Optional<Regra> find(RegraSuportada regra) {
-		return this.regras.stream()
-				.filter(regraAtual -> regraAtual.hasTheSameName(regra))
+	public Optional<Rule> find(SupportedRules rule) {
+		return this.rules.stream()
+				.filter(regraAtual -> regraAtual.hasTheSameName(rule))
 				.findFirst();
 	}
 }

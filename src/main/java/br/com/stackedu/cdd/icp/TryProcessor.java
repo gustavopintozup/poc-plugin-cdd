@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtTry;
 import spoon.reflect.declaration.CtType;
@@ -12,10 +12,10 @@ public class TryProcessor extends AbstractProcessor<CtTry> implements ICP {
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics context;
 
-    public TryProcessor(ArmazenarMetricas contexto) {
-        this.contexto = contexto;
+    public TryProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
@@ -29,7 +29,7 @@ public class TryProcessor extends AbstractProcessor<CtTry> implements ICP {
         }
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "TRY_CATCH_STATEMENT");
+        context.save(clazz.getQualifiedName(), "TRY_CATCH_STATEMENT");
     }
 
     public int total() {
@@ -37,7 +37,7 @@ public class TryProcessor extends AbstractProcessor<CtTry> implements ICP {
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

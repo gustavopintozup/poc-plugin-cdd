@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.StoreMetrics;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
@@ -16,9 +16,9 @@ public class IfProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
+            new Resources().findFile("ValidaConteudoDasAjudas.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load(), context);
 
         l.addProcessor(ifprocessor);
@@ -28,14 +28,14 @@ public class IfProcessorTest {
     }
 
     @Test
-    @DisplayName("Testando vários ifs encadeados")
+    @DisplayName("Checking several chained ifs")
     public void testName2() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().buscaArquivo("IfsEncadeados.java"));
+            new Resources().findFile("IfsEncadeados.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load(), context);
 
         l.addProcessor(ifprocessor);
@@ -45,14 +45,14 @@ public class IfProcessorTest {
     }
 
     @Test
-    @DisplayName("Testando ifs dentro do equals")
+    @DisplayName("Checking if inside an equals()")
     public void testName3() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().buscaArquivo("Ajuda.java"));
+            new Resources().findFile("Ajuda.java"));
 
-        ArmazenarMetricas context = new ArmazenarMetricas();
+        StoreMetrics context = new StoreMetrics();
         IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load(), context);
 
         l.addProcessor(ifprocessor);

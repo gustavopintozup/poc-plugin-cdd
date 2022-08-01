@@ -9,13 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author gustavopinto
  *
  */
-public class Regra {
+public class Rule {
 
 	private String name;
 	private String cost;
 	private String parameters;
 
-	public Regra(@JsonProperty("name")String name, @JsonProperty("cost") String cost) {
+	public Rule(@JsonProperty("name")String name, @JsonProperty("cost") String cost) {
 		super();
 		this.name = name;
 		this.cost = cost;
@@ -53,7 +53,7 @@ public class Regra {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Regra other = (Regra) obj;
+		Rule other = (Rule) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;
@@ -62,7 +62,7 @@ public class Regra {
 		return true;
 	}
 
-	public boolean hasTheSameName(RegraSuportada regra) {
+	public boolean hasTheSameName(SupportedRules regra) {
 		return this.name.toUpperCase().equals(regra.name().toUpperCase());
 	}
 

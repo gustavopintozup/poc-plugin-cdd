@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.ArmazenarMetricas;
+import br.com.stackedu.cdd.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtYieldStatement;
 import spoon.reflect.declaration.CtType;
@@ -12,10 +12,10 @@ public class YieldProcessor extends AbstractProcessor<CtYieldStatement> implemen
 
     private int total;
     private List<String> values;
-    private final ArmazenarMetricas contexto;
+    private final StoreMetrics context;
 
-    public YieldProcessor(ArmazenarMetricas contexto) {
-        this.contexto = contexto;
+    public YieldProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
@@ -26,7 +26,7 @@ public class YieldProcessor extends AbstractProcessor<CtYieldStatement> implemen
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        contexto.salvar(clazz.getQualifiedName(), "YIELD_STATEMENT");
+        context.save(clazz.getQualifiedName(), "YIELD_STATEMENT");
     }
 
     public int total() {
@@ -34,7 +34,7 @@ public class YieldProcessor extends AbstractProcessor<CtYieldStatement> implemen
     }
 
     @Override
-    public List<String> valores() {
+    public List<String> values() {
         return this.values;
     }
 }

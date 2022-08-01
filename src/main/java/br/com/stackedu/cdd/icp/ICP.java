@@ -6,6 +6,6 @@ public interface ICP {
 
     public int total();
 
-    public List<String> valores();
+    public List<String> values();
 
 }

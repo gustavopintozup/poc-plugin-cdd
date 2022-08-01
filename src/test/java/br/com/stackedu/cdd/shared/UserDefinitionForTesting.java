@@ -1,6 +1,6 @@
 package br.com.stackedu.cdd.shared;
 
-import br.com.stackedu.cdd.config.Configuracoes;
+import br.com.stackedu.cdd.config.Config;
 import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 
 /**
@@ -11,7 +11,7 @@ import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 public class UserDefinitionForTesting {
 
 	
-	public static Configuracoes load() {
+	public static Config load() {
 		return DefaultUserDefinitionFactory.load("cdd.json");
 	} 
 }
