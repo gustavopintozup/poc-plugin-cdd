@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.Regras;
+import br.com.stackedu.cdd.config.Regra;
 
 public class ImprimirMetricas {
 
@@ -83,7 +83,7 @@ public class ImprimirMetricas {
     }
 
     private static void inicializa_icp_com_zero(Map<String, Object> json) {
-        for (Regras regra : Configuracoes.regras()) {
+        for (Regra regra : Configuracoes.regras()) {
             json.put(regra.getName(), 0);
         }
     }

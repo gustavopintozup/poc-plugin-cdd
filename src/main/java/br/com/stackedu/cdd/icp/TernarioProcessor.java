@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
+import br.com.stackedu.cdd.config.RegraSuportada;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtConditional;
 import spoon.reflect.declaration.CtMethod;
@@ -24,7 +24,7 @@ public class TernarioProcessor extends AbstractProcessor<CtConditional> implemen
     public boolean isToBeProcessed(CtConditional candidate) {
         CtMethod parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN)) {
+        if (Configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             // TODO: algum outro?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;

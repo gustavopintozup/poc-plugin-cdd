@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
+import br.com.stackedu.cdd.config.RegraSuportada;
 
 public class LerArquivoDeConfigTest {
 
@@ -16,18 +16,18 @@ public class LerArquivoDeConfigTest {
     public void testName() throws Exception {
         assertEquals(Configuracoes.limite(), 10);
 
-        assertEquals(Configuracoes.get(RegrasDefinidas.IF_STATEMENT).getName(), "IF_STATEMENT");
-        assertEquals(Configuracoes.get(RegrasDefinidas.IF_STATEMENT).getCost(), "1");
+        assertEquals(Configuracoes.get(RegraSuportada.IF_STATEMENT).getName(), "IF_STATEMENT");
+        assertEquals(Configuracoes.get(RegraSuportada.IF_STATEMENT).getCost(), "1");
 
-        assertEquals(Configuracoes.get(RegrasDefinidas.TRY_CATCH_STATEMENT).getName(), "TRY_CATCH_STATEMENT");
-        assertEquals(Configuracoes.get(RegrasDefinidas.TRY_CATCH_STATEMENT).getCost(), "1");
+        assertEquals(Configuracoes.get(RegraSuportada.TRY_CATCH_STATEMENT).getName(), "TRY_CATCH_STATEMENT");
+        assertEquals(Configuracoes.get(RegraSuportada.TRY_CATCH_STATEMENT).getCost(), "1");
 
-        assertEquals(Configuracoes.get(RegrasDefinidas.SWITCH_STATEMENT).getName(), "SWITCH_STATEMENT");
-        assertEquals(Configuracoes.get(RegrasDefinidas.SWITCH_STATEMENT).getCost(), "1");
+        assertEquals(Configuracoes.get(RegraSuportada.SWITCH_STATEMENT).getName(), "SWITCH_STATEMENT");
+        assertEquals(Configuracoes.get(RegraSuportada.SWITCH_STATEMENT).getCost(), "1");
 
-        assertEquals(Configuracoes.get(RegrasDefinidas.CONTEXT_COUPLING).getName(), "CONTEXT_COUPLING");
-        assertEquals(Configuracoes.get(RegrasDefinidas.CONTEXT_COUPLING).getCost(), "1");
-        assertEquals(Configuracoes.get(RegrasDefinidas.CONTEXT_COUPLING).getParameters(), "br.com.zup.lms");
+        assertEquals(Configuracoes.get(RegraSuportada.CONTEXT_COUPLING).getName(), "CONTEXT_COUPLING");
+        assertEquals(Configuracoes.get(RegraSuportada.CONTEXT_COUPLING).getCost(), "1");
+        assertEquals(Configuracoes.get(RegraSuportada.CONTEXT_COUPLING).getParameters(), "br.com.zup.lms");
     }
 
     @Test
@@ -35,7 +35,7 @@ public class LerArquivoDeConfigTest {
     public void testName2() throws Exception {
 
         Exception exception = assertThrows(PluginCDDException.class, () -> {
-            Configuracoes.get(RegrasDefinidas.METHODS_AUTOGEN);
+            Configuracoes.get(RegraSuportada.METHODS_AUTOGEN);
         });
 
         assertEquals(exception.getMessage(), "A regra METHODS_AUTOGEN não está sendo utilizada!");

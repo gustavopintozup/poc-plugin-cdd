@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
+import br.com.stackedu.cdd.config.RegraSuportada;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.reference.CtVariableReference;
@@ -13,9 +13,11 @@ import spoon.reflect.reference.CtVariableReference;
 public class AcoplamentoContextualProcessor extends AbstractProcessor<CtVariableReference> implements ICP {
 
     private List<String> acoplamento;
+	private Configuracoes configuracoes;
 
-    public AcoplamentoContextualProcessor() {
-        acoplamento = new ArrayList<>();
+    public AcoplamentoContextualProcessor(Configuracoes configuracoes) {
+        this.configuracoes = configuracoes;
+		acoplamento = new ArrayList<>();
     }
 
     @Override
@@ -31,10 +33,10 @@ public class AcoplamentoContextualProcessor extends AbstractProcessor<CtVariable
     @Override
     public boolean isToBeProcessed(CtVariableReference candidate) {
 
-        if (Configuracoes.existe(RegrasDefinidas.CONTEXT_COUPLING)) {
+        if (configuracoes.existe(RegraSuportada.CONTEXT_COUPLING)) {
             if (null != candidate.getType() && null != candidate.getType().getPackage()) {
                 String nomeDoPacote = candidate.getType().getPackage().getSimpleName();
-                String acoplamentoContextual = Configuracoes.get(RegrasDefinidas.CONTEXT_COUPLING).getParameters();
+                String acoplamentoContextual = configuracoes.get(RegraSuportada.CONTEXT_COUPLING).getParameters();
 
                 if (nomeDoPacote.contains(acoplamentoContextual)) {
                     return true;

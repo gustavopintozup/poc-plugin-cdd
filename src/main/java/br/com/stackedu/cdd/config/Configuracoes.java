@@ -1,56 +1,38 @@
 package br.com.stackedu.cdd.config;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.com.stackedu.cdd.PluginCDDException;
-import br.com.stackedu.cdd.config.JSONParser.Regras;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
 
+/**
+ * Wrapper to facilitate find and usage of some {@link Regra}. 
+ * @author gustavopinto
+ * @author albertoluizsouza
+ *
+ */
 public class Configuracoes {
 
-    private static JSONParser config = carregar();
+	private final UserDefinition config;
 
-    public static Regras get(RegrasDefinidas regra) {
-        for (Regras rule : regras()) {
-            if (rule.getName().equals(regra.toString())) {
-                return rule;
-            }
-        }
-        throw new PluginCDDException("A regra " + regra + " não está sendo utilizada!");
-    }
+	public Configuracoes(UserDefinition config) {
+		this.config = config;
+	}
 
-    public static boolean existe(RegrasDefinidas regra) {
-        for (Regras rule : regras()) {
-            if (rule.getName().equals(regra.toString())) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public Regra get(RegraSuportada regra) {
+		return this.config.find(regra).orElseThrow(() -> new PluginCDDException(
+				"A regra " + regra + " não está sendo utilizada!"));
 
+	}
 
-    public static int limite() {
-        return config.getLimite();
-    }
+	public boolean existe(RegraSuportada regra) {
+		return this.config.find(regra).isPresent();
+	}
 
-    public static List<Regras> regras() {
-        return config.getRegras();
-    }
+	public int limite() {
+		return config.getLimite();
+	}
 
-    private static JSONParser carregar() {
-        try {
-            String config = Files.readString(Paths.get("cdd.json"));
-
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(config, JSONParser.class);
-
-        } catch (IOException e) {
-            throw new PluginCDDException("O arquivo 'cdd.json' não foi encontrado na raiz do projeto!");
-        }
-    }
+	public List<Regra> regras() {
+		return config.getRegras();
+	}
 }
