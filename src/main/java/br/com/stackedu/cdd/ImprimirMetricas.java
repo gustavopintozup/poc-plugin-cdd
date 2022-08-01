@@ -14,16 +14,18 @@ import br.com.stackedu.cdd.config.Regra;
 public class ImprimirMetricas {
 
 	private final Configuracoes configuracoes;
+	private final ArmazenarMetricas contexto;
 
-	public ImprimirMetricas(Configuracoes configuracoes) {
+	public ImprimirMetricas(Configuracoes configuracoes, ArmazenarMetricas contexto) {
 		super();
 		this.configuracoes = configuracoes;
+		this.contexto = contexto;
 	}
 
 	public String console() {
 		StringBuilder output = new StringBuilder();
 
-		Iterator<Entry<String, List<ValorICP>>> iter = ArmazenarMetricas
+		Iterator<Entry<String, List<ValorICP>>> iter = contexto
 				.getDataset().entrySet().iterator();
 		while (iter.hasNext()) {
 			Entry<String, List<ValorICP>> entry = iter.next();
@@ -58,7 +60,7 @@ public class ImprimirMetricas {
 
 	public String json() {
 		try {
-			Iterator<Entry<String, List<ValorICP>>> iter = ArmazenarMetricas
+			Iterator<Entry<String, List<ValorICP>>> iter = contexto
 					.getDataset().entrySet().iterator();
 			Map<String, Object> configMap = new HashMap<>();
 

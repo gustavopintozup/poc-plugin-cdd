@@ -12,9 +12,11 @@ public class ImportProcessor extends AbstractProcessor<CtCompilationUnit> implem
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public ImportProcessor() {
-        this.values = new ArrayList<>();
+    public ImportProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -25,7 +27,7 @@ public class ImportProcessor extends AbstractProcessor<CtCompilationUnit> implem
             total++;
 
             this.values.add(im.getShortRepresentation());
-            ArmazenarMetricas.salvar(element.getDeclaredTypes().get(0).getQualifiedName(), "import");
+            contexto.salvar(element.getDeclaredTypes().get(0).getQualifiedName(), "import");
         }
 
     }

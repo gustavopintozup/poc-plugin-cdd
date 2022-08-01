@@ -17,10 +17,12 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
     private int total;
     private List<String> values;
     private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public IfProcessor(Configuracoes configuracoes) {
+    public IfProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
         this.configuracoes = configuracoes;
 		this.values = new ArrayList<>();
+		this.contexto = contexto;
     }
 
     @Override
@@ -56,7 +58,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
         this.values.add(element.getCondition().prettyprint());
 
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "IF_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "IF_STATEMENT");
     }
 
     public int total() {

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -14,7 +15,8 @@ public class ClasseAnonimaProcessorTest {
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
 
-        ClasseAnonimaProcessor processor = new ClasseAnonimaProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        ClasseAnonimaProcessor processor = new ClasseAnonimaProcessor(context);
 
         l.addProcessor(processor);
         l.run();

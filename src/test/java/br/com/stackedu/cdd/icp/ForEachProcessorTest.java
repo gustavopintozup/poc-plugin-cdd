@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -15,7 +16,8 @@ public class ForEachProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("ListaValidacoesEstrutura.java"));
 
-        ForEachProcessor processor = new ForEachProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        ForEachProcessor processor = new ForEachProcessor(context);
 
         l.addProcessor(processor);
         l.run();

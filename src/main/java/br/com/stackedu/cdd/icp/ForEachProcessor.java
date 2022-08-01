@@ -12,9 +12,11 @@ public class ForEachProcessor extends AbstractProcessor<CtForEach> implements IC
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public ForEachProcessor() {
-        this.values = new ArrayList<>();
+    public ForEachProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class ForEachProcessor extends AbstractProcessor<CtForEach> implements IC
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "FOREACH_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "FOREACH_STATEMENT");
     }
 
     public int total() {

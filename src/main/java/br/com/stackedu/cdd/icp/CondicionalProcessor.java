@@ -22,9 +22,11 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
     private int total;
     private List<String> values = new ArrayList<>();
     private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public CondicionalProcessor(Configuracoes configuracoes) {
+    public CondicionalProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
 		this.configuracoes = configuracoes;
+		this.contexto = contexto;
     }
 
     @Override
@@ -70,7 +72,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
 
         this.values.add(element.prettyprint());
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "CONDITION");
+        contexto.salvar(clazz.getQualifiedName(), "CONDITION");
 
         /**
          * O +1 aqui requer uma atenção. No while acima, eu conto a presença de um

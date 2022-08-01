@@ -12,9 +12,11 @@ public class WhileProcessor extends AbstractProcessor<CtWhile> implements ICP {
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public WhileProcessor() {
-        this.values = new ArrayList<>();
+    public WhileProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class WhileProcessor extends AbstractProcessor<CtWhile> implements ICP {
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "WHILE_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "WHILE_STATEMENT");
     }
 
     public int total() {

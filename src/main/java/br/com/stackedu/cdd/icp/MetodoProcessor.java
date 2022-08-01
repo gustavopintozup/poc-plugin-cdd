@@ -15,9 +15,11 @@ public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP 
     private final List<String> metodos = new ArrayList<>();
     private int total;
     private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public MetodoProcessor(Configuracoes configuracoes) {
+    public MetodoProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
 		this.configuracoes = configuracoes;
+		this.contexto = contexto;
     }
 
     @Override
@@ -48,7 +50,7 @@ public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP 
     @Override
     public void process(CtMethod element) {
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "METHOD");
+        contexto.salvar(clazz.getQualifiedName(), "METHOD");
 
         this.total++;
         metodos.add(element.getSimpleName());

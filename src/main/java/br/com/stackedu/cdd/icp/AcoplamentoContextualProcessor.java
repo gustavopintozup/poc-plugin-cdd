@@ -14,9 +14,11 @@ public class AcoplamentoContextualProcessor extends AbstractProcessor<CtVariable
 
     private List<String> acoplamento;
 	private Configuracoes configuracoes;
+	private final ArmazenarMetricas contexto;
 
-    public AcoplamentoContextualProcessor(Configuracoes configuracoes) {
-        this.configuracoes = configuracoes;
+    public AcoplamentoContextualProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.configuracoes = configuracoes;
 		acoplamento = new ArrayList<>();
     }
 
@@ -58,7 +60,7 @@ public class AcoplamentoContextualProcessor extends AbstractProcessor<CtVariable
             acoplamento.add(var);
 
             CtType<?> clazz = element.getParent(CtType.class);
-            ArmazenarMetricas.salvar(clazz.getQualifiedName(), "CONTEXT_COUPLING");
+            contexto.salvar(clazz.getQualifiedName(), "CONTEXT_COUPLING");
         }
     }
 }

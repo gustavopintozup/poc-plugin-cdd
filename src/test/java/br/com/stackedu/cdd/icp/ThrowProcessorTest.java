@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -15,7 +16,8 @@ public class ThrowProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("ValidadorTitulosAlteradosAoAtualizar.java"));
 
-        ThrowProcessor processor = new ThrowProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        ThrowProcessor processor = new ThrowProcessor(context);
 
         l.addProcessor(processor);
         l.run();

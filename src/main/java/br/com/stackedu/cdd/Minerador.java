@@ -58,77 +58,78 @@ public class Minerador implements Runnable {
             Configuracoes configuracoes = DefaultUserDefinitionFactory.load("cdd.json");
 
             StringBuilder processadores = new StringBuilder();
+            ArmazenarMetricas context = new ArmazenarMetricas();
             if (configuracoes.existe(RegraSuportada.ANNOTATION)) {
-                spoon.addProcessor(new AnotacaoProcessor());
+                spoon.addProcessor(new AnotacaoProcessor(context));
                 processadores.append("Anotação");
             }
             if (configuracoes.existe(RegraSuportada.IF_STATEMENT)) {
-                spoon.addProcessor(new IfProcessor(configuracoes));
+                spoon.addProcessor(new IfProcessor(configuracoes, context));
                 processadores.append("If");
             }
             if (configuracoes.existe(RegraSuportada.CONDITION)) {
-                spoon.addProcessor(new CondicionalProcessor(configuracoes));
+                spoon.addProcessor(new CondicionalProcessor(configuracoes, context));
                 processadores.append("Condicional");
             }
             if (configuracoes.existe(RegraSuportada.TRY_CATCH_STATEMENT)) {
-                spoon.addProcessor(new TryProcessor());
-                spoon.addProcessor(new CatchProcessor());
+                spoon.addProcessor(new TryProcessor(context));
+                spoon.addProcessor(new CatchProcessor(context));
                 processadores.append("Try-catch");
             }
             if (configuracoes.existe(RegraSuportada.THROW_STATEMENT)) {
-                spoon.addProcessor(new ThrowProcessor());
+                spoon.addProcessor(new ThrowProcessor(context));
                 processadores.append("Throw");
             }
             if (configuracoes.existe(RegraSuportada.LAMBDA_EXPRESSION)) {
-                spoon.addProcessor(new LambdaProcessor());
+                spoon.addProcessor(new LambdaProcessor(context));
                 processadores.append("Lambda");
             }
 
             if (configuracoes.existe(RegraSuportada.METHOD)) {
-                spoon.addProcessor(new MetodoProcessor(configuracoes));
+                spoon.addProcessor(new MetodoProcessor(configuracoes, context));
                 processadores.append("Método");
             }
             if (configuracoes.existe(RegraSuportada.SWITCH_STATEMENT)) {
-                spoon.addProcessor(new SwitchProcessor());
+                spoon.addProcessor(new SwitchProcessor(context));
                 processadores.append("Switch-case");
             }
             if (configuracoes.existe(RegraSuportada.YIELD_STATEMENT)) {
-                spoon.addProcessor(new YieldProcessor());
+                spoon.addProcessor(new YieldProcessor(context));
                 processadores.append("Yield");
             }
             if (configuracoes.existe(RegraSuportada.WHILE_STATEMENT)) {
-                spoon.addProcessor(new WhileProcessor());
+                spoon.addProcessor(new WhileProcessor(context));
                 processadores.append("While");
             }
             if (configuracoes.existe(RegraSuportada.FOR_STATEMENT)) {
-                spoon.addProcessor(new ForProcessor());
+                spoon.addProcessor(new ForProcessor(context));
                 processadores.append("For");
             }
             if (configuracoes.existe(RegraSuportada.FOREACH_STATEMENT)) {
-                spoon.addProcessor(new ForEachProcessor());
+                spoon.addProcessor(new ForEachProcessor(context));
                 processadores.append("Foreach");
             }
             if (configuracoes.existe(RegraSuportada.SUPER_EXPRESSION)) {
-                spoon.addProcessor(new SuperProcessor());
+                spoon.addProcessor(new SuperProcessor(context));
                 processadores.append("Super");
             }
             if (configuracoes.existe(RegraSuportada.ANONYMOUS_CLASS)) {
-                spoon.addProcessor(new ClasseAnonimaProcessor());
+                spoon.addProcessor(new ClasseAnonimaProcessor(context));
                 processadores.append("Classe Anonima");
             }
             if (configuracoes.existe(RegraSuportada.LOCAL_VARIABLE)) {
-                spoon.addProcessor(new VariavelLocalProcessor());
+                spoon.addProcessor(new VariavelLocalProcessor(context));
                 processadores.append("Variavel local");
             }
             if (configuracoes.existe(RegraSuportada.CONTEXT_COUPLING)) {
-                spoon.addProcessor(new AcoplamentoContextualProcessor(configuracoes));
+                spoon.addProcessor(new AcoplamentoContextualProcessor(configuracoes, context));
                 processadores.append("Acoplamento contextual");
             }
 
             spoon.run();
             
-            
-            System.out.println(new ImprimirMetricas(configuracoes).json());
+            ArmazenarMetricas contexto = new ArmazenarMetricas();
+            System.out.println(new ImprimirMetricas(configuracoes, contexto).json());
 
         } catch (Error e) {
             System.out.print("[ERROR] ");

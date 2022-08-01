@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -15,7 +16,8 @@ public class YieldProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
 
-        YieldProcessor processor = new YieldProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        YieldProcessor processor = new YieldProcessor(context);
 
         l.addProcessor(processor);
         l.run();

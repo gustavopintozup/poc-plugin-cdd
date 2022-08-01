@@ -12,9 +12,11 @@ public class LambdaProcessor extends AbstractProcessor<CtLambda> implements ICP 
 
     private int total;
     private List<String> stms;
+    private final ArmazenarMetricas contexto;
 
-    public LambdaProcessor() {
-        stms = new ArrayList<>();
+    public LambdaProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		stms = new ArrayList<>();
     }
 
     @Override
@@ -33,6 +35,6 @@ public class LambdaProcessor extends AbstractProcessor<CtLambda> implements ICP 
         this.stms.add(element.prettyprint());
 
         CtType type = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(type.getQualifiedName(), "LAMBDA_EXPRESSION");
+        contexto.salvar(type.getQualifiedName(), "LAMBDA_EXPRESSION");
     }
 }

@@ -12,9 +12,11 @@ public class SwitchProcessor extends AbstractProcessor<CtSwitch> implements ICP 
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public SwitchProcessor() {
-        this.values = new ArrayList<>();
+    public SwitchProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -24,7 +26,7 @@ public class SwitchProcessor extends AbstractProcessor<CtSwitch> implements ICP 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "SWITCH_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "SWITCH_STATEMENT");
     }
 
     public int total() {

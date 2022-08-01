@@ -12,9 +12,11 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public SuperProcessor() {
-        this.values = new ArrayList<>();
+    public SuperProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class SuperProcessor extends AbstractProcessor<CtSuperAccess> implements 
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "SUPER_EXPRESSION");
+        contexto.salvar(clazz.getQualifiedName(), "SUPER_EXPRESSION");
     }
 
     public int total() {

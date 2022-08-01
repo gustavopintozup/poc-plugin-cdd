@@ -12,9 +12,11 @@ public class AnotacaoProcessor extends AbstractProcessor<CtAnnotation> implement
 
     private int totalAnotacoes;
     private List<String> nomeDasAnotacoes;
+    private final ArmazenarMetricas contexto;
 
-    public AnotacaoProcessor() {
-        nomeDasAnotacoes = new ArrayList<>();
+    public AnotacaoProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		nomeDasAnotacoes = new ArrayList<>();
     }
 
     @Override
@@ -34,6 +36,6 @@ public class AnotacaoProcessor extends AbstractProcessor<CtAnnotation> implement
         this.nomeDasAnotacoes.add(element.getName());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "ANNOTATION");
+        contexto.salvar(clazz.getQualifiedName(), "ANNOTATION");
     }
 }

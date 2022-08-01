@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -15,7 +16,8 @@ public class VariavelLocalProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("Aluno.java"));
 
-        VariavelLocalProcessor processor = new VariavelLocalProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        VariavelLocalProcessor processor = new VariavelLocalProcessor(context);
 
         l.addProcessor(processor);
         l.run();

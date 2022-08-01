@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -15,7 +16,8 @@ public class SwitchProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
 
-        SwitchProcessor processor = new SwitchProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        SwitchProcessor processor = new SwitchProcessor(context);
 
         l.addProcessor(processor);
         l.run();

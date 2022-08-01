@@ -12,9 +12,11 @@ public class CatchProcessor extends AbstractProcessor<CtCatch> implements ICP {
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public CatchProcessor() {
-        this.values = new ArrayList<>();
+    public CatchProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class CatchProcessor extends AbstractProcessor<CtCatch> implements ICP {
         this.values.add(element.getBody().toString());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "TRY_CATCH_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "TRY_CATCH_STATEMENT");
     }
 
     public int total() {

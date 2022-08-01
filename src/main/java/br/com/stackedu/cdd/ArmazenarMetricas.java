@@ -8,13 +8,13 @@ import java.util.Map;
 
 public class ArmazenarMetricas {
 
-    private static Map<String, List<ValorICP>> dataset = new HashMap<>();
+    private Map<String, List<ValorICP>> dataset = new HashMap<>();
 
-    public static Map<String, List<ValorICP>> getDataset() {
+    public Map<String, List<ValorICP>> getDataset() {
         return dataset;
     }
 
-    public static void salvar(String classQualifiedName, String ICP) {
+    public void salvar(String classQualifiedName, String ICP) {
         if (dataset.containsKey(classQualifiedName)) {
             List<ValorICP> valoresAtuais = dataset.get(classQualifiedName);
 

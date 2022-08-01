@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 import spoon.Launcher;
@@ -15,9 +16,10 @@ public class AcoplamentoContextualProcessorTest {
 		Launcher l = new Launcher();
 		l.getEnvironment().setNoClasspath(true);
 		l.addInputResource(new Resources().buscaArquivo("ServicoNotas.java"));
+		ArmazenarMetricas context = new ArmazenarMetricas();
 
 		AcoplamentoContextualProcessor processor = new AcoplamentoContextualProcessor(
-				DefaultUserDefinitionFactory.load("cdd.json"));
+				DefaultUserDefinitionFactory.load("cdd.json"), context);
 
 		l.addProcessor(processor);
 		l.run();
@@ -32,8 +34,9 @@ public class AcoplamentoContextualProcessorTest {
 		l.addInputResource(new Resources()
 				.buscaArquivo("TodasInfosListaLearningTasksResponse.java"));
 
+		ArmazenarMetricas context = new ArmazenarMetricas();
 		AcoplamentoContextualProcessor processor = new AcoplamentoContextualProcessor(
-				DefaultUserDefinitionFactory.load("cdd.json"));
+				DefaultUserDefinitionFactory.load("cdd.json"), context);
 
 		l.addProcessor(processor);
 		l.run();

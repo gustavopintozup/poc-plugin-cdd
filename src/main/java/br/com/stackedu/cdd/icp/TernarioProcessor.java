@@ -16,9 +16,11 @@ public class TernarioProcessor extends AbstractProcessor<CtConditional> implemen
     private int total;
     private List<String> values = new ArrayList<>();
     private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public TernarioProcessor(Configuracoes configuracoes) {
+    public TernarioProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
 		this.configuracoes = configuracoes;
+		this.contexto = contexto;
     }
 
     @Override
@@ -44,7 +46,7 @@ public class TernarioProcessor extends AbstractProcessor<CtConditional> implemen
         this.values.add(element.getCondition().prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "if");
+        contexto.salvar(clazz.getQualifiedName(), "if");
     }
 
     public int total() {

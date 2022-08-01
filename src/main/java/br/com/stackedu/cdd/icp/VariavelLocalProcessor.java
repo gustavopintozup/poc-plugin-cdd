@@ -12,9 +12,11 @@ public class VariavelLocalProcessor extends AbstractProcessor<CtField> implement
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public VariavelLocalProcessor() {
-        this.values = new ArrayList<>();
+    public VariavelLocalProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -24,7 +26,7 @@ public class VariavelLocalProcessor extends AbstractProcessor<CtField> implement
         this.values.add(element.getSimpleName());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "LOCAL_VARIABLE");
+        contexto.salvar(clazz.getQualifiedName(), "LOCAL_VARIABLE");
     }
 
     public int total() {
