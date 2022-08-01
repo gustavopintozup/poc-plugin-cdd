@@ -27,8 +27,20 @@ public class ImprimirMetricasJsonTest {
         spoon.addProcessor(new AnotacaoProcessor(context));
         spoon.run();
 
-        assertEquals("{\"br.com.zup.lms.alunos.Aluno\":{\"ICP\":\"anotação\",\"Total\":28,\"valor\":28}}",
-                new ImprimirMetricas(UserDefinitionForTesting.load(), context).json());
+        assertEquals(removeWhiteSpaces("{" +
+                "  \"br.com.zup.lms.alunos.Aluno\" : {" +
+                "    \"FOREACH_STATEMENT\" : 0," +
+                "    \"TOTAL\" : 28," +
+                "    \"WHILE_STATEMENT\" : 0," +
+                "    \"ANNOTATION\" : 28," +
+                "    \"TRY_CATCH_STATEMENT\" : 0," +
+                "    \"CONDITION\" : 0," +
+                "    \"IF_STATEMENT\" : 0," +
+                "    \"SWITCH_STATEMENT\" : 0," +
+                "    \"FOR_STATEMENT\" : 0," +
+                "    \"CONTEXT_COUPLING\" : 0" +
+                "  }" +
+                "}"), removeWhiteSpaces(new ImprimirMetricas(UserDefinitionForTesting.load(), context).json()));
     }
 
     @Test
@@ -37,22 +49,64 @@ public class ImprimirMetricasJsonTest {
         Launcher spoon = new Launcher();
 
         spoon.getEnvironment().setNoClasspath(true);
-        
+
         spoon.addInputResource(new Resources().buscaArquivo("Aluno.java"));
         spoon.addInputResource(new Resources().buscaArquivo("Ajuda.java"));
         spoon.addInputResource(new Resources().buscaArquivo("HeadingWrapper.java"));
 
         ArmazenarMetricas context = new ArmazenarMetricas();
         spoon.addProcessor(new AnotacaoProcessor(context));
+        
         Configuracoes currentConfiguration = UserDefinitionForTesting.load();
-		spoon.addProcessor(new IfProcessor(currentConfiguration, context));
+        spoon.addProcessor(new IfProcessor(currentConfiguration, context));
         spoon.addProcessor(new AcoplamentoContextualProcessor(currentConfiguration, context));
         spoon.addProcessor(new TryProcessor(context));
         spoon.addProcessor(new CatchProcessor(context));
 
         spoon.run();
 
-        assertEquals("{\"br.com.zup.lms.admin.HeadingWrapper\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":4,\"Total\":11,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":1,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":6},\"br.com.zup.lms.admin.Ajuda\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":28,\"Total\":39,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":0,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":11},\"br.com.zup.lms.alunos.Aluno\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":28,\"Total\":38,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":1,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":9}}",
-                new ImprimirMetricas(currentConfiguration, context).json());
+        assertEquals(removeWhiteSpaces("{" +
+                "  \"br.com.zup.lms.admin.HeadingWrapper\" : {" +
+                "    \"FOREACH_STATEMENT\" : 0," +
+                "    \"TOTAL\" : 11," +
+                "    \"WHILE_STATEMENT\" : 0," +
+                "    \"ANNOTATION\" : 4," +
+                "    \"TRY_CATCH_STATEMENT\" : 0," +
+                "    \"CONDITION\" : 0," +
+                "    \"IF_STATEMENT\" : 1," +
+                "    \"SWITCH_STATEMENT\" : 0," +
+                "    \"FOR_STATEMENT\" : 0," +
+                "    \"CONTEXT_COUPLING\" : 6" +
+                "  }," +
+                "  \"br.com.zup.lms.admin.Ajuda\" : {" +
+                "    \"FOREACH_STATEMENT\" : 0," +
+                "    \"TOTAL\" : 39," +
+                "    \"WHILE_STATEMENT\" : 0," +
+                "    \"ANNOTATION\" : 28," +
+                "    \"TRY_CATCH_STATEMENT\" : 0," +
+                "    \"CONDITION\" : 0," +
+                "    \"IF_STATEMENT\" : 0," +
+                "    \"SWITCH_STATEMENT\" : 0," +
+                "    \"FOR_STATEMENT\" : 0," +
+                "    \"CONTEXT_COUPLING\" : 11" +
+                "  }," +
+                "  \"br.com.zup.lms.alunos.Aluno\" : {" +
+                "    \"FOREACH_STATEMENT\" : 0," +
+                "    \"TOTAL\" : 38," +
+                "    \"WHILE_STATEMENT\" : 0," +
+                "    \"ANNOTATION\" : 28," +
+                "    \"TRY_CATCH_STATEMENT\" : 0," +
+                "    \"CONDITION\" : 0," +
+                "    \"IF_STATEMENT\" : 1," +
+                "    \"SWITCH_STATEMENT\" : 0," +
+                "    \"FOR_STATEMENT\" : 0," +
+                "    \"CONTEXT_COUPLING\" : 9" +
+                "  }" +
+                "}"),
+                removeWhiteSpaces(new ImprimirMetricas(currentConfiguration, context).json()));
+    }
+
+    private String removeWhiteSpaces(String input) {
+        return input.replaceAll("\\s+", "");
     }
 }
