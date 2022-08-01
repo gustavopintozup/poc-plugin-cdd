@@ -2,6 +2,8 @@ package br.com.stackedu.cdd.config;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import br.com.stackedu.cdd.ExcludeFromJacocoGeneratedReport;
+
 /**
  * Represents a rule defined in the configuration
  * 
@@ -38,6 +40,7 @@ public class Rule {
 	}
 
 	@Override
+	@ExcludeFromJacocoGeneratedReport
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -46,6 +49,7 @@ public class Rule {
 	}
 
 	@Override
+	@ExcludeFromJacocoGeneratedReport
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -62,8 +66,8 @@ public class Rule {
 		return true;
 	}
 
-	public boolean hasTheSameName(SupportedRules regra) {
-		return this.name.toUpperCase().equals(regra.name().toUpperCase());
+	public boolean hasTheSameName(SupportedRules rules) {
+		return this.name.toUpperCase().equals(rules.name().toUpperCase());
 	}
 
 	

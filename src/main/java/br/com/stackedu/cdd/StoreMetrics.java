@@ -89,6 +89,7 @@ class ICPValue {
     }
 
     @Override
+    @ExcludeFromJacocoGeneratedReport
     public String toString() {
         return "[" + ICP + ", " + value + "]";
     }

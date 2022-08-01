@@ -31,9 +31,9 @@ public class UserDefinition {
 		return rules;
 	}
 
-	public Optional<Rule> find(SupportedRules rule) {
+	public Optional<Rule> find(SupportedRules rules) {
 		return this.rules.stream()
-				.filter(regraAtual -> regraAtual.hasTheSameName(rule))
+				.filter(actual -> actual.hasTheSameName(rules))
 				.findFirst();
 	}
 }
