@@ -14,17 +14,18 @@ import spoon.reflect.declaration.CtType;
 public class TernarioProcessor extends AbstractProcessor<CtConditional> implements ICP {
 
     private int total;
-    private List<String> values;
+    private List<String> values = new ArrayList<>();
+    private final Configuracoes configuracoes;
 
-    public TernarioProcessor() {
-        this.values = new ArrayList<>();
+    public TernarioProcessor(Configuracoes configuracoes) {
+		this.configuracoes = configuracoes;
     }
 
     @Override
     public boolean isToBeProcessed(CtConditional candidate) {
         CtMethod parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
+        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             // TODO: algum outro?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;

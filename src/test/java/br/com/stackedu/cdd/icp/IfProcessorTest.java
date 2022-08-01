@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
 public class IfProcessorTest {
@@ -16,7 +17,7 @@ public class IfProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("ValidaConteudoDasAjudas.java"));
 
-        IfProcessor ifprocessor = new IfProcessor();
+        IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load());
 
         l.addProcessor(ifprocessor);
         l.run();
@@ -32,7 +33,7 @@ public class IfProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("IfsEncadeados.java"));
 
-        IfProcessor ifprocessor = new IfProcessor();
+        IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load());
 
         l.addProcessor(ifprocessor);
         l.run();
@@ -48,7 +49,7 @@ public class IfProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("Ajuda.java"));
 
-        IfProcessor ifprocessor = new IfProcessor();
+        IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load());
 
         l.addProcessor(ifprocessor);
         l.run();

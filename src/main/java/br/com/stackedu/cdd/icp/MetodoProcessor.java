@@ -12,11 +12,12 @@ import spoon.reflect.declaration.CtType;
 
 public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP {
 
-    private final List<String> metodos;
+    private final List<String> metodos = new ArrayList<>();
     private int total;
+    private final Configuracoes configuracoes;
 
-    public MetodoProcessor() {
-        this.metodos = new ArrayList<>();
+    public MetodoProcessor(Configuracoes configuracoes) {
+		this.configuracoes = configuracoes;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class MetodoProcessor extends AbstractProcessor<CtMethod> implements ICP 
 
     @Override
     public boolean isToBeProcessed(CtMethod candidate) {
-        if (Configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
+        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             //TODO: algum outro?
             if (candidate.getSignature().equals("equals(java.lang.Object)")) {
                 return false;

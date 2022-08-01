@@ -9,7 +9,7 @@ import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 import spoon.Launcher;
 
 public class AcoplamentoContextualProcessorTest {
-	
+
 	@Test
 	public void testName() throws Exception {
 		Launcher l = new Launcher();
@@ -32,7 +32,8 @@ public class AcoplamentoContextualProcessorTest {
 		l.addInputResource(new Resources()
 				.buscaArquivo("TodasInfosListaLearningTasksResponse.java"));
 
-		AcoplamentoContextualProcessor processor = new AcoplamentoContextualProcessor(DefaultUserDefinitionFactory.load());
+		AcoplamentoContextualProcessor processor = new AcoplamentoContextualProcessor(
+				DefaultUserDefinitionFactory.load("cdd.json"));
 
 		l.addProcessor(processor);
 		l.run();

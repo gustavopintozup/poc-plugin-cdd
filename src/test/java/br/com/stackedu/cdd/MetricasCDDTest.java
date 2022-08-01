@@ -7,9 +7,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.config.Configuracoes;
 import br.com.stackedu.cdd.icp.AnotacaoProcessor;
 import br.com.stackedu.cdd.icp.IfProcessor;
 import br.com.stackedu.cdd.icp.MetodoProcessor;
+import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
 public class MetricasCDDTest {
@@ -34,9 +36,10 @@ public class MetricasCDDTest {
         this.spoon.addProcessor(new AnotacaoProcessor());
         this.spoon.run();
 
-        assertNotNull(ImprimirMetricas.console());
+        ImprimirMetricas imprimirMetricas = new ImprimirMetricas(UserDefinitionForTesting.load());
+		assertNotNull(imprimirMetricas.console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", ImprimirMetricas.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", imprimirMetricas.console());
     }
 
     @Test
@@ -45,12 +48,13 @@ public class MetricasCDDTest {
         this.spoon.addInputResource(new Resources().buscaArquivo("Aluno.java"));
 
         this.spoon.addProcessor(new AnotacaoProcessor());
-        this.spoon.addProcessor(new MetodoProcessor());
+        Configuracoes testConfig = UserDefinitionForTesting.load();
+        this.spoon.addProcessor(new MetodoProcessor(testConfig));
         this.spoon.run();
 
-        assertNotNull(ImprimirMetricas.console());
+        assertNotNull(new ImprimirMetricas(testConfig).console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,ICP=39]\n", ImprimirMetricas.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,ICP=39]\n", new ImprimirMetricas(testConfig).console());
     }
 
     @Test
@@ -59,13 +63,14 @@ public class MetricasCDDTest {
         this.spoon.addInputResource(new Resources().buscaArquivo("Aluno.java"));
 
         this.spoon.addProcessor(new AnotacaoProcessor());
-        this.spoon.addProcessor(new MetodoProcessor());
-        this.spoon.addProcessor(new IfProcessor());
+        Configuracoes testConfig = UserDefinitionForTesting.load();
+        this.spoon.addProcessor(new MetodoProcessor(testConfig));
+        this.spoon.addProcessor(new IfProcessor(testConfig));
         this.spoon.run();
 
-        assertNotNull(ImprimirMetricas.console());
+        assertNotNull(new ImprimirMetricas(testConfig).console());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,IF_STATEMENT=1,ICP=40]\n", ImprimirMetricas.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,IF_STATEMENT=1,ICP=40]\n", new ImprimirMetricas(testConfig).console());
     }
 
     @Test
@@ -73,12 +78,13 @@ public class MetricasCDDTest {
         this.spoon.getEnvironment().setNoClasspath(true);
         this.spoon.addInputResource(new Resources().buscaArquivo("Aluno.java"));
 
-        this.spoon.addProcessor(new IfProcessor());
+        Configuracoes testConfig = UserDefinitionForTesting.load();
+        this.spoon.addProcessor(new IfProcessor(testConfig));
         this.spoon.run();
 
-        assertNotNull(ImprimirMetricas.console());
+        assertNotNull(new ImprimirMetricas(testConfig).console());
 
-        assertEquals("", ImprimirMetricas.console());
+        assertEquals("", new ImprimirMetricas(testConfig).console());
     }
 
 }

@@ -4,11 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.config.Configuracoes;
 import br.com.stackedu.cdd.icp.AcoplamentoContextualProcessor;
 import br.com.stackedu.cdd.icp.AnotacaoProcessor;
 import br.com.stackedu.cdd.icp.CatchProcessor;
 import br.com.stackedu.cdd.icp.IfProcessor;
 import br.com.stackedu.cdd.icp.TryProcessor;
+import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
 public class ImprimirMetricasJsonTest {
@@ -25,7 +27,7 @@ public class ImprimirMetricasJsonTest {
         spoon.run();
 
         assertEquals("{\"br.com.zup.lms.alunos.Aluno\":{\"ICP\":\"anotação\",\"Total\":28,\"valor\":28}}",
-                ImprimirMetricas.json());
+                new ImprimirMetricas(UserDefinitionForTesting.load()).json());
     }
 
     @Test
@@ -40,14 +42,15 @@ public class ImprimirMetricasJsonTest {
         spoon.addInputResource(new Resources().buscaArquivo("HeadingWrapper.java"));
 
         spoon.addProcessor(new AnotacaoProcessor());
-        spoon.addProcessor(new IfProcessor());
-        spoon.addProcessor(new AcoplamentoContextualProcessor());
+        Configuracoes currentConfiguration = UserDefinitionForTesting.load();
+		spoon.addProcessor(new IfProcessor(currentConfiguration));
+        spoon.addProcessor(new AcoplamentoContextualProcessor(currentConfiguration));
         spoon.addProcessor(new TryProcessor());
         spoon.addProcessor(new CatchProcessor());
 
         spoon.run();
 
         assertEquals("{\"br.com.zup.lms.admin.HeadingWrapper\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":4,\"Total\":11,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":1,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":6},\"br.com.zup.lms.admin.Ajuda\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":28,\"Total\":39,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":0,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":11},\"br.com.zup.lms.alunos.Aluno\":{\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"ANNOTATION\":28,\"Total\":38,\"TRY_CATCH_STATEMENT\":0,\"CONDITION\":0,\"IF_STATEMENT\":1,\"SWITCH_STATEMENT\":0,\"FOR_STATEMENT\":0,\"CONTEXT_COUPLING\":9}}",
-                ImprimirMetricas.json());
+                new ImprimirMetricas(currentConfiguration).json());
     }
 }

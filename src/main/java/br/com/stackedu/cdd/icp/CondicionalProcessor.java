@@ -20,17 +20,18 @@ import spoon.support.reflect.code.CtBinaryOperatorImpl;
 public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP {
 
     private int total;
-    private List<String> values;
+    private List<String> values = new ArrayList<>();
+    private final Configuracoes configuracoes;
 
-    public CondicionalProcessor() {
-        this.values = new ArrayList<>();
+    public CondicionalProcessor(Configuracoes configuracoes) {
+		this.configuracoes = configuracoes;
     }
 
     @Override
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
+        if (this.configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             return false;
         }
         /**

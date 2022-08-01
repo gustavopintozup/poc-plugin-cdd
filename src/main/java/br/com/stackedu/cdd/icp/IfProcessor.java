@@ -16,16 +16,18 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
 
     private int total;
     private List<String> values;
+    private final Configuracoes configuracoes;
 
-    public IfProcessor() {
-        this.values = new ArrayList<>();
+    public IfProcessor(Configuracoes configuracoes) {
+        this.configuracoes = configuracoes;
+		this.values = new ArrayList<>();
     }
 
     @Override
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
+        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             return false;
         }
 

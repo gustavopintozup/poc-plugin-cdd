@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
 public class TernarioProcessorTest {
@@ -16,7 +17,7 @@ public class TernarioProcessorTest {
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(new Resources().buscaArquivo("Ternario.java"));
 
-        TernarioProcessor processor = new TernarioProcessor();
+        TernarioProcessor processor = new TernarioProcessor(UserDefinitionForTesting.load());
 
         l.addProcessor(processor);
         l.run();
@@ -31,7 +32,7 @@ public class TernarioProcessorTest {
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(new Resources().buscaArquivo("Ternario2.java"));
 
-        TernarioProcessor processor = new TernarioProcessor();
+        TernarioProcessor processor = new TernarioProcessor(UserDefinitionForTesting.load());
 
         l.addProcessor(processor);
         l.run();

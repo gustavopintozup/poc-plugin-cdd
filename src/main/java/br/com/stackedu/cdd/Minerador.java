@@ -1,6 +1,7 @@
 package br.com.stackedu.cdd;
 
 import br.com.stackedu.cdd.config.Configuracoes;
+import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 import br.com.stackedu.cdd.config.RegraSuportada;
 import br.com.stackedu.cdd.icp.AcoplamentoContextualProcessor;
 import br.com.stackedu.cdd.icp.AnotacaoProcessor;
@@ -51,79 +52,83 @@ public class Minerador implements Runnable {
             Launcher spoon = new Launcher();
             final Factory factory = spoon.getFactory();
             factory.getEnvironment().setComplianceLevel(17);
-
+            
             spoon.addInputResource(path);
+            
+            Configuracoes configuracoes = DefaultUserDefinitionFactory.load("cdd.json");
 
             StringBuilder processadores = new StringBuilder();
-            if (Configuracoes.existe(RegraSuportada.ANNOTATION)) {
+            if (configuracoes.existe(RegraSuportada.ANNOTATION)) {
                 spoon.addProcessor(new AnotacaoProcessor());
                 processadores.append("Anotação");
             }
-            if (Configuracoes.existe(RegraSuportada.IF_STATEMENT)) {
-                spoon.addProcessor(new IfProcessor());
+            if (configuracoes.existe(RegraSuportada.IF_STATEMENT)) {
+                spoon.addProcessor(new IfProcessor(configuracoes));
                 processadores.append("If");
             }
-            if (Configuracoes.existe(RegraSuportada.CONDITION)) {
-                spoon.addProcessor(new CondicionalProcessor());
+            if (configuracoes.existe(RegraSuportada.CONDITION)) {
+                spoon.addProcessor(new CondicionalProcessor(configuracoes));
                 processadores.append("Condicional");
             }
-            if (Configuracoes.existe(RegraSuportada.TRY_CATCH_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.TRY_CATCH_STATEMENT)) {
                 spoon.addProcessor(new TryProcessor());
                 spoon.addProcessor(new CatchProcessor());
                 processadores.append("Try-catch");
             }
-            if (Configuracoes.existe(RegraSuportada.THROW_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.THROW_STATEMENT)) {
                 spoon.addProcessor(new ThrowProcessor());
                 processadores.append("Throw");
             }
-            if (Configuracoes.existe(RegraSuportada.LAMBDA_EXPRESSION)) {
+            if (configuracoes.existe(RegraSuportada.LAMBDA_EXPRESSION)) {
                 spoon.addProcessor(new LambdaProcessor());
                 processadores.append("Lambda");
             }
 
-            if (Configuracoes.existe(RegraSuportada.METHOD)) {
-                spoon.addProcessor(new MetodoProcessor());
+            if (configuracoes.existe(RegraSuportada.METHOD)) {
+                spoon.addProcessor(new MetodoProcessor(configuracoes));
                 processadores.append("Método");
             }
-            if (Configuracoes.existe(RegraSuportada.SWITCH_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.SWITCH_STATEMENT)) {
                 spoon.addProcessor(new SwitchProcessor());
                 processadores.append("Switch-case");
             }
-            if (Configuracoes.existe(RegraSuportada.YIELD_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.YIELD_STATEMENT)) {
                 spoon.addProcessor(new YieldProcessor());
                 processadores.append("Yield");
             }
-            if (Configuracoes.existe(RegraSuportada.WHILE_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.WHILE_STATEMENT)) {
                 spoon.addProcessor(new WhileProcessor());
                 processadores.append("While");
             }
-            if (Configuracoes.existe(RegraSuportada.FOR_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.FOR_STATEMENT)) {
                 spoon.addProcessor(new ForProcessor());
                 processadores.append("For");
             }
-            if (Configuracoes.existe(RegraSuportada.FOREACH_STATEMENT)) {
+            if (configuracoes.existe(RegraSuportada.FOREACH_STATEMENT)) {
                 spoon.addProcessor(new ForEachProcessor());
                 processadores.append("Foreach");
             }
-            if (Configuracoes.existe(RegraSuportada.SUPER_EXPRESSION)) {
+            if (configuracoes.existe(RegraSuportada.SUPER_EXPRESSION)) {
                 spoon.addProcessor(new SuperProcessor());
                 processadores.append("Super");
             }
-            if (Configuracoes.existe(RegraSuportada.ANONYMOUS_CLASS)) {
+            if (configuracoes.existe(RegraSuportada.ANONYMOUS_CLASS)) {
                 spoon.addProcessor(new ClasseAnonimaProcessor());
                 processadores.append("Classe Anonima");
             }
-            if (Configuracoes.existe(RegraSuportada.LOCAL_VARIABLE)) {
+            if (configuracoes.existe(RegraSuportada.LOCAL_VARIABLE)) {
                 spoon.addProcessor(new VariavelLocalProcessor());
                 processadores.append("Variavel local");
             }
-            if (Configuracoes.existe(RegraSuportada.CONTEXT_COUPLING)) {
-                spoon.addProcessor(new AcoplamentoContextualProcessor());
+            if (configuracoes.existe(RegraSuportada.CONTEXT_COUPLING)) {
+                spoon.addProcessor(new AcoplamentoContextualProcessor(configuracoes));
                 processadores.append("Acoplamento contextual");
             }
 
             spoon.run();
-            System.out.println(ImprimirMetricas.json());
+            
+            
+            System.out.println(new ImprimirMetricas(configuracoes).json());
 
         } catch (Error e) {
             System.out.print("[ERROR] ");
