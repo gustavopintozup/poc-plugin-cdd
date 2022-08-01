@@ -12,9 +12,11 @@ public class YieldProcessor extends AbstractProcessor<CtYieldStatement> implemen
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public YieldProcessor() {
-        this.values = new ArrayList<>();
+    public YieldProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -24,7 +26,7 @@ public class YieldProcessor extends AbstractProcessor<CtYieldStatement> implemen
         this.values.add(element.getShortRepresentation());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "YIELD_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "YIELD_STATEMENT");
     }
 
     public int total() {

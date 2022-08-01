@@ -12,9 +12,11 @@ public class ThrowProcessor extends AbstractProcessor<CtThrow> implements ICP {
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public ThrowProcessor() {
-        this.values = new ArrayList<>();
+    public ThrowProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class ThrowProcessor extends AbstractProcessor<CtThrow> implements ICP {
         this.values.add(element.prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "THROW_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "THROW_STATEMENT");
     }
 
     public int total() {

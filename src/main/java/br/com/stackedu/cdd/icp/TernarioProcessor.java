@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
+import br.com.stackedu.cdd.config.RegraSuportada;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtConditional;
 import spoon.reflect.declaration.CtMethod;
@@ -14,17 +14,20 @@ import spoon.reflect.declaration.CtType;
 public class TernarioProcessor extends AbstractProcessor<CtConditional> implements ICP {
 
     private int total;
-    private List<String> values;
+    private List<String> values = new ArrayList<>();
+    private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public TernarioProcessor() {
-        this.values = new ArrayList<>();
+    public TernarioProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
+		this.configuracoes = configuracoes;
+		this.contexto = contexto;
     }
 
     @Override
     public boolean isToBeProcessed(CtConditional candidate) {
         CtMethod parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN)) {
+        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             // TODO: algum outro?
             if (parent.getSignature().equals("equals(java.lang.Object)")) {
                 return false;
@@ -43,7 +46,7 @@ public class TernarioProcessor extends AbstractProcessor<CtConditional> implemen
         this.values.add(element.getCondition().prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "if");
+        contexto.salvar(clazz.getQualifiedName(), "if");
     }
 
     public int total() {

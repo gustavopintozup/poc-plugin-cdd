@@ -8,7 +8,7 @@ import java.util.Set;
 
 import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
+import br.com.stackedu.cdd.config.RegraSuportada;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.code.CtIf;
@@ -20,17 +20,20 @@ import spoon.support.reflect.code.CtBinaryOperatorImpl;
 public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP {
 
     private int total;
-    private List<String> values;
+    private List<String> values = new ArrayList<>();
+    private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public CondicionalProcessor() {
-        this.values = new ArrayList<>();
+    public CondicionalProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
+		this.configuracoes = configuracoes;
+		this.contexto = contexto;
     }
 
     @Override
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN)) {
+        if (this.configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             return false;
         }
         /**
@@ -69,7 +72,7 @@ public class CondicionalProcessor extends AbstractProcessor<CtIf> implements ICP
 
         this.values.add(element.prettyprint());
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "CONDITION");
+        contexto.salvar(clazz.getQualifiedName(), "CONDITION");
 
         /**
          * O +1 aqui requer uma atenção. No while acima, eu conto a presença de um

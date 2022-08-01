@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -16,7 +17,8 @@ public class TryProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("ServicoNotas.java"));
 
-        TryProcessor processor = new TryProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        TryProcessor processor = new TryProcessor(context);
 
         l.addProcessor(processor);
         l.run();
@@ -32,7 +34,8 @@ public class TryProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("TryComFinally.java"));
 
-        TryProcessor processor = new TryProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        TryProcessor processor = new TryProcessor(context);
 
         l.addProcessor(processor);
         l.run();

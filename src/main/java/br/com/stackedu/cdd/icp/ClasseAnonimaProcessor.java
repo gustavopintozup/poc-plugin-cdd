@@ -14,9 +14,11 @@ public class ClasseAnonimaProcessor extends AbstractProcessor<CtClass> implement
 
     private int total;
     private List<String> values;
+    private final ArmazenarMetricas contexto;
 
-    public ClasseAnonimaProcessor() {
-        this.values = new ArrayList<>();
+    public ClasseAnonimaProcessor(ArmazenarMetricas contexto) {
+        this.contexto = contexto;
+		this.values = new ArrayList<>();
     }
 
     @Override
@@ -33,7 +35,7 @@ public class ClasseAnonimaProcessor extends AbstractProcessor<CtClass> implement
         this.values.add(element.getSimpleName());
 
         CtType clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "ANONYMOUS_CLASS");
+        contexto.salvar(clazz.getQualifiedName(), "ANONYMOUS_CLASS");
     }
 
     public int total() {

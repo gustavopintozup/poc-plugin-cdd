@@ -9,83 +9,95 @@ import java.util.Map.Entry;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.Regras;
+import br.com.stackedu.cdd.config.Regra;
 
 public class ImprimirMetricas {
 
-    public static String console() {
-        StringBuilder output = new StringBuilder();
+	private final Configuracoes configuracoes;
+	private final ArmazenarMetricas contexto;
 
-        Iterator<Entry<String, List<ValorICP>>> iter = ArmazenarMetricas.getDataset().entrySet().iterator();
-        while (iter.hasNext()) {
-            Entry<String, List<ValorICP>> entry = iter.next();
+	public ImprimirMetricas(Configuracoes configuracoes, ArmazenarMetricas contexto) {
+		super();
+		this.configuracoes = configuracoes;
+		this.contexto = contexto;
+	}
 
-            StringBuilder sb = new StringBuilder();
-            sb.append(entry.getKey());
-            sb.append('[');
+	public String console() {
+		StringBuilder output = new StringBuilder();
 
-            int totalICPs = 0;
+		Iterator<Entry<String, List<ValorICP>>> iter = contexto
+				.getDataset().entrySet().iterator();
+		while (iter.hasNext()) {
+			Entry<String, List<ValorICP>> entry = iter.next();
 
-            List<ValorICP> ICPs = entry.getValue();
-            for (ValorICP ICP : ICPs) {
-                sb.append(ICP.getICP());
-                sb.append('=');
-                sb.append(ICP.getValor());
-                sb.append(',');
+			StringBuilder sb = new StringBuilder();
+			sb.append(entry.getKey());
+			sb.append('[');
 
-                totalICPs += ICP.getValor();
-            }
+			int totalICPs = 0;
 
-            sb.append("ICP");
-            sb.append('=');
-            sb.append(totalICPs);
-            sb.append("]\n");
+			List<ValorICP> ICPs = entry.getValue();
+			for (ValorICP ICP : ICPs) {
+				sb.append(ICP.getICP());
+				sb.append('=');
+				sb.append(ICP.getValor());
+				sb.append(',');
 
-            if (totalICPs >= Configuracoes.limite()) {
-                output.append(sb.toString());
-            }
-        }
-        return output.toString();
-    }
+				totalICPs += ICP.getValor();
+			}
 
-    public static String json() {
-        try {
-            Iterator<Entry<String, List<ValorICP>>> iter = ArmazenarMetricas.getDataset().entrySet().iterator();
-            Map<String, Object> configMap = new HashMap<>();
+			sb.append("ICP");
+			sb.append('=');
+			sb.append(totalICPs);
+			sb.append("]\n");
 
-            while (iter.hasNext()) {
-                Entry<String, List<ValorICP>> entry = iter.next();
-                Map<String, Object> json = new HashMap<>();
-                int totalICPs = 0;
+			if (totalICPs >= configuracoes.limite()) {
+				output.append(sb.toString());
+			}
+		}
+		return output.toString();
+	}
 
-                inicializa_icp_com_zero(json);
+	public String json() {
+		try {
+			Iterator<Entry<String, List<ValorICP>>> iter = contexto
+					.getDataset().entrySet().iterator();
+			Map<String, Object> configMap = new HashMap<>();
 
-                List<ValorICP> ICPs = entry.getValue();
-                for (ValorICP ICP : ICPs) {
-                    json.put(ICP.getICP(), ICP.getValor());
+			while (iter.hasNext()) {
+				Entry<String, List<ValorICP>> entry = iter.next();
+				Map<String, Object> json = new HashMap<>();
+				int totalICPs = 0;
 
-                    totalICPs += ICP.getValor();
-                }
+				inicializa_icp_com_zero(json);
 
-                json.put("TOTAL", totalICPs);
+				List<ValorICP> ICPs = entry.getValue();
+				for (ValorICP ICP : ICPs) {
+					json.put(ICP.getICP(), ICP.getValor());
 
-                if (totalICPs >= Configuracoes.limite()) {
-                    configMap.put(entry.getKey(), json);
-                }
-            }
+					totalICPs += ICP.getValor();
+				}
 
-            ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(configMap);
+				json.put("TOTAL", totalICPs);
 
-        } catch (Exception e) {
-            return null;
-        }
-    }
+				if (totalICPs >= configuracoes.limite()) {
+					configMap.put(entry.getKey(), json);
+				}
+			}
 
-    private static void inicializa_icp_com_zero(Map<String, Object> json) {
-        for (Regras regra : Configuracoes.regras()) {
-            json.put(regra.getName(), 0);
-        }
-    }
+			ObjectMapper objectMapper = new ObjectMapper();
+			return objectMapper.writerWithDefaultPrettyPrinter()
+					.writeValueAsString(configMap);
+
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	private void inicializa_icp_com_zero(Map<String, Object> json) {
+		for (Regra regra : configuracoes.regras()) {
+			json.put(regra.getName(), 0);
+		}
+	}
 
 }

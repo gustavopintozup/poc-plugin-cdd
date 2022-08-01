@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
+import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
 public class MetodoProcessorTest {
@@ -17,7 +19,8 @@ public class MetodoProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("Aluno.java"));
 
-        MetodoProcessor processor = new MetodoProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        MetodoProcessor processor = new MetodoProcessor(UserDefinitionForTesting.load(), context);
 
         l.addProcessor(processor);
         l.run();
@@ -33,7 +36,8 @@ public class MetodoProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("AlunoSimples.java"));
 
-        MetodoProcessor processor = new MetodoProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        MetodoProcessor processor = new MetodoProcessor(UserDefinitionForTesting.load(), context);
 
         l.addProcessor(processor);
         l.run();

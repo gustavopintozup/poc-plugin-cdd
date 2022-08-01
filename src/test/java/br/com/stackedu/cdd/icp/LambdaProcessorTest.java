@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.Resources;
 import spoon.Launcher;
 
@@ -15,7 +16,8 @@ public class LambdaProcessorTest {
         l.addInputResource(
             new Resources().buscaArquivo("CacheRespostasDeDeterminadoAluno.java"));
 
-        LambdaProcessor processor = new LambdaProcessor();
+        ArmazenarMetricas context = new ArmazenarMetricas();
+        LambdaProcessor processor = new LambdaProcessor(context);
 
         l.addProcessor(processor);
         l.run();

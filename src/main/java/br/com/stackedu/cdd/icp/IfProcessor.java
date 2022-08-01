@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.stackedu.cdd.ArmazenarMetricas;
 import br.com.stackedu.cdd.config.Configuracoes;
-import br.com.stackedu.cdd.config.JSONParser.RegrasDefinidas;
+import br.com.stackedu.cdd.config.RegraSuportada;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtIf;
 import spoon.reflect.declaration.CtMethod;
@@ -16,16 +16,20 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
 
     private int total;
     private List<String> values;
+    private final Configuracoes configuracoes;
+    private final ArmazenarMetricas contexto;
 
-    public IfProcessor() {
-        this.values = new ArrayList<>();
+    public IfProcessor(Configuracoes configuracoes, ArmazenarMetricas contexto) {
+        this.configuracoes = configuracoes;
+		this.values = new ArrayList<>();
+		this.contexto = contexto;
     }
 
     @Override
     public boolean isToBeProcessed(CtIf candidate) {
         CtMethod<?> parent = candidate.getParent(CtMethod.class);
 
-        if (Configuracoes.existe(RegrasDefinidas.METHODS_AUTOGEN)) {
+        if (configuracoes.existe(RegraSuportada.METHODS_AUTOGEN)) {
             return false;
         }
 
@@ -54,7 +58,7 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
         this.values.add(element.getCondition().prettyprint());
 
         CtType<?> clazz = element.getParent(CtType.class);
-        ArmazenarMetricas.salvar(clazz.getQualifiedName(), "IF_STATEMENT");
+        contexto.salvar(clazz.getQualifiedName(), "IF_STATEMENT");
     }
 
     public int total() {
