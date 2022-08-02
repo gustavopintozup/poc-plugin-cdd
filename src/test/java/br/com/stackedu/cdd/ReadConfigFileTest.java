@@ -13,7 +13,7 @@ import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 public class ReadConfigFileTest {
 
     @Test
-    @DisplayName("Read fhe cdd.json file with the expected configs")
+    @DisplayName("Reading the cdd.json file with the expected configs")
     public void testName() throws Exception {
     	Config testConfig = UserDefinitionForTesting.load();
         assertEquals(testConfig.limit(), 10);
@@ -33,7 +33,7 @@ public class ReadConfigFileTest {
     }
 
     @Test
-    @DisplayName("Check if a config was not set for the cdd.json file")
+    @DisplayName("Checking if a config was not set for the cdd.json file")
     public void testName2() throws Exception {
 
     	Config testConfig = UserDefinitionForTesting.load();
