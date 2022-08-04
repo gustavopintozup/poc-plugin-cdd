@@ -27,7 +27,16 @@ public class PrintMetrics {
 		this.context = context;
 	}
 
-	public String console() {
+	public String as(String value) {
+		if (value.equals("json")) {
+			return json();
+		} else if (value.equals("txt")) {
+			return txt();
+		}
+		throw new PluginCDDException("Type of output formatter not supported: " + value);
+	}
+
+	public String txt() {
 		StringBuilder output = new StringBuilder();
 
 		Iterator<Entry<String, List<ICPValue>>> iter = context

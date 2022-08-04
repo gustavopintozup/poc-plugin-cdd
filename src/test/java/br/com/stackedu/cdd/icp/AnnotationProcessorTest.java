@@ -63,6 +63,6 @@ public class AnnotationProcessorTest {
                 assertEquals("br.com.zup.lms.alunos.Certificado[ANNOTATION=30,ICP=30]\n" +
                                 "br.com.zup.lms.admin.Ajuda[ANNOTATION=28,ICP=28]\n" +
                                 "br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n",
-                                new PrintMetrics(DefaultUserDefinitionFactory.load("cdd.json"), context).console());
+                                new PrintMetrics(DefaultUserDefinitionFactory.load("cdd.json"), context).txt());
         }
 }

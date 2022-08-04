@@ -41,6 +41,9 @@ public class Miner implements Runnable {
             "--path" }, required = true, description = "Path to the project to be analyzed.")
     private String path = new String();
 
+    @Option(names = { "-o", "--output" }, description = "Type of output: json or txt. Default: json")
+    private String output = new String("json");
+
     public static void main(String[] args) {
         int exitCode = new CommandLine(new Miner()).execute(args); 
         System.exit(exitCode); 
@@ -111,7 +114,7 @@ public class Miner implements Runnable {
 
             spoon.run();
             
-            System.out.println(new PrintMetrics(config, new StoreMetrics()).json());
+            System.out.println(new PrintMetrics(config, new StoreMetrics()).as(output));
 
         } catch (Error e) {
             System.out.print("[ERROR] ");

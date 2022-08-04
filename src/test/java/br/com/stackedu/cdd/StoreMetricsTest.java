@@ -26,9 +26,9 @@ public class StoreMetricsTest {
         spoon.run();
 
         PrintMetrics print = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(print.console());
+        assertNotNull(print.txt());
 
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", print.console());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", print.txt());
     }
 
     @Test
@@ -45,10 +45,10 @@ public class StoreMetricsTest {
         spoon.addProcessor(new MethodProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).console());
+        assertNotNull(new PrintMetrics(testConfig, context).txt());
 
         assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,ICP=39]\n",
-                new PrintMetrics(testConfig, context).console());
+                new PrintMetrics(testConfig, context).txt());
     }
 
     @Test
@@ -66,10 +66,10 @@ public class StoreMetricsTest {
         spoon.addProcessor(new IfProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).console());
+        assertNotNull(new PrintMetrics(testConfig, context).txt());
 
         assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,METHOD=11,IF_STATEMENT=1,ICP=40]\n",
-                new PrintMetrics(testConfig, context).console());
+                new PrintMetrics(testConfig, context).txt());
     }
 
     @Test
@@ -83,9 +83,9 @@ public class StoreMetricsTest {
         spoon.addProcessor(new IfProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).console());
+        assertNotNull(new PrintMetrics(testConfig, context).txt());
 
-        assertEquals("", new PrintMetrics(testConfig, context).console());
+        assertEquals("", new PrintMetrics(testConfig, context).txt());
     }
 
 }

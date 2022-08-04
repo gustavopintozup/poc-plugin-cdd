@@ -45,7 +45,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>br.com.stackedu.cdd.Minerador</mainClass>
+                            <mainClass>br.com.stackedu.cdd.Miner</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
