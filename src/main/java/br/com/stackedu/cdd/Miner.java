@@ -44,8 +44,11 @@ public class Miner implements Runnable {
             "--path" }, required = true, description = "Path to the project to be analyzed.")
     private String path = new String();
 
-    @Option(names = { "-o", "--output" }, description = "Type of output: json or txt. Default: json")
+    @Option(names = { "-o", "--output" }, description = "Type of output: json or txt (default: json).")
     private String output = new String("json");
+
+    @Option(names = { "-f", "--full" }, description = "List the full report for all existing classes.")
+    private boolean fullReport = false;
 
     public static void main(String[] args) {
         int exitCode = new CommandLine(new Miner("/home/gustavopinto/workspace/poc-plugin-cdd")).execute(args);
@@ -117,7 +120,7 @@ public class Miner implements Runnable {
 
             spoon.run();
 
-            System.out.println(new PrintMetrics(config, context).as("json"));
+            System.out.println(new PrintMetrics(config, context, fullReport).as(output));
 
         } catch (spoon.compiler.ModelBuildingException e) {
             System.out.println("[ERROR] " + e.getMessage() + ". Types cannot be defined twice.");

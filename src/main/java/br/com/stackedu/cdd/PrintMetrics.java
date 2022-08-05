@@ -21,10 +21,17 @@ public class PrintMetrics {
 
 	private final Config config;
 	private final StoreMetrics context;
+	private boolean fullReport;
 
 	public PrintMetrics(Config config, StoreMetrics context) {
 		this.config = config;
 		this.context = context;
+		this.fullReport = false;
+	}
+
+	public PrintMetrics(Config config, StoreMetrics context, boolean fullReport) {
+		this(config, context);
+		this.fullReport = fullReport;
 	}
 
 	public String as(String type) {
@@ -65,7 +72,7 @@ public class PrintMetrics {
 			sb.append(totalICPs);
 			sb.append("]\n");
 
-			if (totalICPs >= config.limit()) {
+			if (fullReport || totalICPs >= config.limit()) {
 				output.append(sb.toString());
 			}
 		}
@@ -93,7 +100,7 @@ public class PrintMetrics {
 
 			json.put("TOTAL", totalICPs);
 
-			if (totalICPs >= config.limit()) {
+			if (fullReport || totalICPs >= config.limit()) {
 				configMap.put(entry.getKey(), json);
 			}
 		}
@@ -113,5 +120,4 @@ public class PrintMetrics {
 			json.put(rule.getName(), 0);
 		}
 	}
-
 }
