@@ -26,16 +26,19 @@ import picocli.CommandLine.Option;
 import spoon.Launcher;
 import spoon.reflect.factory.Factory;
 
-@Command(name = "cdd.jar", version = "0.0.2",
-header = {
-    "@|green ░█████╗░██████╗░██████╗░|@",
-    "@|green ██╔══██╗██╔══██╗██╔══██╗|@",
-    "@|green ██║░░╚═╝██║░░██║██║░░██║|@", 
-    "@|green ██║░░██╗██║░░██║██║░░██║|@",
-    "@|green ╚█████╔╝██████╔╝██████╔╝|@",
-    "@|green ░╚════╝░╚═════╝░╚═════╝░|@",
-    })
+@Command(name = "cdd.jar", version = "0.0.2", header = {
+        "@|green ░█████╗░██████╗░██████╗░|@",
+        "@|green ██╔══██╗██╔══██╗██╔══██╗|@",
+        "@|green ██║░░╚═╝██║░░██║██║░░██║|@",
+        "@|green ██║░░██╗██║░░██║██║░░██║|@",
+        "@|green ╚█████╔╝██████╔╝██████╔╝|@",
+        "@|green ░╚════╝░╚═════╝░╚═════╝░|@",
+})
 public class Miner implements Runnable {
+
+    private Miner(String path) {
+        this.path = path;
+    }
 
     @Option(names = { "-p",
             "--path" }, required = true, description = "Path to the project to be analyzed.")
@@ -45,8 +48,8 @@ public class Miner implements Runnable {
     private String output = new String("json");
 
     public static void main(String[] args) {
-        int exitCode = new CommandLine(new Miner()).execute(args); 
-        System.exit(exitCode); 
+        int exitCode = new CommandLine(new Miner("/home/gustavopinto/workspace/poc-plugin-cdd")).execute(args);
+        System.exit(exitCode);
     }
 
     @Override
@@ -55,9 +58,9 @@ public class Miner implements Runnable {
             Launcher spoon = new Launcher();
             final Factory factory = spoon.getFactory();
             factory.getEnvironment().setComplianceLevel(17);
-            
+
             spoon.addInputResource(path);
-            
+
             Config config = DefaultUserDefinitionFactory.load("cdd.json");
 
             StoreMetrics context = new StoreMetrics();
@@ -113,15 +116,15 @@ public class Miner implements Runnable {
             }
 
             spoon.run();
-            
-            System.out.println(new PrintMetrics(config, new StoreMetrics()).as(output));
 
-        } catch (Error e) {
-            System.out.print("[ERROR] ");
-            System.out.println("The file 'cdd.json' was not found in the root dir of the project!");
+            System.out.println(new PrintMetrics(config, context).as("json"));
+
+        } catch (spoon.compiler.ModelBuildingException e) {
+            System.out.println("[ERROR] " + e.getMessage() + ". Types cannot be defined twice.");
         } catch (PluginCDDException e) {
-            System.out.print("[ERROR] ");
-            System.out.println(e.getMessage());
+            System.out.println("[ERROR] " + e.getMessage());
+        } catch (Error e) {
+            System.out.println("[ERROR] The file 'cdd.json' was not found in the root dir of the project!");
         }
     }
 }

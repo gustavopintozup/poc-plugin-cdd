@@ -27,13 +27,13 @@ public class PrintMetrics {
 		this.context = context;
 	}
 
-	public String as(String value) {
-		if (value.equals("json")) {
+	public String as(String type) {
+		if (type.equals("json")) {
 			return json();
-		} else if (value.equals("txt")) {
+		} else if (type.equals("txt")) {
 			return txt();
 		}
-		throw new PluginCDDException("Type of output formatter not supported: " + value);
+		throw new PluginCDDException("This type of output is not supported: " + type);
 	}
 
 	public String txt() {
