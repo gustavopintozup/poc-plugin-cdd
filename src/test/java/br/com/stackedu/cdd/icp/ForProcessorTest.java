@@ -14,7 +14,7 @@ public class ForProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("ListaValidacoesEstrutura.java"));
+                new Resources().findFile("LoopsSimples.java"));
 
         StoreMetrics context = new StoreMetrics();
         ForProcessor processor = new ForProcessor(context);
@@ -22,6 +22,6 @@ public class ForProcessorTest {
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(0, processor.total());
+        assertEquals(1, processor.total());
     }
 }

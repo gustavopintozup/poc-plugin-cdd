@@ -14,14 +14,16 @@ public class WhileProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("HeadingWrapper.java"));
+            new Resources().findFile("LoopsSimples.java"));
 
         StoreMetrics context = new StoreMetrics();
-        WhileProcessor processor = new WhileProcessor(context);
+        WhileProcessor p1 = new WhileProcessor(context);
+        DoWhileProcessor p2 = new DoWhileProcessor(context);
 
-        l.addProcessor(processor);
+        l.addProcessor(p1);
+        l.addProcessor(p2);
         l.run();
 
-        assertEquals(1, processor.total());
+        assertEquals(2, p1.total() + p2.total());
     }
 }

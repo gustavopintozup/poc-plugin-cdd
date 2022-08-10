@@ -13,7 +13,7 @@ public class AnonymousClassProcessorTest {
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource(new Resources().findFile("ValidaConteudoDasAjudas.java"));
+        l.addInputResource(new Resources().findFile("AnonymousSimples.java"));
 
         StoreMetrics context = new StoreMetrics();
         AnonymousClassProcessor processor = new AnonymousClassProcessor(context);
@@ -21,6 +21,6 @@ public class AnonymousClassProcessorTest {
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(0, processor.total());
+        assertEquals(1, processor.total());
     }
 }

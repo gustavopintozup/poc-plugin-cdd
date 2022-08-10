@@ -37,10 +37,12 @@ public class MethodProcessor extends AbstractProcessor<CtMethod> implements ICP 
         if (config.exists(SupportedRules.METHODS_AUTOGEN)) {
             //TODO: any other?
             if (candidate.getSignature().equals("equals(java.lang.Object)")) {
+                System.out.println("equals");
                 return false;
             }
 
             if (candidate.getSignature().equals("hashCode()")) {
+                System.out.println("hashcode");
                 return false;
             }
         }

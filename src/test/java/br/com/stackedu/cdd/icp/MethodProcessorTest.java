@@ -12,12 +12,12 @@ import spoon.Launcher;
 
 public class MethodProcessorTest {
     @Test
-    @DisplayName("Checking a class using equals and hashcode, without stating this rule in cdd.json")
+    @DisplayName("Counting all methods")
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("Aluno.java"));
+            new Resources().findFile("UploadFileService.java"));
 
         StoreMetrics context = new StoreMetrics();
         MethodProcessor processor = new MethodProcessor(UserDefinitionForTesting.load(), context);
@@ -25,10 +25,11 @@ public class MethodProcessorTest {
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(11, processor.total());
+        assertEquals(3, processor.total());
     }
 
     @Test
+    @DisplayName("Counting all methods, except equals and hashcode")
     public void testName2() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);

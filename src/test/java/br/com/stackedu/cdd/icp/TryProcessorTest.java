@@ -15,7 +15,7 @@ public class TryProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("ServicoNotas.java"));
+            new Resources().findFile("TrySimples.java"));
 
         StoreMetrics context = new StoreMetrics();
         TryProcessor processor = new TryProcessor(context);
@@ -41,5 +41,41 @@ public class TryProcessorTest {
         l.run();
 
         assertEquals(2, processor.total());
+    }
+
+    @Test
+    @DisplayName("Try with finally with no catch")
+    public void testName3() throws Exception {
+        Launcher l = new Launcher();
+        l.getEnvironment().setNoClasspath(true);
+        l.addInputResource(
+            new Resources().findFile("TryComFinallySemCatch.java"));
+
+        StoreMetrics context = new StoreMetrics();
+        TryProcessor processor = new TryProcessor(context);
+
+        l.addProcessor(processor);
+        l.run();
+
+        assertEquals(2, processor.total());
+    }
+
+    @Test
+    @DisplayName("Covering all branches with a try, 3 catches and a finally")
+    public void testName4() throws Exception {
+        Launcher l = new Launcher();
+        l.getEnvironment().setNoClasspath(true);
+        l.addInputResource(
+            new Resources().findFile("TryComTresCatchesEFinally.java"));
+
+        StoreMetrics context = new StoreMetrics();
+        TryProcessor p1 = new TryProcessor(context);
+        CatchProcessor p2 = new CatchProcessor(context);
+
+        l.addProcessor(p1);
+        l.addProcessor(p2);
+        l.run();
+
+        assertEquals(5, p1.total() + p2.total());
     }
 }

@@ -14,7 +14,7 @@ public class SuperProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("ValidaConteudoDasAjudas.java"));
+            new Resources().findFile("SuperSimples.java"));
 
         StoreMetrics context = new StoreMetrics();
         SuperProcessor processor = new SuperProcessor(context);
@@ -22,6 +22,6 @@ public class SuperProcessorTest {
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(0, processor.total());
+        assertEquals(1, processor.total());
     }
 }

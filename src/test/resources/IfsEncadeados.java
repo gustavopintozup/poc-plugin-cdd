@@ -1,4 +1,4 @@
-class Ternario {
+class IfsEncadeados {
     public static void main(String[] args) {
 
         if (a > b) {

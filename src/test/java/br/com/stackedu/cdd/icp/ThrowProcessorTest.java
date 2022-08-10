@@ -14,7 +14,7 @@ public class ThrowProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("ValidadorTitulosAlteradosAoAtualizar.java"));
+            new Resources().findFile("TryComTresCatches.java"));
 
         StoreMetrics context = new StoreMetrics();
         ThrowProcessor processor = new ThrowProcessor(context);

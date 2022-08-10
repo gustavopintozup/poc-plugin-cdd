@@ -17,7 +17,7 @@ public class UserDefinition {
 	private int limit;
 	private List<Rule> rules;
 
-	public UserDefinition(@JsonProperty("limite") int limit, @JsonProperty("regras") List<Rule> rules) {
+	public UserDefinition(@JsonProperty("limit") int limit, @JsonProperty("rules") List<Rule> rules) {
 		super();
 		this.limit = limit;
 		this.rules = rules;
@@ -31,9 +31,9 @@ public class UserDefinition {
 		return rules;
 	}
 
-	public Optional<Rule> find(SupportedRules rules) {
+	public Optional<Rule> find(SupportedRules rule) {
 		return this.rules.stream()
-				.filter(actual -> actual.hasTheSameName(rules))
+				.filter(actual -> actual.hasTheSameName(rule))
 				.findFirst();
 	}
 }

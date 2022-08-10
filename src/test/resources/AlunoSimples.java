@@ -1,4 +1,4 @@
-package br.com.zup.lms.alunos;
+package br.com.stackedu.cdd;
 
 import java.util.Objects;
 

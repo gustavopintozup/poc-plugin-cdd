@@ -14,7 +14,7 @@ public class VariavelLocalProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("Aluno.java"));
+            new Resources().findFile("AlunoSimples.java"));
 
         StoreMetrics context = new StoreMetrics();
         LocalVarProcessor processor = new LocalVarProcessor(context);
@@ -22,6 +22,6 @@ public class VariavelLocalProcessorTest {
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(6, processor.total());
+        assertEquals(3, processor.total());
     }
 }

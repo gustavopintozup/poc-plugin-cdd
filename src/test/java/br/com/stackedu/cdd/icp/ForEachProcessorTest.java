@@ -14,7 +14,7 @@ public class ForEachProcessorTest {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("ListaValidacoesEstrutura.java"));
+            new Resources().findFile("LoopsSimples.java"));
 
         StoreMetrics context = new StoreMetrics();
         ForEachProcessor processor = new ForEachProcessor(context);

@@ -16,7 +16,7 @@ public class TernaryProcessorTest {
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource(new Resources().findFile("Ternario.java"));
+        l.addInputResource(new Resources().findFile("TernarioEmUmDoisMetodos.java"));
 
         StoreMetrics context = new StoreMetrics();
         TernaryProcessor processor = new TernaryProcessor(UserDefinitionForTesting.load(), context);
@@ -32,7 +32,7 @@ public class TernaryProcessorTest {
     public void testName2() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
-        l.addInputResource(new Resources().findFile("Ternario2.java"));
+        l.addInputResource(new Resources().findFile("TernarioEmUmUnicoMetodo.java"));
 
         StoreMetrics context = new StoreMetrics();
         TernaryProcessor processor = new TernaryProcessor(UserDefinitionForTesting.load(), context);

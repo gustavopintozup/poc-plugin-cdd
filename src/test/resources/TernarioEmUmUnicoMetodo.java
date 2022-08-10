@@ -1,4 +1,4 @@
-class Ternario {
+class TernarioEmUmUnicoMetodo {
     public static void main(String[] args) {
         int marks = 10;
         String result = (marks > 40) ? "pass" : "fail";

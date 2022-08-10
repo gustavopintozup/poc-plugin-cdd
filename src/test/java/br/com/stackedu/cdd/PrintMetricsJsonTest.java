@@ -21,18 +21,18 @@ public class PrintMetricsJsonTest {
         Launcher spoon = new Launcher();
 
         spoon.getEnvironment().setNoClasspath(true);
-        spoon.addInputResource(new Resources().findFile("Aluno.java"));
+        spoon.addInputResource(new Resources().findFile("UploadFileService.java"));
 
         StoreMetrics context = new StoreMetrics();
         spoon.addProcessor(new AnnotationProcessor(context));
         spoon.run();
 
         assertEquals(removeWhiteSpaces("{" +
-                "  \"br.com.zup.lms.alunos.Aluno\" : {" +
+                "  \"com.mkyong.rest.UploadFileService\" : {" +
                 "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 28," +
+                "    \"TOTAL\" : 12," +
                 "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 28," +
+                "    \"ANNOTATION\" : 12," +
                 "    \"TRY_CATCH_STATEMENT\" : 0," +
                 "    \"CONDITION\" : 0," +
                 "    \"IF_STATEMENT\" : 0," +
@@ -44,15 +44,14 @@ public class PrintMetricsJsonTest {
     }
 
     @Test
-    public void testJsonWithFourProcessors() throws Exception {
+    public void testJsonWithTwoClassesAndFiveProcessors() throws Exception {
 
         Launcher spoon = new Launcher();
 
         spoon.getEnvironment().setNoClasspath(true);
 
-        spoon.addInputResource(new Resources().findFile("Aluno.java"));
-        spoon.addInputResource(new Resources().findFile("Ajuda.java"));
-        spoon.addInputResource(new Resources().findFile("HeadingWrapper.java"));
+        spoon.addInputResource(new Resources().findFile("UploadFileService.java"));
+        spoon.addInputResource(new Resources().findFile("GetterAccessLevel.java"));
 
         StoreMetrics context = new StoreMetrics();
         spoon.addProcessor(new AnnotationProcessor(context));
@@ -66,41 +65,29 @@ public class PrintMetricsJsonTest {
         spoon.run();
 
         assertEquals(removeWhiteSpaces("{" +
-                "  \"br.com.zup.lms.admin.HeadingWrapper\" : {" +
+                "  \"com.mkyong.rest.UploadFileService\" : {" +
                 "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 11," +
+                "    \"TOTAL\" : 14," +
                 "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 4," +
-                "    \"TRY_CATCH_STATEMENT\" : 0," +
+                "    \"ANNOTATION\" : 12," +
+                "    \"TRY_CATCH_STATEMENT\" : 2," +
                 "    \"CONDITION\" : 0," +
-                "    \"IF_STATEMENT\" : 1," +
+                "    \"IF_STATEMENT\" : 0," +
                 "    \"SWITCH_STATEMENT\" : 0," +
                 "    \"FOR_STATEMENT\" : 0," +
-                "    \"CONTEXT_COUPLING\" : 6" +
+                "    \"CONTEXT_COUPLING\" : 0" +
                 "  }," +
-                "  \"br.com.zup.lms.admin.Ajuda\" : {" +
+                "  \"GetterAccessLevel\" : {" +
                 "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 39," +
+                "    \"TOTAL\" : 29," +
                 "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 28," +
+                "    \"ANNOTATION\" : 29," +
                 "    \"TRY_CATCH_STATEMENT\" : 0," +
                 "    \"CONDITION\" : 0," +
                 "    \"IF_STATEMENT\" : 0," +
                 "    \"SWITCH_STATEMENT\" : 0," +
                 "    \"FOR_STATEMENT\" : 0," +
-                "    \"CONTEXT_COUPLING\" : 11" +
-                "  }," +
-                "  \"br.com.zup.lms.alunos.Aluno\" : {" +
-                "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 38," +
-                "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 28," +
-                "    \"TRY_CATCH_STATEMENT\" : 0," +
-                "    \"CONDITION\" : 0," +
-                "    \"IF_STATEMENT\" : 1," +
-                "    \"SWITCH_STATEMENT\" : 0," +
-                "    \"FOR_STATEMENT\" : 0," +
-                "    \"CONTEXT_COUPLING\" : 9" +
+                "    \"CONTEXT_COUPLING\" : 0" +
                 "  }" +
                 "}"),
                 removeWhiteSpaces(new PrintMetrics(currentConfiguration, context).json()));

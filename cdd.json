@@ -1,6 +1,6 @@
 {
-  "limite": 10,
-  "regras": [
+  "limit": 10,
+  "rules": [
     {
       "name": "IF_STATEMENT",
       "cost": 1

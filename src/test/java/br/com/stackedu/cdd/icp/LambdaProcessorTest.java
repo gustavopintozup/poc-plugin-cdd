@@ -2,6 +2,7 @@ package br.com.stackedu.cdd.icp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Resources;
@@ -10,11 +11,12 @@ import spoon.Launcher;
 
 public class LambdaProcessorTest {
     @Test
+    @DisplayName("Counting all lambdas occurrences")
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("CacheRespostasDeDeterminadoAluno.java"));
+            new Resources().findFile("Lambdas.java"));
 
         StoreMetrics context = new StoreMetrics();
         LambdaProcessor processor = new LambdaProcessor(context);
@@ -22,6 +24,6 @@ public class LambdaProcessorTest {
         l.addProcessor(processor);
         l.run();
 
-        assertEquals(3, processor.total());
+        assertEquals(1, processor.total());
     }
 }

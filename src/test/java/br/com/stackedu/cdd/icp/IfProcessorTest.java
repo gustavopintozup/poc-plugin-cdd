@@ -12,11 +12,12 @@ import spoon.Launcher;
 
 public class IfProcessorTest {
     @Test
+    @DisplayName("One if with one negation")
     public void testName() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("ValidaConteudoDasAjudas.java"));
+            new Resources().findFile("IfComUmaNegacao.java"));
 
         StoreMetrics context = new StoreMetrics();
         IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load(), context);
@@ -24,11 +25,11 @@ public class IfProcessorTest {
         l.addProcessor(ifprocessor);
         l.run();
 
-        assertEquals(5, ifprocessor.total());
+        assertEquals(1, ifprocessor.total());
     }
 
     @Test
-    @DisplayName("Checking several chained ifs")
+    @DisplayName("One if, two else if, and one else")
     public void testName2() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
@@ -45,12 +46,12 @@ public class IfProcessorTest {
     }
 
     @Test
-    @DisplayName("Checking if inside an equals()")
+    @DisplayName("One if with one condition")
     public void testName3() throws Exception {
         Launcher l = new Launcher();
         l.getEnvironment().setNoClasspath(true);
         l.addInputResource(
-            new Resources().findFile("Ajuda.java"));
+            new Resources().findFile("IfComUmaCondicao.java"));
 
         StoreMetrics context = new StoreMetrics();
         IfProcessor ifprocessor = new IfProcessor(UserDefinitionForTesting.load(), context);
@@ -58,6 +59,6 @@ public class IfProcessorTest {
         l.addProcessor(ifprocessor);
         l.run();
 
-        assertEquals(0, ifprocessor.total());
+        assertEquals(1, ifprocessor.total());
     }
 }

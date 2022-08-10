@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Resources;
 import br.com.stackedu.cdd.StoreMetrics;
-import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
+import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 import spoon.Launcher;
 
 public class ContextualCouplingProcessorTest {
@@ -15,33 +15,15 @@ public class ContextualCouplingProcessorTest {
 	public void testName() throws Exception {
 		Launcher l = new Launcher();
 		l.getEnvironment().setNoClasspath(true);
-		l.addInputResource(new Resources().findFile("ServicoNotas.java"));
+		l.addInputResource(new Resources().findFile("LiveReloadServer.java"));
 		StoreMetrics context = new StoreMetrics();
 
 		ContextualCouplingProcessor processor = new ContextualCouplingProcessor(
-				DefaultUserDefinitionFactory.load("cdd.json"), context);
+				UserDefinitionForTesting.load(), context);
 
 		l.addProcessor(processor);
 		l.run();
 
-		assertEquals(4, processor.total());
-	}
-
-	@Test
-	public void testName2() throws Exception {
-		Launcher l = new Launcher();
-		l.getEnvironment().setNoClasspath(true);
-		l.addInputResource(new Resources()
-				.findFile("TodasInfosListaLearningTasksResponse.java"));
-
-		StoreMetrics context = new StoreMetrics();
-		ContextualCouplingProcessor processor = new ContextualCouplingProcessor(
-				DefaultUserDefinitionFactory.load("cdd.json"), context);
-
-		l.addProcessor(processor);
-		l.run();
-
-		System.out.println(processor.values());
-		assertEquals(5, processor.total());
+		assertEquals(0, processor.total());
 	}
 }
