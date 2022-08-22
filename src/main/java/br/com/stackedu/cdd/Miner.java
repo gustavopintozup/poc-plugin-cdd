@@ -73,6 +73,7 @@ public class Miner implements Runnable {
             Launcher spoon = new Launcher();
             final Factory factory = spoon.getFactory();
             factory.getEnvironment().setComplianceLevel(17);
+            factory.getEnvironment().setCopyResources(false);
 
             spoon.addInputResource(path);
 
