@@ -29,8 +29,9 @@ public class DefaultUserDefinitionFactory {
 			ObjectMapper mapper = new ObjectMapper();
 			return new Config(mapper.readValue(config, UserDefinition.class));
 
+		} catch (com.fasterxml.jackson.databind.JsonMappingException e) {
+			throw new PluginCDDException("There are potential bugs in the 'cdd.json' file. Please revise it.");
 		} catch (IOException e) {
-			e.printStackTrace();
 			throw new PluginCDDException(
 					"The 'cdd.json' file was not found in the root dir of the project!");
 		}

@@ -1,0 +1,9 @@
+{
+  "limit": 10,
+  "rules": [
+    {
+      "name": "IF_STATEMENT",
+      "cost": 1
+    },
+  ]
+}

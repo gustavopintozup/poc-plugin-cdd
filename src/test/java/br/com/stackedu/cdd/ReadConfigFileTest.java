@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.config.Config;
+import br.com.stackedu.cdd.config.DefaultUserDefinitionFactory;
 import br.com.stackedu.cdd.config.SupportedRules;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
 
@@ -42,5 +43,17 @@ public class ReadConfigFileTest {
         });
 
         assertEquals(exception.getMessage(), "The rule METHODS_AUTOGEN is not being used!");
+    }
+
+    @Test
+    @DisplayName("Loading a buggy cdd.json file")
+    public void testName3() throws Exception {
+        String buggy = new Resources().findFile("cdd-buggy.json");
+
+        Exception exception = assertThrows(PluginCDDException.class, () -> {
+        	DefaultUserDefinitionFactory.load(buggy);
+        });
+
+        assertEquals(exception.getMessage(), "There are potential bugs in the 'cdd.json' file. Please revise it.");
     }
 }
