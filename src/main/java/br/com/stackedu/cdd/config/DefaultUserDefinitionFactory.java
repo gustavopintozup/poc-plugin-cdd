@@ -30,6 +30,7 @@ public class DefaultUserDefinitionFactory {
 			return new Config(mapper.readValue(config, UserDefinition.class));
 
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new PluginCDDException(
 					"The 'cdd.json' file was not found in the root dir of the project!");
 		}

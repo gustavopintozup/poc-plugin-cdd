@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.stackedu.cdd.Miner.FormatOption.Format;
 import br.com.stackedu.cdd.config.Config;
 import br.com.stackedu.cdd.config.Rule;
 
@@ -34,13 +35,16 @@ public class PrintMetrics {
 		this.fullReport = fullReport;
 	}
 
-	public String as(String type) {
-		if (type.equals("json")) {
-			return json();
-		} else if (type.equals("txt")) {
-			return txt();
+	public String as(Format type) {
+		switch (type) {
+			case CSV:
+				return txt();
+			case JSON:
+				return json();
+			default:
+				throw new PluginCDDException("This type of output is not supported: " + type); // in theory this should
+																								// never happen
 		}
-		throw new PluginCDDException("This type of output is not supported: " + type);
 	}
 
 	public String txt() {

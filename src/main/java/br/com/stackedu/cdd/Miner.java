@@ -36,22 +36,34 @@ import spoon.reflect.factory.Factory;
 })
 public class Miner implements Runnable {
 
-    private Miner(String path) {
-        this.path = path;
-    }
-
     @Option(names = { "-p",
             "--path" }, required = true, description = "Path to the project to be analyzed.")
     private String path = new String();
 
-    @Option(names = { "-o", "--output" }, description = "Type of output: json or txt (default: json).")
-    private String output = new String("json");
-
-    @Option(names = { "-f", "--full" }, description = "List the full report for all existing classes.")
+    @Option(names = { "-f", "--full" }, description = "List the full analysis for all existing classes.")
     private boolean fullReport = false;
 
+    @CommandLine.ArgGroup(exclusive = true, multiplicity = "0..1")
+    FormatOption formatOption = new FormatOption();
+
+    static class FormatOption {
+        // default value for formatOption
+        public FormatOption() {
+            this.format = Format.JSON;
+        }
+
+        public enum Format {
+            CSV,
+            JSON
+        }
+
+        @Option(names = { "-o",
+                "--output" }, description = "Format of the output: ${COMPLETION-CANDIDATES}", defaultValue = "JSON")
+        private Format format;
+    }
+
     public static void main(String[] args) {
-        int exitCode = new CommandLine(new Miner("/home/gustavopinto/workspace/poc-plugin-cdd")).execute(args);
+        int exitCode = new CommandLine(new Miner()).execute(args);
         System.exit(exitCode);
     }
 
@@ -86,7 +98,6 @@ public class Miner implements Runnable {
             if (config.exists(SupportedRules.LAMBDA_EXPRESSION)) {
                 spoon.addProcessor(new LambdaProcessor(context));
             }
-
             if (config.exists(SupportedRules.METHOD)) {
                 spoon.addProcessor(new MethodProcessor(config, context));
             }
@@ -120,7 +131,7 @@ public class Miner implements Runnable {
 
             spoon.run();
 
-            System.out.println(new PrintMetrics(config, context, fullReport).as(output));
+            System.out.println(new PrintMetrics(config, context, fullReport).as(formatOption.format));
 
         } catch (spoon.compiler.ModelBuildingException e) {
             System.out.println("[ERROR] " + e.getMessage() + ". Types cannot be defined twice.");
