@@ -1,4 +1,4 @@
-package br.com.stackedu.cdd;
+package br.com.stackedu.cdd.storage;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,32 +65,5 @@ public class StoreMetrics {
             }
         }
         return ICPExists;
-    }
-}
-
-/**
- * Helper class to print ICP values
- */
-class ICPValue {
-    private final String ICP;
-    private final Integer value;
-
-    protected ICPValue(String ICP, Integer value) {
-        this.ICP = ICP;
-        this.value = value;
-    }
-
-    protected String getICP() {
-        return ICP;
-    }
-
-    protected Integer getValue() {
-        return value;
-    }
-
-    @Override
-    @ExcludeFromJacocoGeneratedReport
-    public String toString() {
-        return "[" + ICP + ", " + value + "]";
     }
 }

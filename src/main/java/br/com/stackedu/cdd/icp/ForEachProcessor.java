@@ -3,7 +3,7 @@ package br.com.stackedu.cdd.icp;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.stackedu.cdd.StoreMetrics;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.CtForEach;
 import spoon.reflect.declaration.CtType;

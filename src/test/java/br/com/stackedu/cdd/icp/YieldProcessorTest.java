@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Resources;
-import br.com.stackedu.cdd.StoreMetrics;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.Launcher;
 
 @Disabled

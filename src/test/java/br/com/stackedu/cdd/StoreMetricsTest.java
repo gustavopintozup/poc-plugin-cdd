@@ -6,11 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.Miner.FormatOption.Format;
 import br.com.stackedu.cdd.config.Config;
 import br.com.stackedu.cdd.icp.AnnotationProcessor;
 import br.com.stackedu.cdd.icp.IfProcessor;
 import br.com.stackedu.cdd.icp.MethodProcessor;
+import br.com.stackedu.cdd.printer.PrintMetrics;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.Launcher;
 
 public class StoreMetricsTest {
@@ -27,9 +30,9 @@ public class StoreMetricsTest {
         spoon.run();
 
         PrintMetrics print = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(print.txt());
+        assertNotNull(print.as(Format.CSV).print());
 
-        assertEquals("GetterAccessLevel[ANNOTATION=29,ICP=29]\n", print.txt());
+        assertEquals("GetterAccessLevel[ANNOTATION=29,ICP=29]\n", print.as(Format.CSV).print());
     }
 
     @Test
@@ -47,10 +50,10 @@ public class StoreMetricsTest {
         spoon.addProcessor(new MethodProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).txt());
+        assertNotNull(new PrintMetrics(testConfig, context).as(Format.CSV).print());
 
         assertEquals("GetterAccessLevel[ANNOTATION=29,ICP=38]\n",
-                new PrintMetrics(testConfig, context).txt());
+                new PrintMetrics(testConfig, context).as(Format.CSV).print());
     }
 
     @Test
@@ -64,9 +67,9 @@ public class StoreMetricsTest {
         spoon.addProcessor(new IfProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).txt());
+        assertNotNull(new PrintMetrics(testConfig, context).as(Format.CSV).print());
 
-        assertEquals("", new PrintMetrics(testConfig, context).txt());
+        assertEquals("", new PrintMetrics(testConfig, context).as(Format.CSV).print());
     }
 
 }

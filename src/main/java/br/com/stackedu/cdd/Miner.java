@@ -20,6 +20,8 @@ import br.com.stackedu.cdd.icp.ThrowProcessor;
 import br.com.stackedu.cdd.icp.TryProcessor;
 import br.com.stackedu.cdd.icp.WhileProcessor;
 import br.com.stackedu.cdd.icp.YieldProcessor;
+import br.com.stackedu.cdd.printer.PrintMetrics;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -46,7 +48,7 @@ public class Miner implements Runnable {
     @CommandLine.ArgGroup(exclusive = true, multiplicity = "0..1")
     FormatOption formatOption = new FormatOption();
 
-    static class FormatOption {
+    public static class FormatOption {
         // default value for formatOption
         public FormatOption() {
             this.format = Format.JSON;

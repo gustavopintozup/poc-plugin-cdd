@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import br.com.stackedu.cdd.Resources;
-import br.com.stackedu.cdd.StoreMetrics;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.Launcher;
 
 public class ContextualCouplingProcessorTest {

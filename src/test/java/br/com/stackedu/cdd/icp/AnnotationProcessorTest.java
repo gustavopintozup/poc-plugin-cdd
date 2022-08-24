@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import br.com.stackedu.cdd.PrintMetrics;
+import br.com.stackedu.cdd.Miner.FormatOption.Format;
 import br.com.stackedu.cdd.Resources;
-import br.com.stackedu.cdd.StoreMetrics;
+import br.com.stackedu.cdd.printer.PrintMetrics;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.Launcher;
 
 public class AnnotationProcessorTest {
@@ -46,7 +47,7 @@ public class AnnotationProcessorTest {
                 assertEquals(12, processor.total());
 
                 assertEquals("com.mkyong.rest.UploadFileService[ANNOTATION=12,ICP=12]\n",
-                                new PrintMetrics(UserDefinitionForTesting.load(), context).txt());
+                                new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.CSV).print());
         }
 
         @Test
@@ -64,6 +65,6 @@ public class AnnotationProcessorTest {
                 l.run();
 
                 assertEquals(7, processor.total());
-                assertEquals("", new PrintMetrics(UserDefinitionForTesting.load(), context).txt());
+                assertEquals("", new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.CSV).print());
         }
 }

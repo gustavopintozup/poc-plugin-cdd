@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import br.com.stackedu.cdd.Miner.FormatOption.Format;
 import br.com.stackedu.cdd.icp.ContextualCouplingProcessor;
+import br.com.stackedu.cdd.printer.PrintMetrics;
 import br.com.stackedu.cdd.shared.UserDefinitionForTesting;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.Launcher;
 
 @Disabled
@@ -28,11 +31,11 @@ public class AlbertoTest {
         spoon.addProcessor(x);
         spoon.run();
 
-        PrintMetrics print = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(print.txt());
+        PrintMetrics printer = new PrintMetrics(UserDefinitionForTesting.load(), context);
+        assertNotNull(printer.as(Format.CSV).print());
         
         assertEquals(x.values(), new ArrayList<>());
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", print.txt());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", printer.as(Format.CSV).print());
     }
 
     @Test
@@ -49,10 +52,10 @@ public class AlbertoTest {
         spoon.addProcessor(x);
         spoon.run();
 
-        PrintMetrics print = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(print.txt());
+        PrintMetrics printer = new PrintMetrics(UserDefinitionForTesting.load(), context);
+        assertNotNull(printer.as(Format.CSV).print());
         
         assertEquals(x.values(), new ArrayList<>());
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", print.txt());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", printer.as(Format.CSV).print());
     }
 }

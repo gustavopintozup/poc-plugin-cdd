@@ -6,9 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import br.com.stackedu.cdd.StoreMetrics;
 import br.com.stackedu.cdd.config.Config;
 import br.com.stackedu.cdd.config.SupportedRules;
+import br.com.stackedu.cdd.storage.StoreMetrics;
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.code.CtIf;
