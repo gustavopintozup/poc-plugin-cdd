@@ -30,20 +30,7 @@ public class PrintMetricsJsonTest {
         spoon.addProcessor(new AnnotationProcessor(context));
         spoon.run();
 
-        assertEquals(removeWhiteSpaces("{" +
-                "  \"com.mkyong.rest.UploadFileService\" : {" +
-                "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 12," +
-                "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 12," +
-                "    \"TRY_CATCH_STATEMENT\" : 0," +
-                "    \"CONDITION\" : 0," +
-                "    \"IF_STATEMENT\" : 0," +
-                "    \"SWITCH_STATEMENT\" : 0," +
-                "    \"FOR_STATEMENT\" : 0," +
-                "    \"CONTEXT_COUPLING\" : 0" +
-                "  }" +
-                "}"), removeWhiteSpaces(new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.JSON).print()));
+        assertEquals(removeWhiteSpaces("{\"com.mkyong.rest.UploadFileService\":{\"IF_STATEMENT\":0,\"TRY_CATCH_STATEMENT\":0,\"SWITCH_STATEMENT\":0,\"CONDITION\":0,\"FOR_STATEMENT\":0,\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"CONTEXT_COUPLING\":0,\"ANNOTATION\":12,\"TOTAL\":12}}"), removeWhiteSpaces(new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.JSON).print()));
     }
 
     @Test
@@ -67,32 +54,7 @@ public class PrintMetricsJsonTest {
 
         spoon.run();
 
-        assertEquals(removeWhiteSpaces("{" +
-                "  \"com.mkyong.rest.UploadFileService\" : {" +
-                "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 14," +
-                "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 12," +
-                "    \"TRY_CATCH_STATEMENT\" : 2," +
-                "    \"CONDITION\" : 0," +
-                "    \"IF_STATEMENT\" : 0," +
-                "    \"SWITCH_STATEMENT\" : 0," +
-                "    \"FOR_STATEMENT\" : 0," +
-                "    \"CONTEXT_COUPLING\" : 0" +
-                "  }," +
-                "  \"GetterAccessLevel\" : {" +
-                "    \"FOREACH_STATEMENT\" : 0," +
-                "    \"TOTAL\" : 29," +
-                "    \"WHILE_STATEMENT\" : 0," +
-                "    \"ANNOTATION\" : 29," +
-                "    \"TRY_CATCH_STATEMENT\" : 0," +
-                "    \"CONDITION\" : 0," +
-                "    \"IF_STATEMENT\" : 0," +
-                "    \"SWITCH_STATEMENT\" : 0," +
-                "    \"FOR_STATEMENT\" : 0," +
-                "    \"CONTEXT_COUPLING\" : 0" +
-                "  }" +
-                "}"),
+        assertEquals("{\"com.mkyong.rest.UploadFileService\":{\"IF_STATEMENT\":0,\"TRY_CATCH_STATEMENT\":2,\"SWITCH_STATEMENT\":0,\"CONDITION\":0,\"FOR_STATEMENT\":0,\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"CONTEXT_COUPLING\":0,\"ANNOTATION\":12,\"TOTAL\":14},\"GetterAccessLevel\":{\"IF_STATEMENT\":0,\"TRY_CATCH_STATEMENT\":0,\"SWITCH_STATEMENT\":0,\"CONDITION\":0,\"FOR_STATEMENT\":0,\"FOREACH_STATEMENT\":0,\"WHILE_STATEMENT\":0,\"CONTEXT_COUPLING\":0,\"ANNOTATION\":29,\"TOTAL\":29}}",
                 removeWhiteSpaces(new PrintMetrics(currentConfiguration, context).as(Format.JSON).print()));
     }
 

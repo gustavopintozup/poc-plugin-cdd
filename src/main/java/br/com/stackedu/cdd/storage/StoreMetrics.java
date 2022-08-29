@@ -48,7 +48,7 @@ public class StoreMetrics {
         for (int i = 0; i < existingValues.size(); i++) {
             ICPValue actual = existingValues.get(i);
 
-            if (ICP.equals(actual.getICP())) {
+            if (ICP.equals(actual.getName())) {
                 ICPValue newValue = new ICPValue(ICP, actual.getValue() + 1);
                 v.set(i, newValue);
             }
@@ -60,7 +60,7 @@ public class StoreMetrics {
     private static boolean checkIfICPExists(String ICP, List<ICPValue> existingValues) {
         boolean ICPExists = false;
         for (ICPValue value : existingValues) {
-            if (value.getICP().equals(ICP)) {
+            if (value.getName().equals(ICP)) {
                 ICPExists = true;
             }
         }

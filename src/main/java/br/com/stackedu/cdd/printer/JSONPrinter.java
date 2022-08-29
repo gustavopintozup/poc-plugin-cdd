@@ -2,6 +2,7 @@ package br.com.stackedu.cdd.printer;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -39,14 +40,14 @@ public class JSONPrinter implements PrettyPrinter {
 
         while (iter.hasNext()) {
             Entry<String, List<ICPValue>> entry = iter.next();
-            Map<String, Object> json = new HashMap<>();
+            Map<String, Object> json = new LinkedHashMap<>();
             int totalICPs = 0;
 
             init_icp_with_zeros(json);
 
             List<ICPValue> ICPs = entry.getValue();
             for (ICPValue ICP : ICPs) {
-                json.put(ICP.getICP(), ICP.getValue());
+                json.put(ICP.getName(), ICP.getValue());
 
                 totalICPs += ICP.getValue();
             }
@@ -72,5 +73,9 @@ public class JSONPrinter implements PrettyPrinter {
         for (Rule rule : config.rules()) {
             json.put(rule.getName(), 0);
         }
+    }
+
+    protected Config getConfig () {
+        return this.config;
     }
 }

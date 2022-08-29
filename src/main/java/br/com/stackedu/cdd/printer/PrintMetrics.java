@@ -34,6 +34,8 @@ public class PrintMetrics {
 				return new TXTPrinter(config, context, fullReport);
 			case JSON:
 				return new JSONPrinter(config, context, fullReport);
+			case HTML:
+				return new HTMLPrinter(new JSONPrinter(config, context, fullReport));
 			default:
 				throw new PluginCDDException("This type of output is not supported: " + type); // in theory this should
 																								// never happen

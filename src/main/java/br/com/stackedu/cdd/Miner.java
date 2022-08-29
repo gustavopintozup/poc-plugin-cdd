@@ -56,7 +56,8 @@ public class Miner implements Runnable {
 
         public enum Format {
             CSV,
-            JSON
+            JSON,
+            HTML
         }
 
         @Option(names = { "-o",
@@ -134,7 +135,7 @@ public class Miner implements Runnable {
 
             spoon.run();
 
-            System.out.println(new PrintMetrics(config, context, fullReport).as(formatOption.format));
+            System.out.println(new PrintMetrics(config, context, fullReport).as(formatOption.format).print());
 
         } catch (spoon.compiler.ModelBuildingException e) {
             System.out.println("[ERROR] " + e.getMessage() + ". Types cannot be defined twice.");

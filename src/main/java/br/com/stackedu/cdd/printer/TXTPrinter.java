@@ -47,7 +47,7 @@ public class TXTPrinter implements PrettyPrinter {
 
             List<ICPValue> ICPs = entry.getValue();
             for (ICPValue ICP : ICPs) {
-                sb.append(ICP.getICP());
+                sb.append(ICP.getName());
                 sb.append('=');
                 sb.append(ICP.getValue());
                 sb.append(',');

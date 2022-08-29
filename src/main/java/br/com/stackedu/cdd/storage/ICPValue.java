@@ -7,16 +7,16 @@ import br.com.stackedu.cdd.ExcludeFromJacocoGeneratedReport;
  * Helper class to print ICP values
  */
 public class ICPValue {
-    private final String ICP;
+    private final String name;
     private final Integer value;
 
-    public ICPValue(String ICP, Integer value) {
-        this.ICP = ICP;
+    public ICPValue(String name, Integer value) {
+        this.name = name;
         this.value = value;
     }
 
-    public String getICP() {
-        return ICP;
+    public String getName() {
+        return name;
     }
 
     public Integer getValue() {
@@ -26,6 +26,6 @@ public class ICPValue {
     @Override
     @ExcludeFromJacocoGeneratedReport
     public String toString() {
-        return "[" + ICP + ", " + value + "]";
+        return "[" + name + ", " + value + "]";
     }
 }
