@@ -4,7 +4,7 @@ Cognitive-Driven Development (CDD) is a coding design technique that aims to red
 
 The ideia behind CDD is that one needs to limit the number of code constructs, but this limit should be defined in a disciplined way. 
 
-To know more about CDD, read [here](https://www.zup.com.br/blog/cognitive-driven-development-cdd).
+To know more about CDD, read [here](https://www.zup.com.br/blog/cognitive-driven-development-cdd) (in pt-br).
 
 ## Plugin
 
@@ -19,7 +19,7 @@ This implementation is built using [spoon](https://github.com/INRIA/spoon), a st
 
 There are two ways to use this plugin: standalone or through StackSpot.
 
-### Standalone
+### Running through CLI
 
 To use the latest version, clone this project and create a `jar` file. Then run the `jar` pointing to the project to be analyzed. For instance:
 
@@ -33,11 +33,22 @@ mvn clean compile assembly:single
 java -jar target/cdd-<versao-atual>-SNAPSHOT-jar-with-dependencies.jar -p <diretório-do-projeto-que-quero-analisar>
 ```
 
-### StackSpot
+#### CLI Commands 
+
+The pluggin currently supports the following commands.
+
+| Command             | Description                                       |  Options                         |
+--------------------------------------------------------------------------|----------------------------------|
+| -p (or --path)      | Path to the project to be analyzed                |                                  |
+| -f (or --full)      | List the full analysis for all existing classes   |                                  |
+| -o (or --output)    | Format of the output                              | TXT, JSON or HTML                |
+
+
+### Running through StackSpot
 
 To use the CDD plugin in a more straightforward way, we recommend using the [StackSpot implementation](https://github.com/gustavopintozup/plugin-cdd-java).
 
-## Configuration
+## Configuring the plugin
 
 Read [our reference documentation](config.md) to know more about how to use the plugin.
 
