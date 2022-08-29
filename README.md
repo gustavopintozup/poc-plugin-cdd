@@ -38,7 +38,7 @@ java -jar target/cdd-<versao-atual>-SNAPSHOT-jar-with-dependencies.jar -p <diret
 The pluggin currently supports the following commands.
 
 | Command             | Description                                       |  Options                         |
---------------------------------------------------------------------------|----------------------------------|
+|---------------------|---------------------------------------------------|----------------------------------|
 | -p (or --path)      | Path to the project to be analyzed                |                                  |
 | -f (or --full)      | List the full analysis for all existing classes   |                                  |
 | -o (or --output)    | Format of the output                              | TXT, JSON or HTML                |
