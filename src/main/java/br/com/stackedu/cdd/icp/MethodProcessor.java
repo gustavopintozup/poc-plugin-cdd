@@ -17,9 +17,9 @@ public class MethodProcessor extends AbstractProcessor<CtMethod> implements ICP 
     private final Config config;
     private final StoreMetrics context;
 
-    public MethodProcessor(Config configuracoes, StoreMetrics contexto) {
-		this.config = configuracoes;
-		this.context = contexto;
+    public MethodProcessor(Config config, StoreMetrics context) {
+		this.config = config;
+		this.context = context;
     }
 
     @Override

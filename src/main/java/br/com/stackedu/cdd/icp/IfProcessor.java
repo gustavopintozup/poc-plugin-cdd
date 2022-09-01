@@ -18,10 +18,10 @@ public class IfProcessor extends AbstractProcessor<CtIf> implements ICP {
     private final Config config;
     private final StoreMetrics contexto;
 
-    public IfProcessor(Config configuracoes, StoreMetrics contexto) {
-        this.config = configuracoes;
+    public IfProcessor(Config config, StoreMetrics context) {
+        this.config = config;
 		this.values = new ArrayList<>();
-		this.contexto = contexto;
+		this.contexto = context;
     }
 
     @Override

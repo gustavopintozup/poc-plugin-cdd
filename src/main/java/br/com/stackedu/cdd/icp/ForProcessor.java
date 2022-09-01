@@ -12,10 +12,10 @@ public class ForProcessor extends AbstractProcessor<CtFor> implements ICP {
 
     private int total;
     private List<String> values;
-    private final StoreMetrics contexto;
+    private final StoreMetrics context;
 
-    public ForProcessor(StoreMetrics contexto) {
-        this.contexto = contexto;
+    public ForProcessor(StoreMetrics context) {
+        this.context = context;
 		this.values = new ArrayList<>();
     }
 
@@ -25,7 +25,7 @@ public class ForProcessor extends AbstractProcessor<CtFor> implements ICP {
         this.values.add(element.getShortRepresentation());
 
         CtType<?> clazz = element.getParent(CtType.class);
-        contexto.save(clazz.getQualifiedName(), "FOR_STATEMENT");
+        context.save(clazz.getQualifiedName(), "FOR_STATEMENT");
     }
 
     public int total() {

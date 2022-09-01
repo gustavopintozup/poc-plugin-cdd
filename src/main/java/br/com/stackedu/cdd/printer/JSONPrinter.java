@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.stackedu.cdd.PluginCDDException;
 import br.com.stackedu.cdd.config.Config;
-import br.com.stackedu.cdd.config.Rule;
+import br.com.stackedu.cdd.config.SupportedRules;
 import br.com.stackedu.cdd.storage.ICPValue;
 import br.com.stackedu.cdd.storage.StoreMetrics;
 
@@ -70,8 +70,8 @@ public class JSONPrinter implements PrettyPrinter {
     }
 
     private void init_icp_with_zeros(Map<String, Object> json) {
-        for (Rule rule : config.rules()) {
-            json.put(rule.getName(), 0);
+        for (SupportedRules rule : config.getDefinedRules()) {
+            json.put(rule.name(), 0);
         }
     }
 

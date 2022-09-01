@@ -8,7 +8,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.stackedu.cdd.config.Rule;
+import br.com.stackedu.cdd.config.SupportedRules;
 
 public class HTMLPrinter implements PrettyPrinter {
 
@@ -67,9 +67,9 @@ public class HTMLPrinter implements PrettyPrinter {
     private void init_table(StringBuilder builder) {
         builder.append("<tr>");
         builder.append("<td>Class</td>");
-        for (Rule rule : printer.getConfig().rules()) {
+        for (SupportedRules rule : printer.getConfig().getDefinedRules()) {
             builder.append("<td style='text-align: center;'>");
-            builder.append(rule.getName());
+            builder.append(rule.name());
             builder.append("</td>");
         }
         builder.append("<td style='text-align: center;'>TOTAL</td>");

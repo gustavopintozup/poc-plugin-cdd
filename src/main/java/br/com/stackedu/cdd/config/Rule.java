@@ -69,6 +69,4 @@ public class Rule {
 	public boolean hasTheSameName(SupportedRules rules) {
 		return this.name.toUpperCase().equals(rules.name().toUpperCase());
 	}
-
-	
 }
