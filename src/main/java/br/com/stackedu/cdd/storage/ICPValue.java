@@ -9,10 +9,12 @@ import br.com.stackedu.cdd.ExcludeFromJacocoGeneratedReport;
 public class ICPValue {
     private final String name;
     private final Integer value;
+    private final Integer cost;
 
-    public ICPValue(String name, Integer value) {
+    public ICPValue(String name, Integer value, Integer cost) {
         this.name = name;
         this.value = value;
+        this.cost = cost;
     }
 
     public String getName() {
@@ -21,6 +23,10 @@ public class ICPValue {
 
     public Integer getValue() {
         return value;
+    }
+
+    public Integer getCost() {
+        return cost;
     }
 
     @Override

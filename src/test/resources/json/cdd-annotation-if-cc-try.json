@@ -1,0 +1,22 @@
+{
+  "limit": 10,
+  "rules": [
+    {
+      "name": "ANNOTATION",
+      "cost": 1
+    },
+    {
+      "name": "IF_STATEMENT",
+      "cost": 1
+    },
+    {
+      "name": "TRY_CATCH_STATEMENT",
+      "cost": 1
+    },
+    {
+      "name": "CONTEXT_COUPLING",
+      "cost": 1,
+      "parameters": "br.com.zup.lms"
+    }
+  ]
+}

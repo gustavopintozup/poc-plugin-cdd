@@ -39,6 +39,10 @@ public class Rule {
 		return this.cost;
 	}
 
+	public boolean hasTheSameName(SupportedRules rules) {
+		return this.name.toUpperCase().equals(rules.name().toUpperCase());
+	}
+
 	@Override
 	@ExcludeFromJacocoGeneratedReport
 	public int hashCode() {
@@ -64,9 +68,5 @@ public class Rule {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}
-
-	public boolean hasTheSameName(SupportedRules rules) {
-		return this.name.toUpperCase().equals(rules.name().toUpperCase());
 	}
 }

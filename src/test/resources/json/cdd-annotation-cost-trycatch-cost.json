@@ -1,0 +1,13 @@
+{
+  "limit": 10,
+  "rules": [
+    {
+      "name": "ANNOTATION",
+      "cost": 2
+    },
+    {
+      "name": "TRY_CATCH_STATEMENT",
+      "cost": 1.3
+    }
+  ]
+}

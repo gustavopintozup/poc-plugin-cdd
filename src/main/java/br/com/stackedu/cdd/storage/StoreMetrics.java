@@ -32,13 +32,13 @@ public class StoreMetrics {
 
             dataset.replace(classQualifiedName, newValues);
         } else {
-            dataset.put(classQualifiedName, Arrays.asList(new ICPValue(ICP, 1)));
+            dataset.put(classQualifiedName, Arrays.asList(new ICPValue(ICP, 1, 0)));
         }
     }
 
     private static List<ICPValue> addNewValue(String ICP, List<ICPValue> existingValues) {
         List<ICPValue> v = new ArrayList<>(existingValues);
-        v.add(new ICPValue(ICP, 1));
+        v.add(new ICPValue(ICP, 1, 0));
         return v;
     }
 
@@ -49,7 +49,7 @@ public class StoreMetrics {
             ICPValue actual = existingValues.get(i);
 
             if (ICP.equals(actual.getName())) {
-                ICPValue newValue = new ICPValue(ICP, actual.getValue() + 1);
+                ICPValue newValue = new ICPValue(ICP, actual.getValue() + 1, 0);
                 v.set(i, newValue);
             }
         }

@@ -31,6 +31,7 @@ public class HTMLPrinter implements PrettyPrinter {
             Iterator<Map.Entry<String, JsonNode>> nodes = root.fields();
 
             StringBuilder builder = new StringBuilder();
+            builder.append("<h2>CDD Report</h2>");
             builder.append("<table border='1'>");
 
             init_table(builder);

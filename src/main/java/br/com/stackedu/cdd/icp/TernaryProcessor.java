@@ -46,7 +46,7 @@ public class TernaryProcessor extends AbstractProcessor<CtConditional> implement
         this.values.add(element.getCondition().prettyprint());
 
         CtType clazz = element.getParent(CtType.class);
-        context.save(clazz.getQualifiedName(), "if");
+        context.save(clazz.getQualifiedName(), "IF_STATEMENT");
     }
 
     public int total() {

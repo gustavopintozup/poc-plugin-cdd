@@ -48,7 +48,7 @@ public class ReadConfigFileTest {
     @Test
     @DisplayName("Loading a buggy cdd.json file")
     public void testName3() throws Exception {
-        String buggy = new Resources().findFile("cdd-buggy.json");
+        String buggy = new Resources().findFile("json/cdd-buggy.json");
 
         Exception exception = assertThrows(PluginCDDException.class, () -> {
         	DefaultUserDefinitionFactory.load(buggy);

@@ -16,7 +16,7 @@ import br.com.stackedu.cdd.storage.ICPValue;
 import br.com.stackedu.cdd.storage.StoreMetrics;
 
 /**
- * A class that prettyprints in a TXT format
+ * A class that prettyprints in a JSON format
  * 
  * @author gustavopinto
  */
@@ -41,15 +41,16 @@ public class JSONPrinter implements PrettyPrinter {
         while (iter.hasNext()) {
             Entry<String, List<ICPValue>> entry = iter.next();
             Map<String, Object> json = new LinkedHashMap<>();
-            int totalICPs = 0;
+            double totalICPs = 0;
 
             init_icp_with_zeros(json);
 
             List<ICPValue> ICPs = entry.getValue();
             for (ICPValue ICP : ICPs) {
-                json.put(ICP.getName(), ICP.getValue());
+                var value = ICP.getValue() * config.computeCost(SupportedRules.valueOf(ICP.getName()));
 
-                totalICPs += ICP.getValue();
+                json.put(ICP.getName(), value);
+                totalICPs += value;
             }
 
             json.put("TOTAL", totalICPs);
@@ -71,7 +72,7 @@ public class JSONPrinter implements PrettyPrinter {
 
     private void init_icp_with_zeros(Map<String, Object> json) {
         for (SupportedRules rule : config.getDefinedRules()) {
-            json.put(rule.name(), 0);
+            json.put(rule.name(), 0.0);
         }
     }
 

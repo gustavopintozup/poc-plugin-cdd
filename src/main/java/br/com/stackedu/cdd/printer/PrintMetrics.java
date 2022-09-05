@@ -41,5 +41,12 @@ public class PrintMetrics {
 																								// never happen
 		}
 	}
+	/**
+	 * Default printer uses JSON prettyprinter
+	 * @return String
+	 */
+	public String print() {
+		return new JSONPrinter(config, context, fullReport).print();
+	}
 
 }

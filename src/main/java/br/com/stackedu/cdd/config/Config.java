@@ -25,6 +25,10 @@ public class Config {
 				"The rule " + rule + " is not being used!"));
 	}
 
+	public Double computeCost(SupportedRules rule) {
+		return Double.parseDouble(get(rule).getCost());
+	}
+
 	public boolean exists(SupportedRules rule) {
 		return this.config.find(rule).isPresent();
 	}
