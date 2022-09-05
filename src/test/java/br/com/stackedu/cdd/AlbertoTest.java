@@ -32,10 +32,10 @@ public class AlbertoTest {
         spoon.run();
 
         PrintMetrics printer = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(printer.as(Format.CSV).print());
+        assertNotNull(printer.as(Format.TXT).print());
         
         assertEquals(x.values(), new ArrayList<>());
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", printer.as(Format.CSV).print());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", printer.as(Format.TXT).print());
     }
 
     @Test
@@ -53,9 +53,9 @@ public class AlbertoTest {
         spoon.run();
 
         PrintMetrics printer = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(printer.as(Format.CSV).print());
+        assertNotNull(printer.as(Format.TXT).print());
         
         assertEquals(x.values(), new ArrayList<>());
-        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", printer.as(Format.CSV).print());
+        assertEquals("br.com.zup.lms.alunos.Aluno[ANNOTATION=28,ICP=28]\n", printer.as(Format.TXT).print());
     }
 }

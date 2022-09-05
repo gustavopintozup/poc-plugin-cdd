@@ -47,7 +47,7 @@ public class AnnotationProcessorTest {
                 assertEquals(12, processor.total());
 
                 assertEquals("com.mkyong.rest.UploadFileService[ANNOTATION=12,ICP=12]\n",
-                                new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.CSV).print());
+                                new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.TXT).print());
         }
 
         @Test
@@ -65,6 +65,6 @@ public class AnnotationProcessorTest {
                 l.run();
 
                 assertEquals(7, processor.total());
-                assertEquals("", new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.CSV).print());
+                assertEquals("", new PrintMetrics(UserDefinitionForTesting.load(), context).as(Format.TXT).print());
         }
 }

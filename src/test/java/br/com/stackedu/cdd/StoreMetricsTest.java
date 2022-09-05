@@ -30,9 +30,9 @@ public class StoreMetricsTest {
         spoon.run();
 
         PrintMetrics print = new PrintMetrics(UserDefinitionForTesting.load(), context);
-        assertNotNull(print.as(Format.CSV).print());
+        assertNotNull(print.as(Format.TXT).print());
 
-        assertEquals("GetterAccessLevel[ANNOTATION=29,ICP=29]\n", print.as(Format.CSV).print());
+        assertEquals("GetterAccessLevel[ANNOTATION=29,ICP=29]\n", print.as(Format.TXT).print());
     }
 
     @Test
@@ -50,10 +50,10 @@ public class StoreMetricsTest {
         spoon.addProcessor(new MethodProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).as(Format.CSV).print());
+        assertNotNull(new PrintMetrics(testConfig, context).as(Format.TXT).print());
 
         assertEquals("GetterAccessLevel[ANNOTATION=29,ICP=38]\n",
-                new PrintMetrics(testConfig, context).as(Format.CSV).print());
+                new PrintMetrics(testConfig, context).as(Format.TXT).print());
     }
 
     @Test
@@ -67,9 +67,9 @@ public class StoreMetricsTest {
         spoon.addProcessor(new IfProcessor(testConfig, context));
         spoon.run();
 
-        assertNotNull(new PrintMetrics(testConfig, context).as(Format.CSV).print());
+        assertNotNull(new PrintMetrics(testConfig, context).as(Format.TXT).print());
 
-        assertEquals("", new PrintMetrics(testConfig, context).as(Format.CSV).print());
+        assertEquals("", new PrintMetrics(testConfig, context).as(Format.TXT).print());
     }
 
 }

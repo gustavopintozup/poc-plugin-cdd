@@ -42,7 +42,7 @@ public class Miner implements Runnable {
         }
 
         public enum Format {
-            CSV,
+            TXT,
             JSON,
             HTML
         }
@@ -77,10 +77,7 @@ public class Miner implements Runnable {
                 requiredProcessors.addAll(processors);
             }
 
-            for (Processor processor : requiredProcessors) {
-                System.out.println(processor.getClass().getCanonicalName());
-                spoon.addProcessor(processor);
-            }
+            requiredProcessors.forEach(spoon::addProcessor);
 
             spoon.run();
 

@@ -30,7 +30,7 @@ public class PrintMetrics {
 
 	public PrettyPrinter as(Format type) {
 		switch (type) {
-			case CSV:
+			case TXT:
 				return new TXTPrinter(config, context, fullReport);
 			case JSON:
 				return new JSONPrinter(config, context, fullReport);
