@@ -15,6 +15,7 @@ import br.com.stackedu.cdd.icp.IfProcessor;
 import br.com.stackedu.cdd.icp.LambdaProcessor;
 import br.com.stackedu.cdd.icp.LocalVarProcessor;
 import br.com.stackedu.cdd.icp.MethodProcessor;
+import br.com.stackedu.cdd.icp.MethodSizeProcessor;
 import br.com.stackedu.cdd.icp.SuperProcessor;
 import br.com.stackedu.cdd.icp.SwitchProcessor;
 import br.com.stackedu.cdd.icp.TernaryProcessor;
@@ -110,6 +111,12 @@ public enum SupportedRules {
         @Override
         public List<Processor> resolveProcessors(Config config, StoreMetrics context) {
             return Arrays.asList(new MethodProcessor(config, context));
+        }
+    },
+    METHOD_SIZE {
+        @Override
+        public List<Processor> resolveProcessors(Config config, StoreMetrics context) {
+            return Arrays.asList(new MethodSizeProcessor(config, context));
         }
     },
     THROW_STATEMENT {

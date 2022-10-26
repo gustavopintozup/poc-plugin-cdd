@@ -30,6 +30,10 @@
       "cost": 1
     },
     {
+      "name": "METHOD_SIZE",
+      "cost": 1
+    },
+    {
       "name": "CONTEXT_COUPLING",
       "cost": 1,
       "parameters": "br.com.zup.lms"
