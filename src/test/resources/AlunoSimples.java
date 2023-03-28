@@ -1,4 +1,4 @@
-package br.com.stackedu.cdd;
+package br.com.zupedu.cdd;
 
 import java.util.Objects;
 

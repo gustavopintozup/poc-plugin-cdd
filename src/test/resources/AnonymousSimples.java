@@ -1,4 +1,4 @@
-package br.com.stackedu.cdd;
+package br.com.zupedu.cdd;
 
 public class AnonymousSimples {
 
