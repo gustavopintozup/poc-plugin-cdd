@@ -44,7 +44,8 @@ public class Miner implements Runnable {
         public enum Format {
             TXT,
             JSON,
-            HTML
+            HTML,
+            SUMMARY
         }
 
         @Option(names = { "-o",

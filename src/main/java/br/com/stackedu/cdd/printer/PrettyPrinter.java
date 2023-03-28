@@ -2,7 +2,7 @@ package br.com.stackedu.cdd.printer;
 
 /**
  * 
- * Class for prety pritting the collected CDD metrics
+ * Interface for prety pritting the collected CDD metrics
  * 
  * @author gustavopinto
  */
