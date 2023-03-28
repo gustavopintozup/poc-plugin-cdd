@@ -6,10 +6,6 @@
       "cost": 1
     },
     {
-      "name": "WHILE_STATEMENT",
-      "cost": 1
-    },
-    {
       "name": "IF_STATEMENT",
       "cost": 1
     },
