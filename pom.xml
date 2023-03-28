@@ -4,7 +4,7 @@
 
     <groupId>br.com.stackedu</groupId>
     <artifactId>cdd</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <properties>
         <java.src.version>11</java.src.version>

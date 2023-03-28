@@ -1,38 +1,58 @@
 package br.com.stackedu.cdd.printer;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map.Entry;
+
+import br.com.stackedu.cdd.config.Config;
+import br.com.stackedu.cdd.storage.ICPValue;
+import br.com.stackedu.cdd.storage.StoreMetrics;
+
 public class SummaryPrinter implements PrettyPrinter {
 
-    private final JSONPrinter printer;
+    private final Config config;
+    private final StoreMetrics context;
+    private final boolean fullReport;
 
-    public SummaryPrinter(JSONPrinter printer) {
-        this.printer = printer;
-
+    public SummaryPrinter(Config config, StoreMetrics context, boolean fullReport) {
+        this.context = context;
+        this.config = config;
+        this.fullReport = fullReport;
     }
+
 
     @Override
     public String print() {
-        String json = printer.print();
-        StringBuilder builder = new StringBuilder();
 
-        var total_classes = 1;
+        StringBuilder output = new StringBuilder();
+
+        var total_classes = 0;
         var total_classes_over_limit = 0 ;
 
-        if (json.contains("TOTAL")) { 
-            var is_over_limit = json.split("TOTAL")[1]
-                                            .replaceAll("}", "")
-                                            .replaceAll("\"", "")
-                                            .replace(":", "");
+        Iterator<Entry<String, List<ICPValue>>> iter = context
+                .getDataset().entrySet().iterator();
+        while (iter.hasNext()) {
+            
+            total_classes++;
 
-            if(Double.parseDouble(is_over_limit) > printer.getConfig().limit()) {
+            Entry<String, List<ICPValue>> entry = iter.next();
+            int totalICPs = 0;
+
+            List<ICPValue> ICPs = entry.getValue();
+            for (ICPValue ICP : ICPs) {
+                totalICPs += ICP.getValue();
+            }
+
+            if (totalICPs >= config.limit()) {
                 total_classes_over_limit++;
             }
         }
 
-        builder.append("Total Classes: " + total_classes);
-        builder.append("\n");
-        builder.append("Total Classes over limit: " + total_classes_over_limit);
+        output.append("Total Classes: " + total_classes);
+        output.append("\n");
+        output.append("Total Classes over limit: " + total_classes_over_limit);
 
-        return builder.toString();
+        return output.toString();
     }
 
 }

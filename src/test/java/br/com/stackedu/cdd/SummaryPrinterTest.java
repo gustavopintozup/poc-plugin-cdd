@@ -64,8 +64,7 @@ public class SummaryPrinterTest {
     }
 
     @Test
-    public void testSummaryWithTwoClasses() throws Exception {
-
+    public void testSummaryWithTwoClassesButNoneOverTheLimit() throws Exception {
         Launcher spoon = new Launcher();
 
         spoon.getEnvironment().setNoClasspath(true);
@@ -81,7 +80,31 @@ public class SummaryPrinterTest {
 
         PrettyPrinter printer = new PrintMetrics(DefaultUserDefinitionFactory.load(
             new Resources().findFile("json/cdd-annotation-if-cc-try.json")), context).as(Format.SUMMARY);
-        String expected = "Total Classes: 1\nTotal Classes over limit: 0";
+        String expected = "Total Classes: 2\nTotal Classes over limit: 0";
+
+        assertEquals(expected, printer.print());
+    }
+
+
+    @Test
+    public void testSummaryWithTwoClassesButOneOverTheLimit() throws Exception {
+        Launcher spoon = new Launcher();
+
+        spoon.getEnvironment().setNoClasspath(true);
+        spoon.addInputResource(new Resources().findFile("UploadFileService.java"));
+        spoon.addInputResource(new Resources().findFile("LoopsSimples.java"));
+
+        StoreMetrics context = new StoreMetrics();
+        spoon.addProcessor(new AnnotationProcessor(context));
+        spoon.addProcessor(new TryProcessor(context));
+        spoon.addProcessor(new CatchProcessor(context));
+        spoon.addProcessor(new WhileProcessor(context));
+        
+        spoon.run();
+
+        PrettyPrinter printer = new PrintMetrics(DefaultUserDefinitionFactory.load(
+            new Resources().findFile("json/cdd-annotation-if-cc-try.json")), context).as(Format.SUMMARY);
+        String expected = "Total Classes: 2\nTotal Classes over limit: 1";
 
         assertEquals(expected, printer.print());
     }
